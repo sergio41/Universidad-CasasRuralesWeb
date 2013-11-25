@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13853958651380" configfile="/RHWeb/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="RegistrarUserGUI.xhtml" x="169" y="418" id="pf13853983447274" outlinks="pf13853983447275" path="/RegistrarUserGUI.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Resultado.xhtml" x="592" y="455" id="pf13853983447276" inlinks="pf13853983447275" path="/Resultado.xhtml"/>
-  <links id="pf13853983447275" target="pf13853983447276" source="pf13853983447274" outcome="ok"/>
+  <nodes xsi:type="pageflow:PFPage" name="RegistrarUserGUI.xhtml" x="169" y="418" id="pf13853983447274" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13854003848717" path="/RegistrarUserGUI.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="RegisterOwnerGUI.xhtml" x="480" y="418" id="pf13854003848718" inlinks="pf13854003848717" path="/RegisterOwnerGUI.xhtml"/>
+  <links id="pf13854003848717" target="pf13854003848718" source="pf13853983447274" outcome="ok"/>
 </pageflow:Pageflow>

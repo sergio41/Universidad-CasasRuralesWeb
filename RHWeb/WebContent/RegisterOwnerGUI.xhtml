@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+<f:view>
+	<head>
+<title>Una simple aplicacion JavaServer Faces</title>
+	</head>
+	<body>
+		<h:form>
+			<h3>Registrar un nuevo usuario.</h3>
+			<table>
+				<tr>
+					<td>Cuenta Bancaria:</td>
+					<td><h:inputText id="email" value="#{ownerBean.bankAccount}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Tipo:</td>
+					<td><h:inputSecret id="pass" value="#{ownerBean.tipo}"></h:inputSecret></td>
+				</tr>
+				<tr>
+					<td>Idiomas:</td>
+					<td><h:inputText id="ec" value="#{ownerBean.idiomas}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Profesion:</td>
+					<td><h:inputText id="nom" value="#{ownerBean.profesion}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Moneda:</td>
+					<td><h:inputText id="ape" value="#{ownerBean.moneda}"></h:inputText></td>
+				</tr>
+			</table>
+			<p>
+				<h:commandButton value="Registrar propietario" action="#{ownerBean.registrarOwner}" />
+			</p>
+		</h:form>
+	</body>
+</f:view>
+</html>
