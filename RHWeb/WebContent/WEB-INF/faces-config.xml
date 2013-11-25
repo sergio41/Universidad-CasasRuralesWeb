@@ -11,11 +11,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<display-name>RegistrarUserGUI.html</display-name>
-		<from-view-id>/RegistrarUserGUI.html</from-view-id>
+		<display-name>RegistrarUserGUI.xhtml</display-name>
+		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>ok</from-outcome>
-			<to-view-id>/Resultado.html</to-view-id>
+			<to-view-id>/Resultado.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
