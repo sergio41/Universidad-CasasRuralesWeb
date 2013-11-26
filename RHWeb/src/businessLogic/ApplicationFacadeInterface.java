@@ -22,7 +22,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public Vector<RuralHouse>  getCasas( String ciudad,int Banos,int Habita,int Cocina,int Estar,int Park) throws Exception;
 	
-	public void nuevoUsuario( String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, ImageIcon perfil) throws Exception;
+	public void nuevoUsuario( String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception;
 	
 	public void modificarPerfil(UserAplication usuario, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, ImageIcon perfil) throws Exception;
 	

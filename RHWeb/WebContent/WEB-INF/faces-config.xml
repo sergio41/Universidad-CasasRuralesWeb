@@ -44,5 +44,13 @@
 			<to-view-id>/Index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>RegistrarUserGUI.xhtml</display-name>
+		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/error.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

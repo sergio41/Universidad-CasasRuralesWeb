@@ -120,20 +120,25 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		}
 	}
 	
-	public void nuevoUsuario(String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, ImageIcon perfil) throws Exception {
+	public void nuevoUsuario(String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		System.out.println("FacadeImplementation: crear usuario");
 		String exp = "^[\\w\\-]([\\.\\w])+[\\w]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"; 
 		CharSequence seq = email;
 		Pattern pattern = Pattern.compile(exp,Pattern.CASE_INSENSITIVE); 
 		java.util.regex.Matcher m = pattern.matcher(seq);
 		if (!m.matches()) throw new Exception("Algunos datos obligatorios faltan.");
+		System.out.println("FacadeImplementation: email OK");
 		if (email.compareTo("")==0 || pass.compareTo("")==0 || nombre.compareTo("")==0 || pais.compareTo("")==0 || estadoCivil.compareTo("")==0) throw new Exception("Algunos datos obligatorios faltan.");
 		else {
 			if (edad.compareTo("")==0) edad = null;
 			if (apellidos.compareTo("")==0) apellidos = null;
 			if (telefono.compareTo("")==0) telefono = null;
-			DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
+			System.out.println("FacadeImplementation: insertar usuario");
+			DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+			System.out.println("FacadeImplementation: insertado usuario");
+			//DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
 			try {
+				System.out.println("FacadeImplementation: intentar mandar mail");
 				EnviarCorreo.enviarCorreos(email, "Registro en Villatripas de Arriba", "Te has registrado en villatripas de arriba con el email: " + email);
 				GestionTwitter.enviarTweet("Bienvenid@: " + nombre + " " + Calendar.getInstance().getTime().toString());
 			} catch (Exception e) {

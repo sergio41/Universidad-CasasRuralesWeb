@@ -2,10 +2,13 @@ package Beans;
 
 import java.util.Vector;
 
+import businessLogic.ApplicationFacadeInterface;
+import businessLogic.FacadeImplementation;
 import domain.Book;
 import domain.Owner;
 
 public class registerUserBean {
+	public static ApplicationFacadeInterface facadeInterface;
 	private String email;
 	private String pass;
 	private String estadoCivil;
@@ -70,6 +73,12 @@ public class registerUserBean {
 		this.perfil = perfil;
 	} 	
 	public String registrarUser(){
-		return "ok";
+		try {
+			facadeInterface =  new FacadeImplementation();
+			facadeInterface.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+			return "ok";
+		} catch (Exception e) {
+			return "error";
+		}
 	}
 }
