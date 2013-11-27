@@ -2,6 +2,8 @@ package Beans;
 
 import java.util.Vector;
 
+import javax.faces.context.FacesContext;
+
 import domain.RuralHouse;
 
 public class ownerBean {
@@ -15,6 +17,7 @@ public class ownerBean {
 
 	public String getBankAccount() {
 		return bankAccount;
+		
 	}
 	public void setBankAccount(String bankAccount) {
 		this.bankAccount = bankAccount;

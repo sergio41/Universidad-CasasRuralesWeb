@@ -16,16 +16,11 @@ Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!!
 </h3>
 <p>
 <c:if test="#{paripeBean.logueado}">
-	<h:commandButton value="Boton Prueba True" action="paripeBean.logueadoFalse" />
-
+	<h:commandButton value="Boton Prueba True" />
 </c:if>
 <c:otherwise>
-	<h:commandButton value="Boton Prueba False" action="paripeBean.logueadoFalse" />
+	<h:commandButton value="Boton Prueba False"/>
 </c:otherwise>
-
-<h:commandButton value="Boton True" action="paripeBean.logueadoTrue" />
-
-<h:commandButton value="Boton False" action="paripeBean.logueadoFalse" />
 
 	<h:commandButton value="Registrar" action="RegistrarUserGUI.xhtml" />
 	<h:commandButton value="InsertarRuralHouse" action="InsertarCasaRural.xhtml" />

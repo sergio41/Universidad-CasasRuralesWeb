@@ -30,11 +30,6 @@
 		<managed-bean-class>Beans.fachadaBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>paripeBean</managed-bean-name>
-		<managed-bean-class>Beans.paripeBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
 	<navigation-rule>
 		<display-name>RegistrarUserGUI.xhtml</display-name>
 		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>

@@ -2,6 +2,8 @@ package Beans;
 
 import java.util.Vector;
 
+import javax.faces.context.FacesContext;
+
 import businessLogic.ApplicationFacadeInterface;
 import businessLogic.FacadeImplementation;
 import domain.Book;
@@ -74,7 +76,7 @@ public class registerUserBean {
 	public String registrarUser(){
 		try {
 			fachadaBean.getFachada().nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
-			sesionBean.setUsuario(fachadaBean.getFachada().hacerLogin(email, pass));
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();
