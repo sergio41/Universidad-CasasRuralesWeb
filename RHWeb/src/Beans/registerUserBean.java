@@ -8,7 +8,7 @@ import domain.Book;
 import domain.Owner;
 
 public class registerUserBean {
-	public static ApplicationFacadeInterface facadeInterface;
+	private static ApplicationFacadeInterface facadeInterface;
 	private String email;
 	private String pass;
 	private String estadoCivil;

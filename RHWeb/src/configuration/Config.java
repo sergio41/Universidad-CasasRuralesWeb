@@ -24,9 +24,6 @@ public class Config {
 	private static Config theInstance = new Config();
 
     private Config(){}
-	
-
-	
 
 	public static Config getInstance() {
 		return theInstance;
