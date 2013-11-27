@@ -74,7 +74,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 		
 
-	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception{
+	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> imagenes) throws Exception{
 		System.out.println("FacadeImplementation: Añadir nueva casa Rural");
 		if (city.compareTo("") == 0) throw new Exception("Algunos datos obligatorios faltan.");
 		else {			
@@ -82,7 +82,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 				if (nKitchen<1) throw new Exception("La casa debe tener mínimo 1 cocina.");
 				if (nBaths<2) throw new Exception("La casa debe tener mínimo 2 baños.");
 				int numero = getNumeroCR();
-				DB4oManager.anadirRuralHouse(usuario, numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, setGuardarImagenes(usuario.getEmail(), imagenes, numero));
+				DB4oManager.anadirRuralHouse(usuario, numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, imagenes);
 			}
 	}
 	

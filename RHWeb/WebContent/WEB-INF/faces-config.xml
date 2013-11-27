@@ -70,5 +70,21 @@
 			<to-view-id>/Index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>RegisterOwnerGUI.xhtml</display-name>
+		<from-view-id>/RegisterOwnerGUI.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/ErrorOwner.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>InsertarCasaRural.xhtml</display-name>
+		<from-view-id>/InsertarCasaRural.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/ErrorInsertarCasa.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

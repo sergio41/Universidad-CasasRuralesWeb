@@ -12,7 +12,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	//public void close() throws RemoteException;
 
-	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception;
+	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> imagenes) throws Exception;
 	
 	public void modificarRuralHouse(UserAplication usuario,  int numero,
 			String description, String city, int nRooms, int nKitchen,
