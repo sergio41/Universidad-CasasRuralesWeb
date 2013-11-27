@@ -2,11 +2,16 @@
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13853958651380" configfile="/RHWeb/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="RegistrarUserGUI.xhtml" x="122" y="562" id="pf13853983447274" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf13854003848717 pf13854853349370" path="/RegistrarUserGUI.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="RegisterOwnerGUI.xhtml" x="338" y="178" id="pf13854003848718" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13854004980979" inlinks="pf13854003848717" path="/RegisterOwnerGUI.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="Index.xhtml" x="554" y="370" id="pf138540054496710" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13854004980979 pf138540155364611" path="/Index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Index.xhtml" x="554" y="370" id="pf138540054496710" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf13855706711380" inlinks="pf13854004980979 pf138540155364611 pf13855706711380" path="/Index.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="InsertarCasaRural.xhtml" x="341" y="562" id="pf138540155364612" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf138540155364611" path="/InsertarCasaRural.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="338" y="946" id="pf13854853349371" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13854853349370" path="/error.xhtml"/>
   <links id="pf13854003848717" target="pf13854003848718" source="pf13853983447274" outcome="ok"/>
   <links id="pf13854004980979" target="pf138540054496710" source="pf13854003848718" outcome="ok"/>
   <links id="pf138540155364611" target="pf138540054496710" source="pf138540155364612" outcome="ok"/>
   <links id="pf13854853349370" target="pf13854853349371" source="pf13853983447274" outcome="error"/>
+  <links id="pf13855706711380" target="pf138540054496710" source="pf138540054496710" outcome="ok">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
 </pageflow:Pageflow>

@@ -13,10 +13,12 @@ public class paripeBean {
 		sesionBean.setLogueado(logueado);
 	}
 	
-	public void logueadoTrue() {
-		setLogueado(true);
+	public String logueadoTrue() {
+		sesionBean.setLogueado(true);
+		return "ok";
 	}
-	public void logueadoFalse() {
-		setLogueado(false);
+	public String logueadoFalse() {
+		sesionBean.setLogueado(false);
+		return "ok";
 	}
 }
