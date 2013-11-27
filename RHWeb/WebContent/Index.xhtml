@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
  xmlns:ui="http://java.sun.com/jsf/facelets" 
  xmlns:h="http://java.sun.com/jsf/html" 
- xmlns:f="http://java.sun.com/jsf/core"> 
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:c="http://java.sun.com/jsp/jstl/core"  > 
 <f:view> 
 <head> 
 <title>Una simple aplicacion JavaServer Faces</title> 
@@ -14,6 +15,14 @@
 Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! 
 </h3>
 <p>
+<c:if test="#{paripeBean.logueado}">
+	<h:commandButton value="Boton Prueba True"  />
+
+</c:if>
+<c:otherwise>
+	<h:commandButton value="Boton Prueba False" action="RegistrarUserGUI.xhtml" />
+</c:otherwise>
+
 	<h:commandButton value="Registrar" action="RegistrarUserGUI.xhtml" />
 	<h:commandButton value="InsertarRuralHouse" action="InsertarCasaRural.xhtml" />
 </p>
