@@ -5,6 +5,7 @@ import java.util.Vector;
 import javax.faces.context.FacesContext;
 
 import domain.RuralHouse;
+import domain.UserAplication;
 
 public class ownerBean {
 	private String bankAccount = "";
@@ -59,13 +60,18 @@ public class ownerBean {
 		this.idiomas3 = idiomas3;
 	}
 	public String registrarOwner(){
-		/*Vector<String> idiomas = new Vector<String>();
+		Vector<String> idiomas = new Vector<String>();
 		idiomas.add(idiomas1);
 		idiomas.add(idiomas2);
 		idiomas.add(idiomas3);
-		DatosPrincipalesBean datos = null;
-		datos.getFacadeInterface();*/
-		return "ok";
+		try {
+			fachadaBean.getFachada().modificarOwner((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"), bankAccount, tipo, idiomas, profesion, moneda);
+			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+			System.out.println(user.getEmail() + user.getName() + user.getApellidos());
+			return "ok";
+		} catch (Exception e) {
+			return "error";
+		}
 	}
 
 }
