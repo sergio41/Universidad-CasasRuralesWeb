@@ -15,6 +15,7 @@ import domain.RuralHouse;
 import domain.UserAplication;
 
 public class offerBean {
+	private int ruralNumber;
 	private Date firstDay;
 	private Date lastDay;
 	private boolean reservado;
@@ -24,13 +25,21 @@ public class offerBean {
 	private Vector<Fechas> vectorFechas;
 	private boolean unidoOferta;
 	
-	public Date getFirsDay() {
+	
+	public int getRuralNumber(){
+		return ruralNumber;
+	}
+	
+	public void setRuralNumber(int num){
+		ruralNumber=num;
+	}
+	public Date getFirstDay() {
 		return firstDay;
 	}
 	public void setFirstDay(String primerDia) {
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		try {
-			firstDay=df.parse(primerDia);
+			firstDay= (Date) df.parse(primerDia);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +50,7 @@ public class offerBean {
 	}
 	
 	public void setLastDay(String ultimoDia) {
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		try {
 			lastDay=df.parse(ultimoDia);
 		} catch (ParseException e) {
@@ -81,7 +90,7 @@ public class offerBean {
 		ruralHouse= house;
 	}
 	
-	public Vector<Fechas> getFechas(){
+	public Vector<Fechas> getVectorFechas(){
 		return vectorFechas;
 	}
 	
@@ -98,10 +107,10 @@ public class offerBean {
 		else unidoOferta=false;
 	}
 	
-	public String loginUser(){
+	public String anadirOferta(){
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
+			UserAplication u = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"); 
+			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price, unidoOferta);
 			return "ok";
 		} catch (Exception e) {
 			//e.printStackTrace();
