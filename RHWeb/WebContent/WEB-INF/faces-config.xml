@@ -30,6 +30,11 @@
 		<managed-bean-class>Beans.fachadaBean</managed-bean-class>
 		<managed-bean-scope>application</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>loginBean</managed-bean-name>
+		<managed-bean-class>Beans.loginBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>RegistrarUserGUI.xhtml</display-name>
 		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>
@@ -41,14 +46,6 @@
 	<navigation-rule>
 		<display-name>RegisterOwnerGUI.xhtml</display-name>
 		<from-view-id>/RegisterOwnerGUI.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/Index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>InsertarCasaRural.xhtml</display-name>
-		<from-view-id>/InsertarCasaRural.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>ok</from-outcome>
 			<to-view-id>/Index.xhtml</to-view-id>
@@ -84,6 +81,14 @@
 		<navigation-case>
 			<from-outcome>error</from-outcome>
 			<to-view-id>/ErrorInsertarCasa.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>InsertarCasaRural.xhtml</display-name>
+		<from-view-id>/InsertarCasaRural.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 
