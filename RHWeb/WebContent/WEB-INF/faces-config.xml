@@ -91,5 +91,13 @@
 			<to-view-id>/Index.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>Index.xhtml</display-name>
+		<from-view-id>/Index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/errorLogin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

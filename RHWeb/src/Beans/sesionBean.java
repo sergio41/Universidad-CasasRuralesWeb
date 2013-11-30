@@ -31,4 +31,8 @@ public class sesionBean {
 	public void setUsuario(UserAplication usuario) {
 		this.usuario = usuario;
 	}
+	public String logout(){
+		setLogueado(false);
+		return "ok";
+	}
 }

@@ -10,7 +10,7 @@
 <title>Una simple aplicacion JavaServer Faces</title> 
 </head> 
 <body> 
-<h:form style="background-repeat:repeat;background-image:url(./../src/localData/fondo.jpg);"> 
+<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
 <h3> 
 Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! 
 </h3>
@@ -18,6 +18,7 @@ Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!!
 <c:choose>
 	<c:when test="#{sesionBean.logueado}">
 		<h:commandButton value="InsertarRuralHouse" action="InsertarCasaRural.xhtml" />
+		<h:commandButton value="Logout" action="#{sesionBean.logout}" />
 	</c:when>
 	<c:otherwise>
 		<h3>Inicia sesión.</h3>

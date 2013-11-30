@@ -27,7 +27,7 @@ public class loginBean {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
 			return "ok";
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "error";
 		}
 	}
