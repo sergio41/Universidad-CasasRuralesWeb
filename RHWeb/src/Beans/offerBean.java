@@ -36,26 +36,16 @@ public class offerBean {
 	public Date getFirstDay() {
 		return firstDay;
 	}
-	public void setFirstDay(String primerDia) {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			firstDay= (Date) df.parse(primerDia);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	public void setFirstDay(Date primerDia) {
+		firstDay=primerDia;
 	}
 	
 	public Date getLastDay() {
 		return lastDay;
 	}
 	
-	public void setLastDay(String ultimoDia) {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-		try {
-			lastDay=df.parse(ultimoDia);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+	public void setLastDay(Date ultimoDia) {
+		lastDay=ultimoDia;
 	}
 	
 	public boolean getReservado() {
@@ -100,20 +90,17 @@ public class offerBean {
 		return unidoOferta;
 	}
 	
-	public void setUnidoOferta(String unido){
-		if (unido.compareTo("Si")==0){
-			unidoOferta=true;
-		}
-		else unidoOferta=false;
+	public void setUnidoOferta(boolean unido){
+		unidoOferta=unido;
 	}
 	
-	public String anadirOferta(){
+	public String crearOffer(){
 		try {
 			UserAplication u = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"); 
 			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price, unidoOferta);
 			return "ok";
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return "error";
 		}
 	}
