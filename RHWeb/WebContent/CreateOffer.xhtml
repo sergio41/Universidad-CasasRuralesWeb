@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 
 
@@ -15,12 +16,14 @@
 	<body>
 		<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
 			<h3>Crear oferta.</h3>
+			<p:calendar   mode="inline" id="calendario2" > </p:calendar>
 			<table>
 				<tr>
 					<td>Casa rural:</td>
 					<td><h:inputText id="casa" value="#{offerBean.ruralNumber}">
 					<f:convertNumber integerOnly="true" type="number"/>
 					</h:inputText></td>
+					<td></td>
 				</tr>
 				<tr>
 					<td>Fecha inicio:</td>

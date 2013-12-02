@@ -5,12 +5,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.hibernate.Session;
+
 import com.db4o.*;
 
 import configuration.Config;
 import domain.*;
 
-public class DB4oManager { 
+public class DatabaseManager { 
 	private static ObjectContainer  db;
 	
     public static void openDatabase(String mode){
@@ -79,14 +81,15 @@ public class DB4oManager {
 	}
 	
 	public static UserAplication nuevoUsuario(String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
-		UserAplication u = new UserAplication(email, null, null, null, null, null, null, null);
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(u);	
-		if (userConcretos.hasNext()) throw new Exception("El email ya esta usado. Logueate");
-		UserAplication user = new UserAplication(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad);
-		user.setPerfil(perfil);
-		db.store(user);
-		db.commit();
-		return user;
+		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		 session.beginTransaction();
+		 List<UserAplication> result = session.createQuery("from Usuario where email='"+email+"'").list();
+		 if (result.size()>0) throw new Exception("El email ya esta usado. Logueate");
+		 UserAplication user = new UserAplication(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad);
+		 user.setPerfil(perfil);
+		 session.save(user);
+		 session.getTransaction().commit();
+		 return user;
 	}
 	
 	public static UserAplication modificarRuralHouse(String email, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> images) throws Exception {

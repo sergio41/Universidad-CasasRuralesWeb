@@ -1,8 +1,10 @@
 package domain;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import externalDataSend.EnviarCorreo;
@@ -19,12 +21,12 @@ public class RuralHouse implements Serializable {
 	private int nBaths;
 	private int nLiving;
 	private int nPark;
-	private Vector<Fechas> vectorFechas;
-	private Vector<Offer> vectorOfertas;
-	private Vector<Book> vectorReservas;
-	private Vector<String> vectorImage;
-	private Vector<String> comentarios;
-	private Vector<Integer> calificacion;
+	private List<Fechas> vectorFechas;
+	private List<Offer> vectorOfertas;
+	private List<Book> vectorReservas;
+	private List<String> vectorImage;
+	private List<String> comentarios;
+	private List<Integer> calificacion;
 	
 	
 	public RuralHouse(int hNumber, UserAplication usuario, String descripcion, String ciudad, int cuartos, int cocina, int banos, int salon, int aparcamiento,  Vector<String> images) {
@@ -74,9 +76,9 @@ public class RuralHouse implements Serializable {
 	
 	public String toString() {return this.houseNumber + ": " + this.city;}
 	
-	public Vector<Book> getReservas(){return vectorReservas;}
+	public List<Book> getReservas(){return vectorReservas;}
 	
-	public Vector<Offer> getOfertas(){ return vectorOfertas;}
+	public List<Offer> getOfertas(){ return vectorOfertas;}
 	public void anadirOferta(Date primerDia, Date ultimoDia, float precio, boolean obligatorio) throws Exception{
 		Fechas auxFecha = null;	
 		//Comprobar si esta reservado:
@@ -127,7 +129,7 @@ public class RuralHouse implements Serializable {
 		}
 	}
 	
-	public Vector<Fechas> getFechas(){return vectorFechas;}
+	public List<Fechas> getFechas(){return vectorFechas;}
 	
 	@SuppressWarnings("deprecation")
 	private boolean anadirFecha( Date date, float precio, int minimoDias){
@@ -160,7 +162,7 @@ public class RuralHouse implements Serializable {
 		return auxB;
 	}
 	
-	public Vector<String> getImages(){
+	public List<String> getImages(){
 		return vectorImage;
 	}
 	
@@ -286,15 +288,15 @@ public class RuralHouse implements Serializable {
 		}
 	}
 	
-	public Vector<Fechas> eliminarTodasFechas(){
-		Vector<Fechas> auxVectorFechas = new Vector<Fechas>();
+	public List<Fechas> eliminarTodasFechas(){
+		List<Fechas> auxVectorFechas = new ArrayList<Fechas>();
 		auxVectorFechas = vectorFechas;
 		vectorFechas = new Vector<Fechas>();
 		return auxVectorFechas;
 	}
 
-	public Vector<Offer> eliminarTodasOfertas(){
-		Vector<Offer> auxVectorOffer = new Vector<Offer>();
+	public List<Offer> eliminarTodasOfertas(){
+		List<Offer> auxVectorOffer = new ArrayList<Offer>();
 		auxVectorOffer = vectorOfertas;
 		vectorOfertas = new Vector<Offer>();
 		return auxVectorOffer;
@@ -332,9 +334,9 @@ public class RuralHouse implements Serializable {
 		throw new Exception("No existia dicha reserva"); 
 	}
 	
-	public Vector<Book> eliminarTodasReserva(){
+	public List<Book> eliminarTodasReserva(){
 		@SuppressWarnings("unchecked")
-		Vector<Book> auxVectorBook = (Vector<Book>) vectorReservas.clone();
+		List<Book> auxVectorBook =   vectorReservas; //AQUI SE HACIA UN CLONE; SI NO FUNCIONA TE  JODES
 		for (int i = 0; i<vectorReservas.size(); i++){
 			try {
 				EnviarCorreo.enviarCorreos(vectorReservas.get(i).getCliente().getEmail(), "Reserva: " + vectorReservas.get(i).getNumeroDeReserva() , "Lamentablemente, su reserva ha sido cancelada debido a que el propietario de la casa rural ha eliminado ésta. En caso de haber desembolsado el pago de la reserva, se le devolverá en muy poco tiempo.");
@@ -363,7 +365,7 @@ public class RuralHouse implements Serializable {
 		calificacion.add(puntuacion);
 	}
 	
-	public Vector<String> getComentarios(){
+	public List<String> getComentarios(){
 		return comentarios;
 	}
 	

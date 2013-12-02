@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -19,6 +20,7 @@ import javax.swing.ImageIcon;
 
 import configuration.Config;
 import dataAccess.DB4oManager;
+import dataAccess.DatabaseManager;
 import domain.Book;
 import domain.Fechas;
 import domain.Offer;
@@ -134,7 +136,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			if (apellidos.compareTo("")==0) apellidos = null;
 			if (telefono.compareTo("")==0) telefono = null;
 			System.out.println("FacadeImplementation: insertar usuario");
-			DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+			DatabaseManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
 			System.out.println("FacadeImplementation: insertado usuario");
 			//DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
 			try {
@@ -267,7 +269,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 
 
-	public Vector<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception {
+	public List<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception {
 		System.out.println("FacadeImplementation: get ofertas");
 		Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
 		while (i.hasNext()){
@@ -369,7 +371,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		DB4oManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
 	}
 
-	public Vector<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
+	public List<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
 		System.out.println("FacadeImplementation: fet fechas");
 		Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
 		while (i.hasNext()){

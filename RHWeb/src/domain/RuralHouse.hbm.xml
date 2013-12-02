@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2013 18:05:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="domain.RuralHouse" table="RURALHOUSE">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="houseNumber" type="int">
+            <column name="HOUSENUMBER" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <many-to-one name="user" class="domain.UserAplication" access="field" fetch="join">
+            <column name="USER" />
+        </many-to-one>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="nRooms" type="int" access="field">
+            <column name="NROOMS" />
+        </property>
+        <property name="nKitchen" type="int" access="field">
+            <column name="NKITCHEN" />
+        </property>
+        <property name="nBaths" type="int" access="field">
+            <column name="NBATHS" />
+        </property>
+        <property name="nLiving" type="int" access="field">
+            <column name="NLIVING" />
+        </property>
+        <property name="nPark" type="int" access="field">
+            <column name="NPARK" />
+        </property>
+        <list name="vectorFechas" inverse="false" table="FECHAS" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="domain.Fechas" />
+        </list>
+        <list name="vectorOfertas" inverse="false" table="OFFER" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="domain.Offer" />
+        </list>
+        <list name="vectorReservas" inverse="false" table="BOOK" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="domain.Book" />
+        </list>
+        <list name="vectorImage" inverse="false" table="RURALHOUSE" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <element type="java.lang.String">
+                <column name="VECTORIMAGE" />
+            </element>
+        </list>
+        <list name="comentarios" inverse="false" table="RURALHOUSE" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <element type="java.lang.String">
+                <column name="COMENTARIOS" />
+            </element>
+        </list>
+        <list name="calificacion" inverse="false" table="RURALHOUSE" lazy="true" access="field">
+            <key>
+                <column name="SERIALVERSIONUID" />
+            </key>
+            <list-index></list-index>
+            <element type="java.lang.Integer">
+                <column name="CALIFICACION" />
+            </element>
+        </list>
+    </class>
+</hibernate-mapping>

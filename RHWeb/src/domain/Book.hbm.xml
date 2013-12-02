@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-dic-2013 18:05:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="domain.Book" table="BOOK">
+  <id access="field" name="bookDate" type="java.util.Date">
+   <column name="BOOKDATE" unique="true"/>
+   <column name="prueba" unique="true"/>
+   <generator class="assigned"/>
+  </id>
+  <property access="field" generated="never" lazy="false"
+   name="bookNumber" type="int">
+   <column name="BOOKNUMBER"/>
+  </property>
+  <property access="field" generated="never" lazy="false" name="isPaid" type="boolean">
+   <column name="ISPAID"/>
+  </property>
+  <property generated="never" lazy="false" name="precio" type="float">
+   <column name="PRECIO"/>
+  </property>
+  <many-to-one access="field" class="domain.UserAplication" fetch="join" name="reservante">
+   <column name="RESERVANTE"/>
+  </many-to-one>
+  <one-to-one access="field" class="domain.Offer" name="offer"/>
+  <list access="field" lazy="true" name="vectorFechas" table="FECHAS">
+   <key>
+    <column name="BOOKDATE" unique="true"/>
+    <column name="prueba2" unique="true"/>
+   </key>
+   <list-index base="0">
+    <column name="prueba3" unique="true"/>
+   </list-index>
+   <one-to-many class="domain.Fechas"/>
+  </list>
+  <many-to-one access="field" class="domain.RuralHouse" fetch="join" name="casa">
+   <column name="CASA" unique="true"/>
+   <column name="CASA2" unique="true"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

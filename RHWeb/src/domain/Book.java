@@ -3,18 +3,18 @@ package domain;
 import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 public class Book implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 	private Date bookDate;
 	private int bookNumber;
 	private boolean isPaid;
 	private float precio;
 	private UserAplication reservante;
 	private Offer offer;
-	private Vector<Fechas> vectorFechas;
+	private List<Fechas> vectorFechas;
 	private RuralHouse casa;
 	
 	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Vector<Fechas> fechas) {
@@ -67,7 +67,7 @@ public class Book implements Serializable {
 	
 	public Offer getOffer() {return offer;}
 	
-	public Vector<Fechas> getFechas(){return vectorFechas;}
+	public List<Fechas> getFechas(){return vectorFechas;}
 	
 	public void pagar(){isPaid=true;}
 

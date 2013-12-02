@@ -1,6 +1,7 @@
 package domain;
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 public class UserAplication implements Serializable{
@@ -13,7 +14,7 @@ public class UserAplication implements Serializable{
 	private String pais;
 	private String edad;
 	private Owner propietario;
-	private Vector<Book> vectorBook;
+	private List<Book> vectorBook;
 	private String perfil; 
 
 	public UserAplication(String e, String p, String eC, String nom, String ape, String tel, String ps, String edd){
@@ -56,7 +57,7 @@ public class UserAplication implements Serializable{
 	public void setPropietario(Owner own){propietario=own;}
 	public Owner getPropietario(){return propietario;}
 	
-	public Vector<Book> getReservas(){return vectorBook;}
+	public List<Book> getReservas(){return vectorBook;}
 	public void anadirReserva(Book reserva){ 
 		System.out.println("Reserva añadida");
 		vectorBook.add(reserva);}

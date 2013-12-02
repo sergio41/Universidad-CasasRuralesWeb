@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+ <session-factory name="Sessionfactory">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">casasrurales</property>
+  <property name="hibernate.connection.url">jdbc:mysql://54.200.38.64/casasrurales</property>
+  <property name="hibernate.connection.username">casasrurales</property>
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <mapping class="domain.Book" resource="domain/Book.hbm.xml"/>
+  <mapping class="domain.Fechas" resource="domain/Fechas.hbm.xml"/>
+  <mapping class="domain.Offer" resource="domain/Offer.hbm.xml"/>
+  <mapping class="domain.Owner" resource="domain/Owner.hbm.xml"/>
+  <mapping class="domain.RuralHouse" resource="domain/RuralHouse.hbm.xml"/>
+  <mapping class="domain.UserAplication" resource="domain/UserAplication.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>
