@@ -32,7 +32,7 @@
         <many-to-one name="propietario" class="domain.Owner" fetch="join">
             <column name="PROPIETARIO" />
         </many-to-one>
-        <set name="vectorBook" table="BOOK" inverse="false" lazy="true" access="field">
+        <set name="vectorBook" table="BOOK" inverse="false" lazy="false" access="field">
             <key>
                 <column name="APELLIDOS" />
             </key>

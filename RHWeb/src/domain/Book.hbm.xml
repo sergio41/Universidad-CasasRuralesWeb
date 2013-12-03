@@ -21,7 +21,7 @@
             <column name="RESERVANTE" />
         </many-to-one>
         <one-to-one name="offer" class="domain.Offer" access="field"></one-to-one>
-        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="true" access="field">
+        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="false" access="field">
             <key>
                 <column name="BOOKDATE" />
             </key>

@@ -21,7 +21,7 @@
         <many-to-one name="ruralHouse" class="domain.RuralHouse" access="field" fetch="join">
             <column name="RURALHOUSE" />
         </many-to-one>
-        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="true" access="field">
+        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="false" access="field">
             <key>
                 <column name="FIRSTDAY" />
             </key>

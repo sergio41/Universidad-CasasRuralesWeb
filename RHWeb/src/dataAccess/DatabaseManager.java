@@ -64,12 +64,13 @@ public class DatabaseManager {
 	
 	public static UserAplication getUser(String email, String pass){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		UserAplication user = new UserAplication();
 		session.beginTransaction();
 		System.out.println(email+pass);
 		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+email+"' and pass='"+ pass+"'").iterate();
+		if(result.hasNext())user = result.next();
 		session.getTransaction().commit();
-		if(result.hasNext()) return result.next();
-		else return null;
+		return user;
 	}	
 	
 	public static RuralHouse getRuralHouse(int houseNumber) throws Exception{

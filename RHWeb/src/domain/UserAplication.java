@@ -32,6 +32,8 @@ public class UserAplication implements Serializable{
 		//vectorBook = new ArrayList<Book>();
 	}
 	
+	public UserAplication(){}
+	
 	public String getEmail() {return email;}
 	public void setEmail(String e) {email = e;}
 	
