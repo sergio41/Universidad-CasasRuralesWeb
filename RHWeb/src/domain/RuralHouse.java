@@ -3,14 +3,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import externalDataSend.EnviarCorreo;
 
 public class RuralHouse implements Serializable {
-	private static final long serialVersionUID = 1L;
 
 	private int houseNumber;
 	private String description;
@@ -21,15 +22,15 @@ public class RuralHouse implements Serializable {
 	private int nBaths;
 	private int nLiving;
 	private int nPark;
-	private List<Fechas> vectorFechas;
-	private List<Offer> vectorOfertas;
-	private List<Book> vectorReservas;
-	private List<String> vectorImage;
-	private List<String> comentarios;
-	private List<Integer> calificacion;
+	private Set<Fechas> vectorFechas;
+	private Set<Offer> vectorOfertas;
+	private Set<Book> vectorReservas;
+	private Set<String> vectorImage;
+	private Set<String> comentarios;
+	private Set<Integer> calificacion;
 	
 	
-	public RuralHouse(int hNumber, UserAplication usuario, String descripcion, String ciudad, int cuartos, int cocina, int banos, int salon, int aparcamiento,  Vector<String> images) {
+	public RuralHouse(int hNumber, UserAplication usuario, String descripcion, String ciudad, int cuartos, int cocina, int banos, int salon, int aparcamiento,  Set<String> images) {
 		houseNumber = hNumber;
 		description = descripcion;
 		user = usuario;
@@ -39,11 +40,11 @@ public class RuralHouse implements Serializable {
 		nBaths = banos;
 		nLiving = salon;
 		nPark = aparcamiento;
-		vectorFechas = new Vector<Fechas>();
-		vectorOfertas = new Vector<Offer>();
-		vectorReservas = new Vector<Book>();
-		comentarios = new Vector<String>();
-		calificacion = new  Vector<Integer>();
+		vectorFechas = new HashSet<Fechas>();
+		vectorOfertas = new HashSet<Offer>();
+		vectorReservas = new HashSet<Book>();
+		comentarios = new HashSet<String>();
+		calificacion = new  HashSet<Integer>();
 		vectorImage = images;
 	}
 
@@ -76,9 +77,9 @@ public class RuralHouse implements Serializable {
 	
 	public String toString() {return this.houseNumber + ": " + this.city;}
 	
-	public List<Book> getReservas(){return vectorReservas;}
+	public Set<Book> getReservas(){return vectorReservas;}
 	
-	public List<Offer> getOfertas(){ return vectorOfertas;}
+	public Set<Offer> getOfertas(){ return vectorOfertas;}
 	public void anadirOferta(Date primerDia, Date ultimoDia, float precio, boolean obligatorio) throws Exception{
 		Fechas auxFecha = null;	
 		//Comprobar si esta reservado:
@@ -96,8 +97,8 @@ public class RuralHouse implements Serializable {
 			auxp.setTime(auxp.getTime()+1*24*60*60*1000);
 		}
 		//Hacer lo demas:
-		Vector<Fechas> auxVectorFechas = new Vector<Fechas>();
-		Vector<Fechas> auxVectorFechasNuevas = new Vector<Fechas>();
+		Set<Fechas> auxVectorFechas = new HashSet<Fechas>();
+		Set<Fechas> auxVectorFechasNuevas = new HashSet<Fechas>();
 		Date primero = (Date) primerDia.clone();
 		float precioPorDia = precio/getDias((Date)primerDia.clone(), (Date)ultimoDia.clone());
 		auxp = (Date)primerDia.clone();
@@ -129,7 +130,7 @@ public class RuralHouse implements Serializable {
 		}
 	}
 	
-	public List<Fechas> getFechas(){return vectorFechas;}
+	public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	@SuppressWarnings("deprecation")
 	private boolean anadirFecha( Date date, float precio, int minimoDias){
@@ -162,7 +163,7 @@ public class RuralHouse implements Serializable {
 		return auxB;
 	}
 	
-	public List<String> getImages(){
+	public Set<String> getImages(){
 		return vectorImage;
 	}
 	
@@ -208,8 +209,8 @@ public class RuralHouse implements Serializable {
 		return null;
 	}
 	
-	private Vector<Fechas> getFechas(Date inicio, Date fin){
-		Vector<Fechas> aux = new Vector<Fechas>();
+	private Set<Fechas> getFechas(Date inicio, Date fin){
+		Set<Fechas> aux = new HashSet<Fechas>();
 		Date auxInicio = (Date) inicio.clone();
 		Date auxFin = (Date) fin.clone();
 		auxFin.setTime(auxFin.getTime()+1*24*60*60*1000);
@@ -229,7 +230,7 @@ public class RuralHouse implements Serializable {
 		System.out.print("primer dia: " + inicio.toString());
 		System.out.print("ultimo dia: " + fin.toString());
 		if (disponibleFechas((Date)inicio.clone(), (Date)fin.clone()) || (auxOferta != null && !auxOferta.isReservado())){
-			Vector<Fechas> auxFechas = getFechas((Date)inicio.clone(), (Date)fin.clone());
+			Set<Fechas> auxFechas = (Set<Fechas>) getFechas((Date)inicio.clone(), (Date)fin.clone());
 			if (auxOferta != null && auxFechas != null){
 				reserva = new Book(this, numeroDeReserva, auxOferta.getPrice(), cliente, auxOferta, auxFechas);
 				cliente.anadirReserva(reserva);
@@ -282,23 +283,23 @@ public class RuralHouse implements Serializable {
 	}
 
 	public void setImages(Vector<String> images) {
-		vectorImage= new Vector<String>();
+		vectorImage= new HashSet<String>();
 		for(int i =0; i<images.size();i++){
 			vectorImage.add(images.get(i));
 		}
 	}
 	
-	public List<Fechas> eliminarTodasFechas(){
-		List<Fechas> auxVectorFechas = new ArrayList<Fechas>();
+	public Set<Fechas> eliminarTodasFechas(){
+		Set<Fechas> auxVectorFechas = new HashSet<Fechas>();
 		auxVectorFechas = vectorFechas;
-		vectorFechas = new Vector<Fechas>();
+		vectorFechas = new HashSet<Fechas>();
 		return auxVectorFechas;
 	}
 
-	public List<Offer> eliminarTodasOfertas(){
-		List<Offer> auxVectorOffer = new ArrayList<Offer>();
+	public Set<Offer> eliminarTodasOfertas(){
+		Set<Offer> auxVectorOffer = new HashSet<Offer>();
 		auxVectorOffer = vectorOfertas;
-		vectorOfertas = new Vector<Offer>();
+		vectorOfertas = new HashSet<Offer>();
 		return auxVectorOffer;
 	}
 	
@@ -334,18 +335,28 @@ public class RuralHouse implements Serializable {
 		throw new Exception("No existia dicha reserva"); 
 	}
 	
-	public List<Book> eliminarTodasReserva(){
+	public Set<Book> eliminarTodasReserva(){
 		@SuppressWarnings("unchecked")
-		List<Book> auxVectorBook =   vectorReservas; //AQUI SE HACIA UN CLONE; SI NO FUNCIONA TE  JODES
-		for (int i = 0; i<vectorReservas.size(); i++){
+		Set<Book> auxVectorBook =   vectorReservas; //AQUI SE HACIA UN CLONE; SI NO FUNCIONA TE  JODES
+		Iterator<Book> iterator= vectorReservas.iterator();
+		while (iterator.hasNext()){
+			Book actual = iterator.next();
+			try {
+				EnviarCorreo.enviarCorreos(actual.getCliente().getEmail(), "Reserva: " + actual.getNumeroDeReserva() , "Lamentablemente, su reserva ha sido cancelada debido a que el propietario de la casa rural ha eliminado ésta. En caso de haber desembolsado el pago de la reserva, se le devolverá en muy poco tiempo.");
+			} catch (Exception e) {
+				e.getMessage();
+			}
+			auxVectorBook.add(actual);
+		}
+		/*for (int i = 0; i<vectorReservas.size(); i++){
 			try {
 				EnviarCorreo.enviarCorreos(vectorReservas.get(i).getCliente().getEmail(), "Reserva: " + vectorReservas.get(i).getNumeroDeReserva() , "Lamentablemente, su reserva ha sido cancelada debido a que el propietario de la casa rural ha eliminado ésta. En caso de haber desembolsado el pago de la reserva, se le devolverá en muy poco tiempo.");
 			} catch (Exception e) {
 				e.getMessage();
 			}
 			auxVectorBook.add(vectorReservas.get(i));
-		}
-		vectorReservas = new Vector<Book>();
+		}*/
+		vectorReservas = new HashSet<Book>();
 		return auxVectorBook;
 	}
 	
@@ -365,7 +376,7 @@ public class RuralHouse implements Serializable {
 		calificacion.add(puntuacion);
 	}
 	
-	public List<String> getComentarios(){
+	public Set<String> getComentarios(){
 		return comentarios;
 	}
 	

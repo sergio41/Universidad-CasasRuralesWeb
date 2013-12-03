@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.sql.SQLException;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -269,7 +270,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 
 
-	public List<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception {
+	public Set<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception {
 		System.out.println("FacadeImplementation: get ofertas");
 		Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
 		while (i.hasNext()){
@@ -371,7 +372,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		DB4oManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
 	}
 
-	public List<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
+	public Set<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
 		System.out.println("FacadeImplementation: fet fechas");
 		Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
 		while (i.hasNext()){

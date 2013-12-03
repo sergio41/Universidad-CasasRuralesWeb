@@ -1,7 +1,9 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 import externalDataSend.EnviarCorreo;
@@ -10,18 +12,18 @@ import externalDataSend.EnviarCorreo;
 public class Owner implements Serializable {
 	private String bankAccount = "";
 	private String tipo;
-	private Vector<String> idiomas;
+	private Set<String> idiomas;
 	private String profesion;
 	private String moneda;
-	private Vector<RuralHouse> ruralHouses;
+	private Set<RuralHouse> ruralHouses;
 	
-	public Owner(String bA, String t, Vector<String> i, String p, String m){
+	public Owner(String bA, String t, Set<String> i, String p, String m){
 		bankAccount=bA;
 		tipo=t;
 		idiomas=i;
 		profesion=p;
 		moneda=m;
-		ruralHouses=new Vector<RuralHouse>();	
+		ruralHouses=new HashSet<RuralHouse>();	
 	}
 	
 	public String getBankAccount() {return bankAccount;}
@@ -32,9 +34,9 @@ public class Owner implements Serializable {
 
 	public void setTipo(String t) {	tipo = t;}
 	
-	public Vector<String> getIdiomas() {return idiomas;}
+	public Set<String> getIdiomas() {return idiomas;}
 
-	public void setIdiomas(Vector<String> i) {idiomas = i;}
+	public void setIdiomas(Set<String> i) {idiomas = i;}
 
 	public String getProfesion() {return profesion;}
 
@@ -44,7 +46,7 @@ public class Owner implements Serializable {
 
 	public void setMoneda(String m) {moneda = m;}
 	
-	public Vector<RuralHouse> getRuralHouses() {return ruralHouses;}
+	public Set<RuralHouse> getRuralHouses() {return ruralHouses;}
 	
 	public void addRuralHouse(RuralHouse rh) {ruralHouses.add(rh);}
 	

@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 import org.hibernate.Session;
@@ -128,7 +129,7 @@ public class DatabaseManager {
 		}else throw new Exception("El usuario no existe");
 	}
 
-	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, Vector<String> i, String p, String m) throws Exception{
+	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{
 		Owner owner = new Owner(bA, t, i, p, m);
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
@@ -142,7 +143,7 @@ public class DatabaseManager {
 		} else throw new Exception("El usuario no se ha encontrado.");
 	}
 	
-	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, Vector<String> i, String p, String m) throws Exception{
+	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
@@ -168,7 +169,7 @@ public class DatabaseManager {
 		} else throw new Exception("El usuario no se ha encontrado.");
 	}
 	
-	public static UserAplication anadirRuralHouse(UserAplication user,int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> images) throws Exception{
+	public static UserAplication anadirRuralHouse(UserAplication user,int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> images) throws Exception{
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
@@ -235,10 +236,11 @@ public class DatabaseManager {
 			reserv.getOffer().getRuralHouse().eliminarReserva(num);
 			reserv.getOffer().cancelarReserva();
 			db.store(reserv.getOffer());
-			List<Fechas> f = reserv.getFechas();
-			for (int i = 0; i< f.size(); i++){
-				f.get(i).cancelarReserva();
-				db.store(f.get(i));
+			Set<Fechas> f = reserv.getFechas();
+			Iterator<Fechas> it = f.iterator();
+			while(it.hasNext()){
+				it.next().cancelarReserva();
+				db.store(it.next());
 			}	
 			reserv.getCliente().eliminarReserva(reserv);
 			db.store(reserv.getCliente());
@@ -414,10 +416,11 @@ public class DatabaseManager {
 				RuralHouse casa = casasConcretas.next();
 				if(casa.getHouseNumber()==nRH){
 					Offer eliminar = casa.eliminarOferta(ini, fin);
-					Vector<Fechas> f = eliminar.getFechas();
-					for(int i=0; i<f.size(); i++){
-						db.delete(f.get(i));
-						casa.getFechas().remove(f.get(i));
+					Set<Fechas> f = eliminar.getFechas();
+					Iterator<Fechas> it = f.iterator();
+					while(it.hasNext()){
+						it.next().cancelarReserva();
+						db.store(it.next());
 					}
 					db.store(casa);
 					db.delete(eliminar);

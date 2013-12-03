@@ -3,21 +3,21 @@ package domain;
 import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.Vector;
 
 public class Offer implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
 	private Date firstDay;
 	private Date lastDay;
 	private boolean reservado;
 	private float price;
 	private Book reserva;
 	private RuralHouse ruralHouse;
-	private Vector<Fechas> vectorFechas;
+	private Set<Fechas> vectorFechas;
 	private boolean unidoOferta;
 
-	public Offer(Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, Vector<Fechas> fechas, boolean unidoAFecha){
+	public Offer(Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, Set<Fechas> fechas, boolean unidoAFecha){
 		firstDay = primerDia;
 		lastDay = ultimoDia;
 		reservado = false;
@@ -29,7 +29,7 @@ public class Offer implements Serializable {
 		setUnidoAFechaExternamente();
 	}
 	
-	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, Vector<Fechas> fechas, boolean unidoAFecha){
+	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, Set<Fechas> fechas, boolean unidoAFecha){
 		firstDay = primerDia;
 		lastDay = ultimoDia;
 		reservado = estado;
@@ -64,7 +64,7 @@ public class Offer implements Serializable {
 	
 	public RuralHouse getRuralHouse() {return ruralHouse;}
 
-	public Vector<Fechas> getFechas(){return vectorFechas;}
+	public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	public boolean isUnidoAFechas(){return unidoOferta;}
 	public void setUnidoAFechas(boolean unidoAfecha){unidoOferta = unidoAfecha;}

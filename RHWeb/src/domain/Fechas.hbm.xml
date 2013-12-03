@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 02-dic-2013 18:05:13 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="domain.Fechas" table="FECHAS">
         <id name="fecha" type="java.util.Date" access="field">

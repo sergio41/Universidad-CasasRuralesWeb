@@ -1,6 +1,7 @@
 package businessLogic;
 import java.rmi.*;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 import java.util.Date;
 
@@ -55,7 +56,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception;
 
-	public List<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception;
+	public Set<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception;
 	
 	public RuralHouse getCasas(int num) throws Exception;
 	
@@ -66,7 +67,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public void anadirFechas (UserAplication usuario,  int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception; 
 
-	public List<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception;
+	public Set<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception;
 
 	public void eliminarOferta(UserAplication usuario, int parseInt, Date ini, Date fin) throws Exception;
 

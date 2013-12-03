@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 02-dic-2013 18:05:13 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="domain.Offer" table="OFFER">
-        <id name="id" type="java.lang.Long">
-            <column name="ID" />
+        <id name="firstDay" type="java.util.Date" access="field">
+            <column name="FIRSTDAY" />
             <generator class="assigned" />
         </id>
-        <property name="firstDay" type="java.util.Date" access="field">
-            <column name="FIRSTDAY" />
-        </property>
         <property name="lastDay" type="java.util.Date" access="field">
             <column name="LASTDAY" />
         </property>
@@ -24,13 +21,12 @@
         <many-to-one name="ruralHouse" class="domain.RuralHouse" access="field" fetch="join">
             <column name="RURALHOUSE" />
         </many-to-one>
-        <list name="vectorFechas" inverse="false" table="FECHAS" lazy="true" access="field">
+        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="true" access="field">
             <key>
-                <column name="SERIALVERSIONUID" />
+                <column name="FIRSTDAY" />
             </key>
-            <list-index></list-index>
             <one-to-many class="domain.Fechas" />
-        </list>
+        </set>
         <property name="unidoOferta" type="boolean" access="field">
             <column name="UNIDOOFERTA" />
         </property>

@@ -1,7 +1,9 @@
 package domain;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 public class UserAplication implements Serializable{
@@ -14,7 +16,7 @@ public class UserAplication implements Serializable{
 	private String pais;
 	private String edad;
 	private Owner propietario;
-	private List<Book> vectorBook;
+	private Set<Book> vectorBook;
 	private String perfil; 
 
 	public UserAplication(String e, String p, String eC, String nom, String ape, String tel, String ps, String edd){
@@ -27,7 +29,7 @@ public class UserAplication implements Serializable{
 		pais=ps;
 		edad=edd;
 		propietario=null;
-		vectorBook = new Vector<Book>();
+		//vectorBook = new ArrayList<Book>();
 	}
 	
 	public String getEmail() {return email;}
@@ -57,7 +59,7 @@ public class UserAplication implements Serializable{
 	public void setPropietario(Owner own){propietario=own;}
 	public Owner getPropietario(){return propietario;}
 	
-	public List<Book> getReservas(){return vectorBook;}
+	public Set<Book> getReservas(){return vectorBook;}
 	public void anadirReserva(Book reserva){ 
 		System.out.println("Reserva añadida");
 		vectorBook.add(reserva);}
@@ -66,7 +68,7 @@ public class UserAplication implements Serializable{
 	public String getPerfil(){return perfil;}
 	public void setPerfil(String imagenPerfil){ perfil = imagenPerfil;}
 	
-	public void addRuralHouse(int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> images){
+	public void addRuralHouse(int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> images){
 		getPropietario().addRuralHouse(new RuralHouse(numero, this, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images));
 	}
 		

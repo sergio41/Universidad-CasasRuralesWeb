@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
 
 public class Book implements Serializable {
@@ -14,10 +15,10 @@ public class Book implements Serializable {
 	private float precio;
 	private UserAplication reservante;
 	private Offer offer;
-	private List<Fechas> vectorFechas;
+	private Set<Fechas> vectorFechas;
 	private RuralHouse casa;
 	
-	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Vector<Fechas> fechas) {
+	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Set<Fechas> fechas) {
 		bookDate = new java.util.Date(System.currentTimeMillis());
 		bookNumber = numeroReserva;
 		isPaid = false;
@@ -29,7 +30,7 @@ public class Book implements Serializable {
 		extenderReserva();
 	}
 	
-	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Offer oferta, Vector<Fechas> fechas) {
+	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Offer oferta, Set<Fechas> fechas) {
 		bookDate = new java.util.Date(System.currentTimeMillis());
 		bookNumber = numeroReserva;
 		isPaid = false;
@@ -67,7 +68,7 @@ public class Book implements Serializable {
 	
 	public Offer getOffer() {return offer;}
 	
-	public List<Fechas> getFechas(){return vectorFechas;}
+	public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	public void pagar(){isPaid=true;}
 
