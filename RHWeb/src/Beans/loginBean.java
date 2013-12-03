@@ -2,6 +2,7 @@ package Beans;
 
 import javax.faces.context.FacesContext;
 
+import domain.Owner;
 import domain.UserAplication;
 
 public class loginBean {
@@ -23,8 +24,14 @@ public class loginBean {
 	
 	public String loginUser(){
 		try {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
+			UserAplication user = fachadaBean.getFachada().hacerLogin(email, pass);
+			Owner prop = user.getPropietario();
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
+			if(prop!=null){
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(true));	
+			}else
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(false));
 			return "ok";
 		} catch (Exception e) {
 			e.getMessage();

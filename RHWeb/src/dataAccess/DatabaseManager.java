@@ -177,6 +177,18 @@ public class DatabaseManager {
 	}
 	
 	public static UserAplication anadirRuralHouse(UserAplication user,int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> images) throws Exception{
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		UserAplication userAux = new UserAplication();
+		session.beginTransaction();
+		System.out.println(user.getEmail());
+		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
+		if(result.hasNext())user = result.next();
+		else throw new Exception("El usuario no se ha encontrado.");
+		user.addRuralHouse(numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images);
+		RuralHouse casa = new RuralHouse(numero, user, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images);
+		session.getTransaction().commit();
+		return user;
+		/*
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
@@ -184,7 +196,7 @@ public class DatabaseManager {
 			db.store(userConcreto);
 			db.commit();
 			return userConcreto;
-		} else throw new Exception("El usuario no se ha encontrado.");
+		} else throw new Exception("El usuario no se ha encontrado.");*/
 	}
 	
 	public static UserAplication eliminarCasaRural(UserAplication user, int numero) throws Exception {

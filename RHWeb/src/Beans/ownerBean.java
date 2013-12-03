@@ -69,6 +69,7 @@ public class ownerBean {
 		try {
 			fachadaBean.getFachada().modificarOwner((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"), bankAccount, tipo, idiomas, profesion, moneda);
 			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(true));	
 			System.out.println(user.getEmail() + user.getName() + user.getApellidos());
 			return "ok";
 		} catch (Exception e) {

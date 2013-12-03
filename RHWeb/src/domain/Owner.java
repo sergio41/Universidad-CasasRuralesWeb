@@ -26,6 +26,8 @@ public class Owner implements Serializable {
 		ruralHouses=new HashSet<RuralHouse>();	
 	}
 	
+	public Owner(){	}
+	
 	public String getBankAccount() {return bankAccount;}
 
 	public void setBankAccount(String bA) {bankAccount = bA;}

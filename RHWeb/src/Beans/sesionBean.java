@@ -12,6 +12,7 @@ public class sesionBean {
 
 	private boolean logueado = false;
 	private UserAplication usuario = null;
+	private boolean propietariado = false;
 	
 	public boolean isLogueado() {
 		if ((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login") != null){
@@ -34,5 +35,12 @@ public class sesionBean {
 	public String logout(){
 		setLogueado(false);
 		return "ok";
+	}
+	public boolean isPropietariado() {
+		return propietariado;
+	}
+	public void setPropietariado(boolean propietariado1) {
+		propietariado = propietariado1;
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", propietariado);
 	}
 }
