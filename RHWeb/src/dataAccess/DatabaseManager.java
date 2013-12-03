@@ -137,17 +137,18 @@ public class DatabaseManager {
 	}
 
 	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{
-		Owner owner = new Owner(bA, t, i, p, m);
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
-		if (userConcretos.hasNext()){
-			UserAplication userConcreto = userConcretos.next();
-			if(userConcreto.getPropietario()==null){
-			userConcreto.setPropietario(owner);
-			db.store(userConcreto);
-			db.commit();
-			return userConcreto;
-			}else throw new Exception("El usuario ya es propietario");				
-		} else throw new Exception("El usuario no se ha encontrado.");
+		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		 session.beginTransaction();
+		 Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
+		 if (!result.hasNext()) throw new Exception("No existe el usuario");
+		 List<Owner> resultprop = session.createQuery("from Owner where email='"+user.getEmail()+"'").list();
+		 Owner owner = new Owner(bA, t, i, p, m);
+		 result.next().setPropietario(owner);
+		 Iterator<UserAplication> result2 = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
+		 session.save(result.next());
+		 session.save(owner);
+		 session.getTransaction().commit();
+		 return user;
 	}
 	
 	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{

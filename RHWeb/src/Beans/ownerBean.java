@@ -73,6 +73,7 @@ public class ownerBean {
 			System.out.println(user.getEmail() + user.getName() + user.getApellidos());
 			return "ok";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "error";
 		}
 	}
