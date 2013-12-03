@@ -1,5 +1,7 @@
 package Beans;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.faces.context.FacesContext;
@@ -60,7 +62,7 @@ public class ownerBean {
 		this.idiomas3 = idiomas3;
 	}
 	public String registrarOwner(){
-		Vector<String> idiomas = new Vector<String>();
+		Set<String> idiomas = new HashSet<String>();
 		idiomas.add(idiomas1);
 		idiomas.add(idiomas2);
 		idiomas.add(idiomas3);

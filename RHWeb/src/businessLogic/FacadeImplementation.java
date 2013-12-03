@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import configuration.Config;
-import dataAccess.DB4oManager;
+import dataAccess.DatabaseManager;
 import dataAccess.DatabaseManager;
 import domain.Book;
 import domain.Fechas;
@@ -39,12 +39,12 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		System.out.println("FacadeImplementation: Se crea la instancia");
 		Config c=Config.getInstance();
 		String dataBaseOpenMode=c.getDataBaseOpenMode();
-		DB4oManager.openDatabase(dataBaseOpenMode);
+		DatabaseManager.openDatabase(dataBaseOpenMode);
 	}
 	
 	public void eliminarCasaRural(UserAplication usuario, int numero) throws Exception {
 		System.out.println("FacadeImplementation: Se elimina la casa rural: " + numero);
-		DB4oManager.eliminarCasaRural(usuario, numero);
+		DatabaseManager.eliminarCasaRural(usuario, numero);
 		File carpet = new File("\\imagenes\\"+usuario.getEmail()+"\\"+numero);
 		if(!eliminarCarpetaConfotos(carpet))
 			System.out.println("No se han eliminado guay las fotos");
@@ -77,7 +77,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 		
 
-	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> imagenes) throws Exception{
+	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> imagenes) throws Exception{
 		System.out.println("FacadeImplementation: Añadir nueva casa Rural");
 		if (city.compareTo("") == 0) throw new Exception("Algunos datos obligatorios faltan.");
 		else {			
@@ -85,31 +85,31 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 				if (nKitchen<1) throw new Exception("La casa debe tener mínimo 1 cocina.");
 				if (nBaths<2) throw new Exception("La casa debe tener mínimo 2 baños.");
 				int numero = getNumeroCR();
-				DB4oManager.anadirRuralHouse(usuario, numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, imagenes);
+				DatabaseManager.anadirRuralHouse(usuario, numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, imagenes);
 			}
 	}
 	
 	public void modificarContraseña(UserAplication usuario, String pass) throws Exception {
 		System.out.println("FacadeImplementation: modificar contraseña");
-		DB4oManager.modificarContrasena(usuario, pass);
+		DatabaseManager.modificarContrasena(usuario, pass);
 	}
 	
 	public Vector<RuralHouse> getAllRuralHouses() throws RemoteException, Exception {
 		System.out.println("FacadeImplementation: obterner todas las casas rurales");
-		return DB4oManager.getCasasRuralesTodas();
+		return DatabaseManager.getCasasRuralesTodas();
 	}
 	
 	public void close() throws RemoteException{
 		System.out.println("FacadeImplementation: cerrar la BD");
-		DB4oManager.close();
+		DatabaseManager.close();
 	}
 	
-	public void modificarOwner(UserAplication usuario, String bA, String t, Vector<String> i, String p,	String m) throws Exception {
+	public void modificarOwner(UserAplication usuario, String bA, String t, Set<String> i, String p,	String m) throws Exception {
 		System.out.println("FacadeImplementation: modificar owner");
 		if(usuario.getPropietario()!=null)
-			usuario= DB4oManager.modificarOwner(usuario, usuario.getEmail(), bA, t, i, p, m);
+			usuario= DatabaseManager.modificarOwner(usuario, usuario.getEmail(), bA, t, i, p, m);
 		else 
-			usuario= DB4oManager.nuevoOwner(usuario, usuario.getEmail(), bA, t, i, p, m);
+			usuario= DatabaseManager.nuevoOwner(usuario, usuario.getEmail(), bA, t, i, p, m);
 	}
 	
 	public void modificarRuralHouse(UserAplication usuario, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception {
@@ -119,7 +119,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			if (nRooms<3) throw new Exception("La casa debe tener mínimo 3 habitaciones.");
 			if (nKitchen<1) throw new Exception("La casa debe tener mínimo 1 cocina.");
 			if (nBaths<2) throw new Exception("La casa debe tener mínimo 2 baños.");
-			DB4oManager.modificarRuralHouse(usuario.getEmail(), numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, setGuardarImagenes(usuario.getEmail(), imagenes, numero));
+			DatabaseManager.modificarRuralHouse(usuario.getEmail(), numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, setGuardarImagenes(usuario.getEmail(), imagenes, numero));
 		}
 	}
 	
@@ -139,7 +139,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			System.out.println("FacadeImplementation: insertar usuario");
 			DatabaseManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
 			System.out.println("FacadeImplementation: insertado usuario");
-			//DB4oManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
+			//DatabaseManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
 			try {
 				System.out.println("FacadeImplementation: intentar mandar mail");
 				EnviarCorreo.enviarCorreos(email, "Registro en Villatripas de Arriba", "Te has registrado en villatripas de arriba con el email: " + email);
@@ -153,7 +153,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public UserAplication getUsuario(UserAplication usuario) throws Exception {
 		System.out.println("FacadeImplementation: devolver usuario");
-		return DB4oManager.getUser(usuario.getEmail());
+		return DatabaseManager.getUser(usuario.getEmail());
 	}
 
 	public Owner getOwner(UserAplication usuario) throws Exception {
@@ -164,7 +164,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public void recuperarContrasena(String email) throws Exception {
 		System.out.println("FacadeImplementation: recuperar contraseña");
-		UserAplication user = DB4oManager.getUser(email);
+		UserAplication user = DatabaseManager.getUser(email);
 		if (user == null) throw new Exception("El email no existe.");
 		else {
 			try {
@@ -181,7 +181,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		System.out.println("FacadeImplementation: hacer login " + pass);
 		if (email ==null || pass == null) throw new Exception("Algunos datos obligatorios faltan.");
 		if (email.compareTo("")==0 || pass.compareTo("")==0) throw new Exception("Algunos datos obligatorios faltan.");
-		UserAplication usuario = DB4oManager.getUser(email, pass);
+		UserAplication usuario = DatabaseManager.getUser(email, pass);
 		if (usuario == null){
 			throw new Exception("No se ha podido hacer Login");
 		} else {
@@ -193,12 +193,12 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	public void modificarPerfil(UserAplication usuario, String estadoCivil, String nombre,String apellidos, String telefono, String pais, String edad, ImageIcon perfil) throws Exception {
 		System.out.println("FacadeImplementation: modificar perfil");
 		if (nombre.compareTo("")==0 || pais.compareTo("")==0 || estadoCivil.compareTo("")==0) throw new Exception("Algunos datos obligatorios faltan.");
-		else usuario = DB4oManager.modificarUsuario(usuario, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(usuario.getEmail(), perfil));		
+		else usuario = DatabaseManager.modificarUsuario(usuario, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(usuario.getEmail(), perfil));		
 	}
 	
 	public int getNumeroCR() throws Exception{
 		System.out.println("FacadeImplementation: numero casa rural");
-		Vector<RuralHouse> vector = DB4oManager.getCasasRuralesTodas();
+		Vector<RuralHouse> vector = DatabaseManager.getCasasRuralesTodas();
 		int max = 0;
 		java.util.Iterator<RuralHouse> i = vector.iterator();
 		while (i.hasNext()) {
@@ -211,7 +211,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public int getNumeroReserva() throws Exception{
 		System.out.println("FacadeImplementation: numero reserva");
-		Vector<Book> vector = DB4oManager.getTodasLasReservas();
+		Vector<Book> vector = DatabaseManager.getTodasLasReservas();
 		int max = 0;
 		java.util.Iterator<Book> i = vector.iterator();
 		while (i.hasNext()) {
@@ -245,28 +245,28 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 
 	public Book hacerReserva(UserAplication usuario, int numeroRH, Date inicio, Date fin) throws Exception{
 		System.out.println("FacadeImplementation: hacer reserva");
-		return DB4oManager.hacerReserva(usuario, getNumeroReserva(), numeroRH, inicio, fin);
+		return DatabaseManager.hacerReserva(usuario, getNumeroReserva(), numeroRH, inicio, fin);
 	}
 	
 	public Vector<RuralHouse> casasRuralesDisponibles(Date inicio, Date fin) throws Exception{
 		System.out.println("FacadeImplementation: casas rurales disponibles");
-		return DB4oManager.casasRuralesDisponibles(inicio, fin);
+		return DatabaseManager.casasRuralesDisponibles(inicio, fin);
 	}
 	
 	public Vector<RuralHouse> casasRuralesDisponibles(Date inicio, Date fin,
 			String Ciudad) throws Exception {
 		System.out.println("FacadeImplementation: casas rurales disponibles ciudad");
-		return DB4oManager.casasRuralesDisponibles(inicio, fin, Ciudad);
+		return DatabaseManager.casasRuralesDisponibles(inicio, fin, Ciudad);
 	}
 	
 	public Vector<RuralHouse> casasRuralesDisponibles(Date inicio, Date fin, String Ciudad, int Banos, int habita, int cocina, int sala, int park) throws Exception{
 		System.out.println("FacadeImplementation: casas rurales disponibles todo");
-		return DB4oManager.casasRuralesDisponibles(inicio, fin, Ciudad, Banos, habita, cocina, sala, park);
+		return DatabaseManager.casasRuralesDisponibles(inicio, fin, Ciudad, Banos, habita, cocina, sala, park);
 	}
 	
 	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
 		System.out.println("FacadeImplementation: anadir oferta");
-		DB4oManager.anadirOferta(usuario, numero, inicio, fin, precio, obligatorio);
+		DatabaseManager.anadirOferta(usuario, numero, inicio, fin, precio, obligatorio);
 	}
 
 
@@ -285,7 +285,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			int Cocina, int Estar, int Park) throws Exception {
 		System.out.println("FacadeImplementation: get casas todo");
 		Vector<RuralHouse> vector;
-		vector = DB4oManager.getHouse(ciudad, Banos, Habita,
+		vector = DatabaseManager.getHouse(ciudad, Banos, Habita,
 					Cocina, Estar, Park);
 		if(vector==null){
 			throw new Exception("No existen casas con esos datos.");
@@ -296,7 +296,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	public RuralHouse getCasas(int num) throws Exception {
 		System.out.println("FacadeImplementation: get casas numero");
 		RuralHouse vector;
-		vector = DB4oManager.getRuralHouse(num);
+		vector = DatabaseManager.getRuralHouse(num);
 		if(vector==null){
 			throw new Exception("No existen casas con esos datos.");
 		}
@@ -306,7 +306,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	public Vector<ImageIcon> getFotosRH(int numeroDeCasa) throws Exception {
 		System.out.println("FacadeImplementation: get fotos casa rural");
 		Vector<ImageIcon> aux = new Vector<ImageIcon>();
-		RuralHouse casa = DB4oManager.getRuralHouse(numeroDeCasa);
+		RuralHouse casa = DatabaseManager.getRuralHouse(numeroDeCasa);
 		Iterator<String> i = casa.getImages().iterator();
 		while (i.hasNext()) aux.add(new ImageIcon(i.next()));
 		return aux;
@@ -315,8 +315,8 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 
 	public ImageIcon getFotoPerfil(String email) throws Exception {
 		System.out.println("FacadeImplementation: get foto perfil");
-		if (DB4oManager.getUser(email).getPerfil() == null) return null;
-		return new ImageIcon(DB4oManager.getUser(email).getPerfil());
+		if (DatabaseManager.getUser(email).getPerfil() == null) return null;
+		return new ImageIcon(DatabaseManager.getUser(email).getPerfil());
 	}
 	
 	private Vector<String> setGuardarImagenes(String email, Vector<ImageIcon> imagenes, int numeroCasaRural) throws Exception {
@@ -369,7 +369,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 
 	public void anadirFechas(UserAplication usuario, int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception {
 		System.out.println("FacadeImplementation: anadir fecha");
-		DB4oManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
+		DatabaseManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
 	}
 
 	public Set<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
@@ -384,38 +384,38 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public void eliminarOferta(UserAplication usuario, int nRH, Date ini, Date fin) throws Exception{
 		System.out.println("FacadeImplementation: elimina oferta");
-		DB4oManager.eliminarOferta(usuario, nRH, ini, fin);
+		DatabaseManager.eliminarOferta(usuario, nRH, ini, fin);
 	}
 	
 	public void eliminarFecha(UserAplication usuario, int nRH, Date ini) throws Exception{
 		System.out.println("FacadeImplementation: elimina fecha");
-		DB4oManager.eliminarFecha(usuario, nRH, ini);
+		DatabaseManager.eliminarFecha(usuario, nRH, ini);
 	}
 
 	public void eliminarReserva(int num) throws Exception{
 		System.out.println("FacadeImplementation: eliminar reserva");
-		DB4oManager.eliminarReserva(num);
+		DatabaseManager.eliminarReserva(num);
 	}
 	
 	public Book pagar(int num, UserAplication user) throws Exception{
 		System.out.println("FacadeImplementation: pagar");
-		return DB4oManager.pagar(num, user);
+		return DatabaseManager.pagar(num, user);
 	}
 
 	@Override
 	public void anadirCalificacionACasaRural(int numero, String comentario, int puntuacion) throws Exception {
 		System.out.println("FacadeImplementation: añadir calificacion a casa rural");
-		DB4oManager.anadirCalificacionACasaRural(numero, comentario, puntuacion);
+		DatabaseManager.anadirCalificacionACasaRural(numero, comentario, puntuacion);
 		
 	}
 	
 	public Book getReserva(int num) throws Exception{
-		return DB4oManager.getReserva(num);
+		return DatabaseManager.getReserva(num);
 	}
 
 	@Override
 	public void cambiarContra(UserAplication usuario, String text)throws Exception {
-			DB4oManager.cambiarContraseña(usuario,text);
+			DatabaseManager.cambiarContraseña(usuario,text);
 	}
 }
 

@@ -14,7 +14,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	//public void close() throws RemoteException;
 
-	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> imagenes) throws Exception;
+	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> imagenes) throws Exception;
 	
 	public void modificarRuralHouse(UserAplication usuario,  int numero,
 			String description, String city, int nRooms, int nKitchen,
@@ -40,7 +40,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public Owner getOwner(UserAplication usuario) throws Exception;
 	
-	public void modificarOwner(UserAplication usuario, String bA, String t, Vector<String> i, String p, String m) throws Exception;
+	public void modificarOwner(UserAplication usuario, String bA, String t, Set<String> i, String p, String m) throws Exception;
 	
 	public void modificarContraseña(UserAplication usuario, String pass) throws Exception;
 	

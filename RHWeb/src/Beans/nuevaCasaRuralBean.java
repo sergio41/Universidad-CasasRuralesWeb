@@ -1,5 +1,7 @@
 package Beans;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.faces.context.FacesContext;
@@ -89,7 +91,7 @@ public class nuevaCasaRuralBean {
 
 	
 	public String insertarCasaRural(){
-		Vector<String> images = new Vector<String>();
+		Set<String> images = new HashSet<String>();
 		images.add(image1);
 		images.add(image2);
 		images.add(image3);

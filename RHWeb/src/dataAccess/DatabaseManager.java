@@ -53,16 +53,22 @@ public class DatabaseManager {
 	}
 	
 	public static UserAplication getUser(String email){
-		UserAplication u = new UserAplication(email, null, null, null, null, null, null, null);
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(u);	
-		if (userConcretos.hasNext()) return userConcretos.next();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<UserAplication> result = session.createQuery("from UserAplication where email='"+email+"'").list();
+		Iterator<UserAplication> it = result.iterator();
+		session.getTransaction().commit();
+		if(it.hasNext()) return it.next();
 		else return null;
 	}
 	
 	public static UserAplication getUser(String email, String pass){
-		UserAplication u = new UserAplication(email, pass, null, null, null, null, null, null);
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(u);	
-		if (userConcretos.hasNext()) return  userConcretos.next();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println(email+pass);
+		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+email+"' and pass='"+ pass+"'").iterate();
+		session.getTransaction().commit();
+		if(result.hasNext()) return result.next();
 		else return null;
 	}	
 	
@@ -84,7 +90,7 @@ public class DatabaseManager {
 	public static UserAplication nuevoUsuario(String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		 session.beginTransaction();
-		 List<UserAplication> result = session.createQuery("from Usuario where email='"+email+"'").list();
+		 List<UserAplication> result = session.createQuery("from UserAplication where email='"+email+"'").list();
 		 if (result.size()>0) throw new Exception("El email ya esta usado. Logueate");
 		 UserAplication user = new UserAplication(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad);
 		 user.setPerfil(perfil);
