@@ -145,7 +145,7 @@ public class DatabaseManager {
 		 Owner owner = new Owner(bA, t, i, p, m);
 		 result.next().setPropietario(owner);
 		 Iterator<UserAplication> result2 = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
-		 session.save(result.next());
+		 session.update(result.next());
 		 session.save(owner);
 		 session.getTransaction().commit();
 		 return user;

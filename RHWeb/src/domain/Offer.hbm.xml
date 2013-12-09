@@ -1,34 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
-<hibernate-mapping>
-    <class name="domain.Offer" table="OFFER">
-        <id name="firstDay" type="java.util.Date" access="field">
-            <column name="FIRSTDAY" />
-            <generator class="assigned" />
-        </id>
-        <property name="lastDay" type="java.util.Date" access="field">
-            <column name="LASTDAY" />
-        </property>
-        <property name="reservado" type="boolean" access="field">
-            <column name="RESERVADO" />
-        </property>
-        <property name="price" type="float">
-            <column name="PRICE" />
-        </property>
-        <one-to-one name="reserva" class="domain.Book" access="field"></one-to-one>
-        <many-to-one name="ruralHouse" class="domain.RuralHouse" access="field" fetch="join">
-            <column name="RURALHOUSE" />
-        </many-to-one>
-        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="false" access="field">
-            <key>
-                <column name="FIRSTDAY" />
-            </key>
-            <one-to-many class="domain.Fechas" />
-        </set>
-        <property name="unidoOferta" type="boolean" access="field">
-            <column name="UNIDOOFERTA" />
-        </property>
-    </class>
+<hibernate-mapping default-lazy="false">
+ <class name="domain.Offer" table="OFFER">
+  <id access="field" name="firstDay" type="java.util.Date">
+   <column name="FIRSTDAY"/>
+   <generator class="assigned"/>
+  </id>
+  <property access="field" generated="never" lazy="false" name="lastDay" type="java.util.Date">
+   <column name="LASTDAY"/>
+  </property>
+  <property access="field" generated="never" lazy="false"
+   name="reservado" type="boolean">
+   <column name="RESERVADO"/>
+  </property>
+  <property generated="never" lazy="false" name="price" type="float">
+   <column name="PRICE"/>
+  </property>
+  <one-to-one access="field" class="domain.Book" name="reserva"/>
+  <many-to-one access="field" class="domain.RuralHouse" fetch="join" name="ruralHouse">
+   <column name="RURALHOUSE"/>
+  </many-to-one>
+  <set access="field" lazy="false" name="vectorFechas" sort="unsorted" table="FECHAS">
+   <key>
+    <column name="FIRSTDAY"/>
+   </key>
+   <one-to-many class="domain.Fechas"/>
+  </set>
+  <property access="field" generated="never" lazy="false"
+   name="unidoOferta" type="boolean">
+   <column name="UNIDOOFERTA"/>
+  </property>
+ </class>
 </hibernate-mapping>

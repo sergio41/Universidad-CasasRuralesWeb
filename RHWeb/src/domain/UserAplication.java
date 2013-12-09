@@ -83,4 +83,9 @@ public class UserAplication implements Serializable{
 			}
 		}
 	}	
+	public boolean tieneProp(){
+		if(propietario!=null)
+			return true;
+		else return false;
+	}
 }

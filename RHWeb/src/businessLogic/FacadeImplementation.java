@@ -106,7 +106,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public void modificarOwner(UserAplication usuario, String bA, String t, Set<String> i, String p,	String m) throws Exception {
 		System.out.println("FacadeImplementation: modificar owner");
-		if(usuario.getPropietario()!=null)
+		if(usuario.tieneProp())
 			usuario= DatabaseManager.modificarOwner(usuario, usuario.getEmail(), bA, t, i, p, m);
 		else 
 			usuario= DatabaseManager.nuevoOwner(usuario, usuario.getEmail(), bA, t, i, p, m);

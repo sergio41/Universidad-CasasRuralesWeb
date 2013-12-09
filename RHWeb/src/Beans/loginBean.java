@@ -25,10 +25,9 @@ public class loginBean {
 	public String loginUser(){
 		try {
 			UserAplication user = fachadaBean.getFachada().hacerLogin(email, pass);
-			Owner prop = user.getPropietario();
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
-			if(prop!=null){
+			if(user.tieneProp()){
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(true));	
 			}else
 				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(false));
