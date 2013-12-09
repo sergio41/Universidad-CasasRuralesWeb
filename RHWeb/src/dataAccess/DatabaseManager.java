@@ -141,12 +141,11 @@ public class DatabaseManager {
 		 session.beginTransaction();
 		 Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
 		 if (!result.hasNext()) throw new Exception("No existe el usuario");
-		 List<Owner> resultprop = session.createQuery("from Owner where email='"+user.getEmail()+"'").list();
 		 Owner owner = new Owner(bA, t, i, p, m);
-		 result.next().setPropietario(owner);
-		 Iterator<UserAplication> result2 = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
-		 session.update(result.next());
+		 UserAplication auxuser = result.next();
+		 auxuser.setPropietario(owner);
 		 session.save(owner);
+		 session.update(auxuser);
 		 session.getTransaction().commit();
 		 return user;
 	}

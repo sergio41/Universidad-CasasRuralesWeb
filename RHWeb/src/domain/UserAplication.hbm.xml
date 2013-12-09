@@ -4,12 +4,12 @@
 <!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
  <class name="domain.UserAplication" table="USERAPLICATION">
-  <id name="apellidos" type="java.lang.String">
-   <column name="APELLIDOS"/>
+  <id name="email" type="java.lang.String">
+   <column name="EMAIL"/>
    <generator class="assigned"/>
   </id>
-  <property generated="never" lazy="false" name="email" type="java.lang.String">
-   <column name="EMAIL"/>
+  <property generated="never" lazy="false" name="apellidos" type="java.lang.String">
+   <column name="APELLIDOS"/>
   </property>
   <property generated="never" lazy="false" name="pass" type="java.lang.String">
    <column name="PASS"/>
