@@ -72,7 +72,7 @@ public class DatabaseManager {
 		session.getTransaction().commit();
 		return user;
 	}	
-	
+	/*
 	public static RuralHouse getRuralHouse(int houseNumber) throws Exception{
 		RuralHouse rh = new RuralHouse(houseNumber, null,null,null,0,0,0,0,0,null);
 		ObjectSet<RuralHouse> ruralHouseConcretos = db.queryByExample(rh);
@@ -87,7 +87,7 @@ public class DatabaseManager {
 		while (ruralHouseConcretos.hasNext())vector.add(ruralHouseConcretos.next());
 		return vector;
 	}
-	
+	*/
 	public static UserAplication nuevoUsuario(String email, String pass, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		 session.beginTransaction();
@@ -99,7 +99,7 @@ public class DatabaseManager {
 		 session.getTransaction().commit();
 		 return user;
 	}
-	
+	/*
 	public static UserAplication modificarRuralHouse(String email, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> images) throws Exception {
 		ObjectSet<RuralHouse> RHConcreto = db.queryByExample(new RuralHouse(numero, null, null, null, 0, 0, 0, 0, 0, null));
 		if (RHConcreto.hasNext()){
@@ -116,7 +116,7 @@ public class DatabaseManager {
 			db.commit();
 			return getUser(email);
 		} else throw new Exception("La casa rural no se puede modificar. No se ha encontrado en la base de datos.");
-	}
+	}*/
 	
 	public static UserAplication modificarUsuario(UserAplication user, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		UserAplication u = new UserAplication(user.getEmail(), null, null, null, null, null, null, null);
@@ -136,7 +136,7 @@ public class DatabaseManager {
 		}else throw new Exception("El usuario no existe");
 	}
 
-	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{
+	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, String i, String p, String m) throws Exception{
 		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		 session.beginTransaction();
 		 Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
@@ -150,7 +150,7 @@ public class DatabaseManager {
 		 return user;
 	}
 	
-	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, Set<String> i, String p, String m) throws Exception{
+	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, String i, String p, String m) throws Exception{
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
@@ -184,8 +184,9 @@ public class DatabaseManager {
 		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
 		if(result.hasNext())user = result.next();
 		else throw new Exception("El usuario no se ha encontrado.");
-		user.addRuralHouse(numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images);
-		RuralHouse casa = new RuralHouse(numero, user, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images);
+		//user.addRuralHouse(numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, images);
+		RuralHouse casa = new RuralHouse(numero, user, description, city, nRooms, nKitchen, nBaths, nLiving, nPark);
+		session.save(casa);
 		session.getTransaction().commit();
 		return user;
 		/*
@@ -204,9 +205,9 @@ public class DatabaseManager {
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
-			Iterator<RuralHouse> i = userConcreto.getPropietario().getRuralHouses().iterator();
+			//Iterator<RuralHouse> i = userConcreto.getPropietario().getRuralHouses().iterator();
 			System.out.println("eliminarCasaRural: A");
-			while (i.hasNext()){
+			/*while (i.hasNext()){
 				System.out.println("eliminarCasaRural: B");
 				RuralHouse casa = i.next();
 				System.out.println("eliminarCasaRural: C");
@@ -241,11 +242,11 @@ public class DatabaseManager {
 					}
 					break;
 				}
-			}
+			}*/
 			throw new Exception("La casa rural no ha podido ser eliminada.");
 		} else throw new Exception("El usuario no se ha encontrado.");
 	}
-	
+	/*
 	public static void eliminarReserva(int num) throws Exception{
 		System.out.println(num);
 		ObjectSet<Book> reservasConcretas = db.queryByExample(Book.class);
@@ -270,11 +271,11 @@ public class DatabaseManager {
 			}		
 		}
 	}
-	
+	*/
 	public static void eliminarFecha(UserAplication usuario, int nRH, Date ini) throws Exception{
 		System.out.println(nRH);
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(usuario.getEmail(), null, null, null, null, null, null, null));
-		if (userConcretos.hasNext()){
+		/*if (userConcretos.hasNext()){
 			UserAplication user = userConcretos.next();
 			Iterator<RuralHouse> iter = user.getPropietario().getRuralHouses().iterator();
 			while(iter.hasNext()){
@@ -290,9 +291,9 @@ public class DatabaseManager {
 					db.commit();
 				}
 			}	
-		}
+		}*/
 	}
-	
+	/*
 	public static Vector<RuralHouse> getHouse(String ciudad, int banos,
 			int habita, int cocina, int estar, int park) {
 		Vector<RuralHouse> result = new Vector<RuralHouse>();
@@ -422,15 +423,15 @@ public class DatabaseManager {
 		}
 		throw new Exception("La oferta no se ha podido añadir correctamente. Lo sentimos");
 	}
-
+*/
 	@SuppressWarnings("deprecation")
 	public static void eliminarOferta(UserAplication usuario, int nRH, Date ini, Date fin) throws Exception {
 		ini = new Date(ini.getYear(), ini.getMonth(), ini.getDate());
 		fin = new Date(fin.getYear(), fin.getMonth(), fin.getDate());
 		ObjectSet<UserAplication> usuarioConcreto = db.queryByExample(new UserAplication(usuario.getEmail(), null, null, null, null, null, null, null));
-		if (usuarioConcreto.hasNext()){
+		/*if (usuarioConcreto.hasNext()){
 			UserAplication user = usuarioConcreto.next();
-			Iterator<RuralHouse> casasConcretas = user.getPropietario().getRuralHouses().iterator();
+			//Iterator<RuralHouse> casasConcretas = user.getPropietario().getRuralHouses().iterator();
 			while(casasConcretas.hasNext()){
 				RuralHouse casa = casasConcretas.next();
 				if(casa.getHouseNumber()==nRH){
@@ -450,7 +451,7 @@ public class DatabaseManager {
 				}
 			}
 		}else 
-			throw new Exception("La oferta no se ha podido eliminar correctamente. Lo sentimos");
+			throw new Exception("La oferta no se ha podido eliminar correctamente. Lo sentimos");*/
 	}
 	
 	public static Vector<Book> getTodasLasReservas(){
@@ -471,7 +472,7 @@ public class DatabaseManager {
 		}
 		throw new Exception("No se ha podido pagar, intentelo de nuevo.");
 	}	
-	
+	/*
 	public static void anadirCalificacionACasaRural(int numero, String comentario, int puntuacion) throws Exception {
 		ObjectSet<RuralHouse> RHConcreto = db.queryByExample(new RuralHouse(numero, null, null, null, 0, 0, 0, 0, 0, null));
 		if (RHConcreto.hasNext()){
@@ -481,7 +482,7 @@ public class DatabaseManager {
 			db.commit();
 		} else throw new Exception("La casa rural no se ha modificado. El propietario ha podido borrar la Casa Rural.");
 	}
-	
+	*/
 	public static Book getReserva(int num) throws Exception{
 		ObjectSet<Book> reservConcretas = db.queryByExample(Book.class);
 		while (reservConcretas.hasNext()){

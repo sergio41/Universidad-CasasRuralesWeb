@@ -78,6 +78,7 @@ public class registerUserBean {
 			fachadaBean.getFachada().nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(false));
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();

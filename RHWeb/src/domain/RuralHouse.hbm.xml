@@ -1,79 +1,45 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
- <class name="domain.RuralHouse" table="RURALHOUSE">
-  <id name="houseNumber" type="int">
-   <column name="HOUSENUMBER"/>
-   <generator class="assigned"/>
-  </id>
-  <property generated="never" lazy="false" name="description" type="java.lang.String">
-   <column name="DESCRIPTION"/>
-  </property>
-  <many-to-one access="field" class="domain.UserAplication" fetch="join" name="user">
-   <column name="USER"/>
-  </many-to-one>
-  <property generated="never" lazy="false" name="city" type="java.lang.String">
-   <column name="CITY"/>
-  </property>
-  <property access="field" generated="never" lazy="false" name="nRooms" type="int">
-   <column name="NROOMS"/>
-  </property>
-  <property access="field" generated="never" lazy="false"
-   name="nKitchen" type="int">
-   <column name="NKITCHEN"/>
-  </property>
-  <property access="field" generated="never" lazy="false" name="nBaths" type="int">
-   <column name="NBATHS"/>
-  </property>
-  <property access="field" generated="never" lazy="false" name="nLiving" type="int">
-   <column name="NLIVING"/>
-  </property>
-  <property access="field" generated="never" lazy="false" name="nPark" type="int">
-   <column name="NPARK"/>
-  </property>
-  <set access="field" lazy="false" name="vectorFechas" sort="unsorted" table="FECHAS">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <one-to-many class="domain.Fechas"/>
-  </set>
-  <set access="field" lazy="false" name="vectorOfertas" sort="unsorted" table="OFFER">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <one-to-many class="domain.Offer"/>
-  </set>
-  <set access="field" lazy="false" name="vectorReservas" sort="unsorted" table="BOOK">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <one-to-many class="domain.Book"/>
-  </set>
-  <set access="field" lazy="false" name="vectorImage" sort="unsorted" table="RURALHOUSE">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <element type="java.lang.String">
-    <column name="VECTORIMAGE"/>
-   </element>
-  </set>
-  <set access="field" lazy="false" name="comentarios" sort="unsorted" table="RURALHOUSE">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <element type="java.lang.String">
-    <column name="COMENTARIOS"/>
-   </element>
-  </set>
-  <set access="field" lazy="false" name="calificacion" sort="unsorted" table="RURALHOUSE">
-   <key>
-    <column name="HOUSENUMBER"/>
-   </key>
-   <element type="java.lang.Integer">
-    <column name="CALIFICACION"/>
-   </element>
-  </set>
- </class>
+    <class name="domain.RuralHouse" table="RURALHOUSE">
+        <id name="houseNumber" type="int">
+            <column name="HOUSENUMBER" />
+            <generator class="assigned" />
+        </id>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        <many-to-one name="user" class="domain.UserAplication" access="field" fetch="join">
+            <column name="USER" />
+        </many-to-one>
+        <property name="city" type="java.lang.String">
+            <column name="CITY" />
+        </property>
+        <property name="nRooms" type="int" access="field">
+            <column name="NROOMS" />
+        </property>
+        <property name="nKitchen" type="int" access="field">
+            <column name="NKITCHEN" />
+        </property>
+        <property name="nBaths" type="int" access="field">
+            <column name="NBATHS" />
+        </property>
+        <property name="nLiving" type="int" access="field">
+            <column name="NLIVING" />
+        </property>
+        <property name="nPark" type="int" access="field">
+            <column name="NPARK" />
+        </property>
+        <property name="comentarios" type="java.lang.String" access="field">
+            <column name="COMENTARIOS" />
+        </property>
+        <property name="calificacion" type="float" access="field">
+            <column name="CALIFICACION" />
+        </property>
+        <property name="nCal" type="int" access="field">
+            <column name="NCAL" />
+        </property>
+    </class>
 </hibernate-mapping>

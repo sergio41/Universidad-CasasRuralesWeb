@@ -62,13 +62,11 @@ public class ownerBean {
 		this.idiomas3 = idiomas3;
 	}
 	public String registrarOwner(){
-		Set<String> idiomas = new HashSet<String>();
-		idiomas.add(idiomas1);
-		idiomas.add(idiomas2);
-		idiomas.add(idiomas3);
+		String idiomas = idiomas1+ " / "+idiomas2+" / "+idiomas3;
 		try {
 			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 			fachadaBean.getFachada().modificarOwner(user, bankAccount, tipo, idiomas, profesion, moneda);
+			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(true));	
 			System.out.println(user.getEmail() + user.getName() + user.getApellidos());
 			return "ok";

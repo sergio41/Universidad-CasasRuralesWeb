@@ -17,7 +17,7 @@ public class sesionBean {
 	public boolean isLogueado() {
 		if ((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login") != null){
 			logueado = (Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login");
-		}
+		} else logueado =false;
 		System.out.println("Obteniendo: " + logueado);
 		return logueado;
 	}
@@ -37,10 +37,15 @@ public class sesionBean {
 		return "ok";
 	}
 	public boolean isPropietariado() {
+		if ((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario") != null){
+			propietariado = (Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario");
+		} else propietariado = false;
+		System.out.println("Obteniendo: " + propietariado);
 		return propietariado;
 	}
 	public void setPropietariado(boolean propietariado1) {
 		propietariado = propietariado1;
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", propietariado);
+		System.out.println("Set Obteniendo: " + propietariado);
 	}
 }

@@ -1,35 +1,33 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
- <class name="domain.Fechas" table="FECHAS">
-  <id access="field" name="fecha" type="java.util.Date">
-   <column name="FECHA"/>
-   <generator class="assigned"/>
-  </id>
-  <property generated="never" lazy="false" name="precio" type="float">
-   <column name="PRECIO"/>
-  </property>
-  <property access="field" generated="never" lazy="false"
-   name="reservado" type="java.lang.Boolean">
-   <column name="RESERVADO"/>
-  </property>
-  <many-to-one access="field" class="domain.RuralHouse" fetch="join" name="casaRural">
-   <column name="CASARURAL"/>
-  </many-to-one>
-  <property access="field" generated="never" lazy="false" name="minDias" type="int">
-   <column name="MINDIAS"/>
-  </property>
-  <many-to-one access="field" class="domain.Book" fetch="join" name="reserva">
-   <column name="RESERVA"/>
-  </many-to-one>
-  <many-to-one access="field" class="domain.Offer" fetch="join" name="offer">
-   <column name="OFFER"/>
-  </many-to-one>
-  <property access="field" generated="never" lazy="false"
-   name="unidoOferta" type="java.lang.Boolean">
-   <column name="UNIDOOFERTA"/>
-  </property>
- </class>
+    <class name="domain.Fechas" table="FECHAS">
+        <id name="fecha" type="java.util.Date" access="field">
+            <column name="FECHA" />
+            <generator class="assigned" />
+        </id>
+        <property name="precio" type="float">
+            <column name="PRECIO" />
+        </property>
+        <property name="reservado" type="java.lang.Boolean" access="field">
+            <column name="RESERVADO" />
+        </property>
+        <many-to-one name="casaRural" class="domain.RuralHouse" access="field" fetch="join">
+            <column name="CASARURAL" />
+        </many-to-one>
+        <property name="minDias" type="int" access="field">
+            <column name="MINDIAS" />
+        </property>
+        <many-to-one name="reserva" class="domain.Book" access="field" fetch="join">
+            <column name="RESERVA" />
+        </many-to-one>
+        <many-to-one name="offer" class="domain.Offer" access="field" fetch="join">
+            <column name="OFFER" />
+        </many-to-one>
+        <property name="unidoOferta" type="java.lang.Boolean" access="field">
+            <column name="UNIDOOFERTA" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -22,15 +22,17 @@ public class RuralHouse implements Serializable {
 	private int nBaths;
 	private int nLiving;
 	private int nPark;
-	private Set<Fechas> vectorFechas;
+	/*private Set<Fechas> vectorFechas;
 	private Set<Offer> vectorOfertas;
 	private Set<Book> vectorReservas;
 	private Set<String> vectorImage;
-	private Set<String> comentarios;
-	private Set<Integer> calificacion;
+	private Set<String> comentarios;*/
+	private String comentarios;
+	private Float calificacion;
+	private int nCal;
 	
 	
-	public RuralHouse(int hNumber, UserAplication usuario, String descripcion, String ciudad, int cuartos, int cocina, int banos, int salon, int aparcamiento,  Set<String> images) {
+	public RuralHouse(int hNumber, UserAplication usuario, String descripcion, String ciudad, int cuartos, int cocina, int banos, int salon, int aparcamiento) {
 		houseNumber = hNumber;
 		description = descripcion;
 		user = usuario;
@@ -40,12 +42,13 @@ public class RuralHouse implements Serializable {
 		nBaths = banos;
 		nLiving = salon;
 		nPark = aparcamiento;
-		vectorFechas = new HashSet<Fechas>();
+		/*vectorFechas = new HashSet<Fechas>();
 		vectorOfertas = new HashSet<Offer>();
-		vectorReservas = new HashSet<Book>();
-		comentarios = new HashSet<String>();
-		calificacion = new  HashSet<Integer>();
-		vectorImage = images;
+		vectorReservas = new HashSet<Book>();*/
+		comentarios = "";
+		calificacion = (float) 2.5;
+		nCal=0;
+		//vectorImage = images;
 	}
 
 	public int getHouseNumber() {return houseNumber;}
@@ -77,7 +80,7 @@ public class RuralHouse implements Serializable {
 	
 	public String toString() {return this.houseNumber + ": " + this.city;}
 	
-	public Set<Book> getReservas(){return vectorReservas;}
+	/*public Set<Book> getReservas(){return vectorReservas;}
 	
 	public Set<Offer> getOfertas(){ return vectorOfertas;}
 	public void anadirOferta(Date primerDia, Date ultimoDia, float precio, boolean obligatorio) throws Exception{
@@ -129,7 +132,7 @@ public class RuralHouse implements Serializable {
 			}
 		}
 	}
-	
+	*//*
 	public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	@SuppressWarnings("deprecation")
@@ -162,7 +165,8 @@ public class RuralHouse implements Serializable {
 		}
 		return auxB;
 	}
-	
+	*/
+	/*
 	public Set<String> getImages(){
 		return vectorImage;
 	}
@@ -355,7 +359,7 @@ public class RuralHouse implements Serializable {
 				e.getMessage();
 			}
 			auxVectorBook.add(vectorReservas.get(i));
-		}*/
+		}
 		vectorReservas = new HashSet<Book>();
 		return auxVectorBook;
 	}
@@ -367,24 +371,24 @@ public class RuralHouse implements Serializable {
         cf.setTime(fFinal);
         long ntime = cf.getTimeInMillis() - ci.getTimeInMillis();
         return (int)Math.ceil((double)ntime / 1000 / 3600 / 24);
-    }
+    }*/
 
 	public void anadirCalificacion(String comentario, int puntuacion){
-		if (puntuacion<0) puntuacion = 0;
-		if (puntuacion>10) puntuacion = 10;
-		comentarios.add(comentario);
-		calificacion.add(puntuacion);
+		comentarios = comentarios +" / "+ comentario;
+		float aux = calificacion*nCal;
+		nCal=nCal+1;
+		calificacion= (aux+puntuacion)/nCal;
 	}
 	
-	public Set<String> getComentarios(){
+	public String getComentarios(){
 		return comentarios;
 	}
 	
-	public int getNotaMedia(){
-		Iterator<Integer> i = calificacion.iterator();
-		int media = 0;
-		while (i.hasNext()) media += i.next();
-		if (calificacion.size()!=0) media = media / calificacion.size();
-		return media;
+	public Float getNotaMedia(){
+		return calificacion;
+	}
+	
+	public int getnCal(){
+		return nCal;
 	}
 }

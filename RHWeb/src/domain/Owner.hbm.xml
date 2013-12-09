@@ -1,35 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 03-dic-2013 10:14:59 by Hibernate Tools 3.4.0.CR1 -->
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
- <class name="domain.Owner" table="OWNER">
-  <id name="bankAccount" type="java.lang.String">
-   <column name="BANKACCOUNT"/>
-   <generator class="assigned"/>
-  </id>
-  <property generated="never" lazy="false" name="tipo" type="java.lang.String">
-   <column name="TIPO"/>
-  </property>
-  <set lazy="false" name="idiomas" sort="unsorted" table="OWNER">
-   <key>
-    <column name="BANKACCOUNT"/>
-   </key>
-   <element type="java.lang.String">
-    <column name="IDIOMAS"/>
-   </element>
-  </set>
-  <property generated="never" lazy="false" name="profesion" type="java.lang.String">
-   <column name="PROFESION"/>
-  </property>
-  <property generated="never" lazy="false" name="moneda" type="java.lang.String">
-   <column name="MONEDA"/>
-  </property>
-  <set access="field" lazy="false" name="ruralHouses" sort="unsorted" table="RURALHOUSE">
-   <key>
-    <column name="BANKACCOUNT"/>
-   </key>
-   <one-to-many class="domain.RuralHouse"/>
-  </set>
- </class>
+    <class name="domain.Owner" table="OWNER">
+        <id name="bankAccount" type="java.lang.String">
+            <column name="BANKACCOUNT" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" />
+        </property>
+        <property name="idiomas" type="java.lang.String">
+            <column name="IDIOMAS" />
+        </property>
+        <property name="profesion" type="java.lang.String">
+            <column name="PROFESION" />
+        </property>
+        <property name="moneda" type="java.lang.String">
+            <column name="MONEDA" />
+        </property>
+    </class>
 </hibernate-mapping>

@@ -15,13 +15,16 @@
 Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! 
 </h3>
 <p>
+
 <c:choose>
 	<c:when test="#{sesionBean.logueado}">
 		<h:commandButton value="Logout" action="#{sesionBean.logout}" />
-	</c:when>
-	<c:when test="#{sesionBean.propietariado}">
-		<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
-		<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
+		<c:choose>
+			<c:when test="#{sesionBean.propietariado}">
+				<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
+				<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
+			</c:when>
+		</c:choose>	
 	</c:when>
 	<c:otherwise>
 		<h3>Inicia sesión.</h3>

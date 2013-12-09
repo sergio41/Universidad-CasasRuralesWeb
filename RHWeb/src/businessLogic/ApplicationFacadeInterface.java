@@ -40,7 +40,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public Owner getOwner(UserAplication usuario) throws Exception;
 	
-	public void modificarOwner(UserAplication usuario, String bA, String t, Set<String> i, String p, String m) throws Exception;
+	public void modificarOwner(UserAplication usuario, String bA, String t, String i, String p, String m) throws Exception;
 	
 	public void modificarContraseña(UserAplication usuario, String pass) throws Exception;
 	
