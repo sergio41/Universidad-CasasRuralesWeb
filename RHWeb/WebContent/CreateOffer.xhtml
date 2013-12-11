@@ -40,15 +40,6 @@
 					<td><h:inputText id="precio" value="#{offerBean.price}">
 					</h:inputText></td>
 				</tr>
-				<tr>
-					<td>Obligatorio:</td>
-					<td>
-					<h:selectOneMenu value="#{offerBean.unidoOferta}" name="tipoOferta">
-						<f:selectItem itemValue="true" itemLabel="Entero" />
-						<f:selectItem itemValue="false" itemLabel="Por días" />
-					</h:selectOneMenu>	
-					</td>
-				</tr>
 			</table>
 			<p>
 				<h:commandButton value="Crear oferta" action="#{offerBean.crearOffer}" />

@@ -271,7 +271,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
 		System.out.println("FacadeImplementation: anadir oferta");
-		//DatabaseManager.anadirOferta(usuario, numero, inicio, fin, precio, obligatorio);
+		DatabaseManager.anadirOferta(usuario, numero, inicio, fin, precio, obligatorio);
 	}
 
 

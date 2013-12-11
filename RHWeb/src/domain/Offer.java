@@ -14,34 +14,34 @@ public class Offer implements Serializable {
 	private float price;
 	private Book reserva;
 	private RuralHouse ruralHouse;
-	private Set<Fechas> vectorFechas;
+	//private Set<Fechas> vectorFechas;
 	private boolean unidoOferta;
 
-	public Offer(Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, Set<Fechas> fechas, boolean unidoAFecha){
+	public Offer(Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, /*Set<Fechas> fechas,*/ boolean unidoAFecha){
 		firstDay = primerDia;
 		lastDay = ultimoDia;
 		reservado = false;
 		price = cost;
 		reserva = null;
 		ruralHouse = casaRural;
-		vectorFechas = fechas;
+		//vectorFechas = fechas;
 		unidoOferta = unidoAFecha;
-		setUnidoAFechaExternamente();
+		//setUnidoAFechaExternamente();
 	}
 	
-	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, Set<Fechas> fechas, boolean unidoAFecha){
+	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, /*Set<Fechas> fechas, */boolean unidoAFecha){
 		firstDay = primerDia;
 		lastDay = ultimoDia;
 		reservado = estado;
 		price = cost;
 		reserva = null;
 		ruralHouse = casaRural;
-		vectorFechas = fechas;
+		//vectorFechas = fechas;
 		unidoOferta = unidoAFecha;
-		setUnidoAFechaExternamente();
+		//setUnidoAFechaExternamente();
 	}
 	
-	private void setUnidoAFechaExternamente(){
+	/*private void setUnidoAFechaExternamente(){
 		if(vectorFechas != null){
 			Iterator<Fechas> i = vectorFechas.iterator();
 			while (i.hasNext()){
@@ -50,7 +50,7 @@ public class Offer implements Serializable {
 				else auxi.setOferta(this, unidoOferta);
 			}
 		}	
-	}
+	}*/
 	
 	public Date getPrimerDia(){return firstDay;}
 	public Date getUltimoDia(){return lastDay;}
@@ -64,7 +64,7 @@ public class Offer implements Serializable {
 	
 	public RuralHouse getRuralHouse() {return ruralHouse;}
 
-	public Set<Fechas> getFechas(){return vectorFechas;}
+	//public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	public boolean isUnidoAFechas(){return unidoOferta;}
 	public void setUnidoAFechas(boolean unidoAfecha){unidoOferta = unidoAfecha;}
@@ -79,9 +79,9 @@ public class Offer implements Serializable {
 		reservado = false;		
 	}
 	
-	public boolean contiene(Date fecha){
+	/*public boolean contiene(Date fecha){
 		Iterator<Fechas> i = vectorFechas.iterator();
 		while (i.hasNext()) if (i.next().getFecha().compareTo(fecha) == 0) return true;
 		return false;
-	}
+	}*/
 }

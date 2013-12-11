@@ -6,7 +6,7 @@
     <class name="domain.RuralHouse" table="RURALHOUSE">
         <id name="houseNumber" type="int">
             <column name="HOUSENUMBER" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="description" type="java.lang.String">
             <column name="DESCRIPTION" />

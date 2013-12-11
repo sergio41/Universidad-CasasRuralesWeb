@@ -16,7 +16,7 @@ public class UserAplication implements Serializable{
 	private String pais;
 	private String edad;
 	private Owner propietario;
-	private Set<Book> vectorBook;
+	//private Set<Book> vectorBook;
 	private String perfil; 
 
 	public UserAplication(String e, String p, String eC, String nom, String ape, String tel, String ps, String edd){
@@ -61,16 +61,16 @@ public class UserAplication implements Serializable{
 	public void setPropietario(Owner own){propietario=own;}
 	public Owner getPropietario(){return propietario;}
 	
-	public Set<Book> getReservas(){return vectorBook;}
+	/*public Set<Book> getReservas(){return vectorBook;}
 	public void anadirReserva(Book reserva){ 
 		System.out.println("Reserva añadida");
 		vectorBook.add(reserva);}
-	public void eliminarReserva(Book reserva){vectorBook.remove(reserva);}
+	public void eliminarReserva(Book reserva){vectorBook.remove(reserva);}*/
 	
 	public String getPerfil(){return perfil;}
 	public void setPerfil(String imagenPerfil){ perfil = imagenPerfil;}
 		
-	public void pagar(int num){
+	/*public void pagar(int num){
 		Iterator<Book> reservasConcretas =  getReservas().iterator();
 		while (reservasConcretas.hasNext()){
 			Book reserva = reservasConcretas.next();
@@ -78,7 +78,7 @@ public class UserAplication implements Serializable{
 				reserva.pagar();
 			}
 		}
-	}	
+	}	*/
 	public boolean tieneProp(){
 		if(propietario!=null)
 			return true;

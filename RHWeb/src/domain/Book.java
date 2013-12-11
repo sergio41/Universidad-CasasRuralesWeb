@@ -15,34 +15,34 @@ public class Book implements Serializable {
 	private float precio;
 	private UserAplication reservante;
 	private Offer offer;
-	private Set<Fechas> vectorFechas;
+//	private Set<Fechas> vectorFechas;
 	private RuralHouse casa;
 	
-	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Set<Fechas> fechas) {
+	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente/*, Set<Fechas> fechas*/) {
 		bookDate = new java.util.Date(System.currentTimeMillis());
 		bookNumber = numeroReserva;
 		isPaid = false;
 		precio = cost;
 		reservante = cliente;
 		offer = null;
-		vectorFechas = fechas;
+		//vectorFechas = fechas;
 		casa = ruralHouse;
-		extenderReserva();
+		//extenderReserva();
 	}
 	
-	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Offer oferta, Set<Fechas> fechas) {
+	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Offer oferta/*, Set<Fechas> fechas*/) {
 		bookDate = new java.util.Date(System.currentTimeMillis());
 		bookNumber = numeroReserva;
 		isPaid = false;
 		precio = cost;
 		reservante = cliente;
 		offer = oferta;
-		vectorFechas = fechas;
+		//vectorFechas = fechas;
 		casa = ruralHouse;
-		extenderReserva();
+		//extenderReserva();
 	}
 	
-	private void extenderReserva(){
+	/*private void extenderReserva(){
 		if(offer !=null) offer.hacerReserva(this);
 		if(vectorFechas!=null){
 			Iterator<Fechas> i = vectorFechas.iterator();
@@ -52,7 +52,7 @@ public class Book implements Serializable {
 				aux.hacerReserva(this);
 			}
 		}
-	}
+	}*/
 	
 	public Date getFechaDeReserva(){return bookDate;}
 	
@@ -68,7 +68,7 @@ public class Book implements Serializable {
 	
 	public Offer getOffer() {return offer;}
 	
-	public Set<Fechas> getFechas(){return vectorFechas;}
+	//public Set<Fechas> getFechas(){return vectorFechas;}
 	
 	public void pagar(){isPaid=true;}
 

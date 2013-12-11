@@ -381,29 +381,25 @@ public class DatabaseManager {
 		}else
 			throw new Exception("La reserva no se ha podido realizar. Lo sentimos");
 	}
-	
+	*/
 	@SuppressWarnings("deprecation")
 	public static UserAplication anadirOferta(UserAplication user, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
-		if (userConcretos.hasNext()){
-			UserAplication userConcreto = userConcretos.next();
-			System.out.println("numero: " + numero);
-			ObjectSet<RuralHouse> rHConcretos = db.queryByExample(new RuralHouse(numero, null, null, null, 0, 0, 0, 0, 0, null));	
-			if (rHConcretos.hasNext() ){
-				RuralHouse rHConcreto = rHConcretos.next();
-				Date fin2 = new Date(fin.getYear(), fin.getMonth(), fin.getDate());
-				System.out.println("Inicio: " + inicio.toString());
-				System.out.println("Fin: " + fin2.toString());
-				rHConcreto.anadirOferta(inicio, fin2, precio, obligatorio);
-				db.store(rHConcreto);
-				//db.store(userConcreto);
-				db.commit();
-				return userConcreto;
-			}
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
+		if (result.hasNext()){
+			Iterator<RuralHouse> result2 = session.createQuery("from ruralhouse where HOUSENUMBER='"+numero+"'").iterate();
+			 if(result2.hasNext()){
+				 Offer offer = new Offer(inicio, fin, precio, result2.next() ,obligatorio);
+				 UserAplication auxuser = result.next();
+				 session.save(offer);
+				 session.getTransaction().commit();
+				 return user;
+			 }else{throw new Exception("No existe la casa");}
 		}
 		throw new Exception("La oferta no se ha podido añadir correctamente. Lo sentimos");
 	}
-	
+	/*
 	public static UserAplication anadirFechas(UserAplication user, int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception{
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
@@ -465,7 +461,7 @@ public class DatabaseManager {
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
 		if (userConcretos.hasNext()){
 			UserAplication userConcreto = userConcretos.next();
-			userConcreto.pagar(num);					
+			//userConcreto.pagar(num);					
 			db.store(userConcreto);
 			db.commit();
 			return getReserva(num);

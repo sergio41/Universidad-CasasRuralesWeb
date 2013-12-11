@@ -4,10 +4,10 @@
 <hibernate-configuration>
  <session-factory name="Sessionfactory">
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">casasrurales</property>
-  <property name="hibernate.connection.url">jdbc:mysql://54.200.38.64/casasrurales</property>
-  <property name="hibernate.connection.username">casasrurales</property>
-    <property name="hibernate.connection.autocommit">true</property>
+  <property name="hibernate.connection.password">root</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/casasrurales</property>
+  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.autocommit">true</property>
   <property name="hibernate.connection.pool_size">1</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.hbm2ddl.auto">update</property>

@@ -18,12 +18,8 @@ public class offerBean {
 	private int ruralNumber;
 	private Date firstDay;
 	private Date lastDay;
-	private boolean reservado;
 	private float price;
-	private Book reserva;
-	private RuralHouse ruralHouse;
-	private Vector<Fechas> vectorFechas;
-	private boolean unidoOferta;
+	//private boolean unidoOferta;
 	
 	
 	public int getRuralNumber(){
@@ -48,13 +44,6 @@ public class offerBean {
 		lastDay=ultimoDia;
 	}
 	
-	public boolean getReservado() {
-		return reservado;
-	}
-	
-	public void setReservado(boolean r) {
-		reservado=r;
-	}
 	public float getPrice() {
 		return price;
 	}
@@ -63,41 +52,20 @@ public class offerBean {
 		price=p;
 	}
 	
-	public Book getReserva(){
-		return reserva;
-	}
-	
-	public void setReserva(Book reservaBook){
-		reserva = reservaBook;
-		reservado = true;
-	}
-	
-	public RuralHouse getRuralHouse(){
-		return ruralHouse;
-	}
-	
-	public void setRuralHouse(RuralHouse house){
-		ruralHouse= house;
-	}
-	
-	public Vector<Fechas> getVectorFechas(){
-		return vectorFechas;
-	}
-	
 	//falta el set vector fechas
-	
+	/*
 	public boolean getUnidoOferta(){
 		return unidoOferta;
 	}
 	
 	public void setUnidoOferta(boolean unido){
 		unidoOferta=unido;
-	}
+	}*/
 	
 	public String crearOffer(){
 		try {
 			UserAplication u = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"); 
-			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price, unidoOferta);
+			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price, false);
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();
