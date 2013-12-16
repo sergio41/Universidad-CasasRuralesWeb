@@ -4,10 +4,13 @@
 <!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
     <class name="domain.Offer" table="OFFER">
-        <id name="firstDay" type="java.util.Date" access="field">
-            <column name="FIRSTDAY" />
-            <generator class="assigned" />
+        <id name="ID" type="int" access="field">
+            <column name="ID" />
+            <generator class="increment" />
         </id>
+        <property name="firstDay" type="java.util.Date" access="field">
+            <column name="FIRSTDAY" />
+        </property>
         <property name="lastDay" type="java.util.Date" access="field">
             <column name="LASTDAY" />
         </property>

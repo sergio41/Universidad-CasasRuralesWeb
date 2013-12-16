@@ -244,10 +244,9 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		}		
 	}
 
-	public Book hacerReserva(UserAplication usuario, int numeroRH, Date inicio, Date fin) throws Exception{
+	public void hacerReserva(UserAplication usuario, int num)  throws Exception{
 		System.out.println("FacadeImplementation: hacer reserva");
-		return null;
-		//return DatabaseManager.hacerReserva(usuario, getNumeroReserva(), numeroRH, inicio, fin);
+		DatabaseManager.hacerReserva(usuario, num);
 	}
 	
 	public Vector<RuralHouse> casasRuralesDisponibles(Date inicio, Date fin) throws Exception{
@@ -275,15 +274,15 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 
 
-	public Set<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception {
+	public List<String> getOfertas() throws Exception {
 		System.out.println("FacadeImplementation: get ofertas");
-		/*Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
+		List<String> ofertas = new Vector<String>();
+		Iterator<Offer> i = DatabaseManager.getOfertas();
 		while (i.hasNext()){
-			RuralHouse aux = i.next();
-			if (aux.getHouseNumber() == numeroRH) return aux.getOfertas();
+			Offer oferta = i.next();
+			ofertas.add(oferta.getID()+" / "+ oferta.getPrimerDia().toString()+ " / " + oferta.getUltimoDia().toString());
 		}
-		throw new Exception("Ha ocurrido un error a la hora de encontrar ofertas");*/
-		return null;
+		return ofertas;
 	}
 
 	@Override

@@ -352,36 +352,21 @@ public class DatabaseManager {
 			}
 		return result;	
 	}
-	
-	public static Book hacerReserva(UserAplication cliente, int numeroReserva, int numero, Date inicio, Date fin) throws Exception{
-		System.out.println("A");
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(cliente.getEmail(), null, null, null, null, null, null, null));
-		System.out.println("B");
-		if (userConcretos.hasNext()){
-			System.out.println("C");
-			UserAplication userConcreto = userConcretos.next();
-			Book reserv = null;
-			System.out.println("D");
-			ObjectSet<RuralHouse> rHConcretos = db.queryByExample(new RuralHouse(numero, null, null, null, 0, 0, 0, 0, 0, null));
-			System.out.println("E");
-			if (rHConcretos.hasNext()){
-				System.out.println("F");
-				RuralHouse rHConcreto = rHConcretos.next();
-				System.out.println("G");
-				reserv = rHConcreto.hacerReserva(userConcreto, numeroReserva, inicio, fin);
-				System.out.println("H");
-				db.store(rHConcreto);	
-				System.out.println("I");
-				db.store(userConcreto);
-				System.out.println("J");
-				db.commit();
-			}
-			System.out.println("K");
-			return reserv;
-		}else
-			throw new Exception("La reserva no se ha podido realizar. Lo sentimos");
-	}
 	*/
+	public static Book hacerReserva(UserAplication cliente, int numeroOffer) throws Exception{
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<Offer> result = session.createQuery("from Offer where ID='"+numeroOffer+"'").iterate();
+		if(result.hasNext()){
+			
+			session.getTransaction().commit();
+		}else{
+			session.getTransaction().commit();
+			throw new Exception("No existe la oferta");}
+		
+		return null;
+	}
+	
 	@SuppressWarnings("deprecation")
 	public static UserAplication anadirOferta(UserAplication user, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -394,11 +379,14 @@ public class DatabaseManager {
 			session.beginTransaction();
 			Iterator<RuralHouse> result2 = session.createQuery("from RuralHouse where HouseNumber='"+numero+"'").iterate();
 			 if(result2.hasNext()){
-				 Offer offer = new Offer(inicio, fin, precio, result2.next() ,obligatorio);
+				 int ID =0;
+				 Offer offer = new Offer(ID, inicio, fin, precio, result2.next() ,obligatorio);
 				 session.save(offer);
 				 session.getTransaction().commit();
 				 return user;
-			 }else{throw new Exception("No existe la casa");}
+			 }else{
+				 session.getTransaction().commit();
+				 throw new Exception("No existe la casa");}
 		}
 		throw new Exception("La oferta no se ha podido añadir correctamente. Lo sentimos");
 	}
@@ -482,6 +470,14 @@ public class DatabaseManager {
 		} else throw new Exception("La casa rural no se ha modificado. El propietario ha podido borrar la Casa Rural.");
 	}
 	*/
+	
+	public static Iterator<Offer> getOfertas(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<Offer> result = session.createQuery("from Offer where reservado='"+1+"'").iterate();
+		return result;
+	}
+	
 	public static Book getReserva(int num) throws Exception{
 		ObjectSet<Book> reservConcretas = db.queryByExample(Book.class);
 		while (reservConcretas.hasNext()){

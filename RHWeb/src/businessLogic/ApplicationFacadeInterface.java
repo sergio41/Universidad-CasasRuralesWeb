@@ -48,7 +48,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public Vector<String> Ultimos10Tweets() throws Exception;
 	
-	public Book hacerReserva(UserAplication usuario, int numeroRH, Date inicio, Date fin) throws Exception;
+	public void hacerReserva(UserAplication usuario, int num) throws Exception;
 	
 	public Vector<RuralHouse> casasRuralesDisponibles( Date inicio, Date fin) throws Exception;
 	
@@ -56,7 +56,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception;
 
-	public Set<Offer> getOfertas(UserAplication usuario, int numeroRH) throws Exception;
+	public List<String> getOfertas() throws Exception;
 	
 	public RuralHouse getCasas(int num) throws Exception;
 	

@@ -8,6 +8,7 @@ import java.util.Vector;
 
 public class Offer implements Serializable {
 	
+	private int ID;
 	private Date firstDay;
 	private Date lastDay;
 	private boolean reservado;
@@ -17,7 +18,8 @@ public class Offer implements Serializable {
 	//private Set<Fechas> vectorFechas;
 	private boolean unidoOferta;
 
-	public Offer(Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, /*Set<Fechas> fechas,*/ boolean unidoAFecha){
+	public Offer(int num, Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, /*Set<Fechas> fechas,*/ boolean unidoAFecha){
+		setID(num);
 		firstDay = primerDia;
 		lastDay = ultimoDia;
 		reservado = false;
@@ -39,6 +41,9 @@ public class Offer implements Serializable {
 		//vectorFechas = fechas;
 		unidoOferta = unidoAFecha;
 		//setUnidoAFechaExternamente();
+	}
+	
+	public Offer(){
 	}
 	
 	/*private void setUnidoAFechaExternamente(){
@@ -77,6 +82,14 @@ public class Offer implements Serializable {
 	public void cancelarReserva(){
 		reserva=null;
 		reservado = false;		
+	}
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	/*public boolean contiene(Date fecha){
