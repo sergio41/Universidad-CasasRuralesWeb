@@ -21,12 +21,6 @@
             <column name="RESERVANTE" />
         </many-to-one>
         <one-to-one name="offer" class="domain.Offer" access="field"></one-to-one>
-        <set name="vectorFechas" table="FECHAS" inverse="false" lazy="true" access="field">
-            <key>
-                <column name="BOOKNUMBER" />
-            </key>
-            <one-to-many class="domain.Fechas" />
-        </set>
         <many-to-one name="casa" class="domain.RuralHouse" access="field" fetch="join">
             <column name="CASA" />
         </many-to-one>

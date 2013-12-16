@@ -51,6 +51,9 @@ public class RuralHouse implements Serializable {
 		//vectorImage = images;
 	}
 
+	public RuralHouse() {
+	}
+	
 	public int getHouseNumber() {return houseNumber;}
 	public void setHouseNumber(int h) {houseNumber = h;}
 

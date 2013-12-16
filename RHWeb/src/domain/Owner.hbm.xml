@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 16-dic-2013 16:43:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
     <class name="domain.Owner" table="OWNER">
         <id name="bankAccount" type="java.lang.String">
             <column name="BANKACCOUNT" />
             <generator class="assigned" />
         </id>
-        <property name="tipo" type="java.lang.String">
-            <column name="TIPO" />
-        </property>
         <property name="idiomas" type="java.lang.String">
             <column name="IDIOMAS" />
+        </property>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" />
         </property>
         <property name="profesion" type="java.lang.String">
             <column name="PROFESION" />

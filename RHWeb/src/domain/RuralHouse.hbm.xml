@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-dic-2013 17:01:01 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 16-dic-2013 16:43:21 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping default-lazy="false">
     <class name="domain.RuralHouse" table="RURALHOUSE">
         <id name="houseNumber" type="int">
@@ -35,7 +35,7 @@
         <property name="comentarios" type="java.lang.String" access="field">
             <column name="COMENTARIOS" />
         </property>
-        <property name="calificacion" type="float" access="field">
+        <property name="calificacion" type="java.lang.Float" access="field">
             <column name="CALIFICACION" />
         </property>
         <property name="nCal" type="int" access="field">

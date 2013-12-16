@@ -388,10 +388,13 @@ public class DatabaseManager {
 		session.beginTransaction();
 		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
 		if (result.hasNext()){
-			Iterator<RuralHouse> result2 = session.createQuery("from ruralhouse where HOUSENUMBER='"+numero+"'").iterate();
+			UserAplication auxuser = result.next();
+			session.getTransaction().commit();
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Iterator<RuralHouse> result2 = session.createQuery("from RuralHouse where HouseNumber='"+numero+"'").iterate();
 			 if(result2.hasNext()){
 				 Offer offer = new Offer(inicio, fin, precio, result2.next() ,obligatorio);
-				 UserAplication auxuser = result.next();
 				 session.save(offer);
 				 session.getTransaction().commit();
 				 return user;
