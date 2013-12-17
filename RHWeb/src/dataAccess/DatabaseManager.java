@@ -151,6 +151,7 @@ public class DatabaseManager {
 		 Owner owner = new Owner(bA, t, i, p, m);
 		 UserAplication auxuser = result.next();
 		 auxuser.setPropietario(owner);
+		 user.setPropietario(owner);
 		 session.save(owner);
 		 session.update(auxuser);
 		 session.getTransaction().commit();

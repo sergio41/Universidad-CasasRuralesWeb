@@ -11,15 +11,15 @@ import domain.Owner;
 import domain.UserAplication;
 
 public class registerUserBean {
-	private String email;
-	private String pass;
-	private String estadoCivil;
-	private String nombre;
-	private String apellidos;
-	private String telefono;
-	private String pais;
-	private String edad;
-	private String perfil;
+	private String email="";
+	private String pass="";
+	private String estadoCivil="";
+	private String nombre="";
+	private String apellidos="";
+	private String telefono="";
+	private String pais="";
+	private String edad="";
+	private String perfil="";
 	
 	public String getEmail() {
 		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){

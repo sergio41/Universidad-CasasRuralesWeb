@@ -11,12 +11,12 @@ import domain.UserAplication;
 
 public class ownerBean {
 	private String bankAccount = "";
-	private String tipo;
-	private String idiomas1;
-	private String idiomas2;
-	private String idiomas3;
-	private String profesion;
-	private String moneda;
+	private String tipo="";
+	private String idiomas1="";
+	private String idiomas2="";
+	private String idiomas3="";
+	private String profesion="";
+	private String moneda="";
 
 	public String getBankAccount() {
 		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario")){
@@ -76,8 +76,8 @@ public class ownerBean {
 		String idiomas = idiomas1+ " / "+idiomas2+" / "+idiomas3;
 		try {
 			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-			fachadaBean.getFachada().modificarOwner(user, bankAccount, tipo, idiomas, profesion, moneda);
-			
+			UserAplication userMod = fachadaBean.getFachada().modificarOwner(user, bankAccount, tipo, idiomas, profesion, moneda);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", userMod);	
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(true));	
 			System.out.println(user.getEmail() + user.getName() + user.getApellidos());
 			return "ok";

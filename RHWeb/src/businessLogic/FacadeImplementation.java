@@ -105,12 +105,12 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		DatabaseManager.close();
 	}
 	
-	public void modificarOwner(UserAplication usuario, String bA, String t, String i, String p,	String m) throws Exception {
+	public UserAplication modificarOwner(UserAplication usuario, String bA, String t, String i, String p,	String m) throws Exception {
 		System.out.println("FacadeImplementation: modificar owner");
 		if(usuario.tieneProp())
-			usuario= DatabaseManager.modificarOwner(usuario, bA, t, i, p, m);
+			return DatabaseManager.modificarOwner(usuario, bA, t, i, p, m);
 		else 
-			usuario= DatabaseManager.nuevoOwner(usuario, bA, t, i, p, m);
+			return DatabaseManager.nuevoOwner(usuario, bA, t, i, p, m);
 	}
 	
 	public void modificarRuralHouse(UserAplication usuario, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception {
