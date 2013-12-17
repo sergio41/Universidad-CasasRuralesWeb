@@ -55,6 +55,16 @@
 		<managed-bean-class>Beans.verReservasBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>tweetBean</managed-bean-name>
+		<managed-bean-class>Beans.tweetBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>calendarBean</managed-bean-name>
+		<managed-bean-class>Beans.CalendarBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>RegistrarUserGUI.xhtml</display-name>
 		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>
