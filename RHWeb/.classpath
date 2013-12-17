@@ -48,5 +48,6 @@
 	<classpathentry kind="lib" path="Librerias/mysql-connector-java-3.0.9-stable-bin.jar"/>
 	<classpathentry kind="lib" path="Librerias/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="Librerias/slf4j-nop-1.6.2.jar"/>
+	<classpathentry kind="lib" path="Librerias/primefaces-4.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
