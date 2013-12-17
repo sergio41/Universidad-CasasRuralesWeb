@@ -1,5 +1,8 @@
 package dataAccess;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -358,7 +361,10 @@ public class DatabaseManager {
 		session.beginTransaction();
 		Iterator<Offer> result = session.createQuery("from Offer where ID='"+numeroOffer+"'").iterate();
 		if(result.hasNext()){
-			
+			Offer oferta = result.next();
+			RuralHouse casa = oferta.getRuralHouse();
+			Book reserva = new Book(casa,0,oferta.getPrice(),cliente,oferta);
+			session.save(reserva);
 			session.getTransaction().commit();
 		}else{
 			session.getTransaction().commit();
@@ -482,7 +488,7 @@ public class DatabaseManager {
 		ObjectSet<Book> reservConcretas = db.queryByExample(Book.class);
 		while (reservConcretas.hasNext()){
 			Book reserva = reservConcretas.next();
-			if(reserva.getNumeroDeReserva()==num)
+			if(reserva.getBookNumber()==num)
 				return reserva;
 		}
 		throw new Exception("No existe la reserva");
@@ -496,6 +502,19 @@ public class DatabaseManager {
 			db.store(userConcreto);
 		}else{
 			throw new Exception("No se ha podido cambiar la contraseña");}
+	}
+
+	public static Vector<Book> getReservas(UserAplication user) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		System.out.println("voy a buscar las reservas");
+		List<Book> result = session.createQuery("from Book where RESERVANTE='"+user.getEmail()+"'").list();
+		Vector<Book> reservas = new Vector<Book>();
+		reservas.addAll(result);
+		for(int i=0; i<reservas.size(); i++){
+			System.out.println(reservas.get(i).getBookNumber());
+		}
+		return reservas;
 	}
 }
 	

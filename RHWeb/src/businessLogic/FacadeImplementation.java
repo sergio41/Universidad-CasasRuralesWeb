@@ -216,7 +216,7 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		int max = 0;
 		java.util.Iterator<Book> i = vector.iterator();
 		while (i.hasNext()) {
-			int aux = i.next().getNumeroDeReserva();
+			int aux = i.next().getBookNumber();
 			if( max < aux) max = aux;
 		}
 		max++;
@@ -424,6 +424,11 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	@Override
 	public void cambiarContra(UserAplication usuario, String text)throws Exception {
 			DatabaseManager.cambiarContraseña(usuario,text);
+	}
+
+	public Vector<Book> getReservas(UserAplication user) throws Exception {
+		System.out.println("Aqui");
+		return DatabaseManager.getReservas(user);
 	}
 }
 

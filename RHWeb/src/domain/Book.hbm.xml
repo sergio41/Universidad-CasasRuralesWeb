@@ -6,7 +6,7 @@
     <class name="domain.Book" table="BOOK">
         <id name="bookNumber" type="int" access="field">
             <column name="BOOKNUMBER" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="bookDate" type="java.util.Date" access="field">
             <column name="BOOKDATE" />

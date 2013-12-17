@@ -82,4 +82,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	public Book getReserva(int num) throws Exception;
 
 	public void cambiarContra(UserAplication usuario, String text)throws Exception;
+	
+	public Vector<Book> getReservas(UserAplication user) throws Exception;
+	
 }

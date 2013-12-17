@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
+import domain.UserAplication;
 import businessLogic.FacadeImplementation;
 
 public class ReservaBean {
@@ -35,14 +38,20 @@ public class ReservaBean {
 	}
 	
 	public String reservar(){
-		int i=0;
-		while (seleccionado.charAt(i)!= '/'){
-			i++;
+		try {
+			int i=0;
+			while (seleccionado.charAt(i)!= '/'){
+				i++;
+			}
+			String s = seleccionado.substring(0, i-1);
+			int num = Integer.parseInt(s);
+			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+			fachadaBean.getFachada().hacerReserva(user, num);
+			return "ok";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
 		}
-		String s = seleccionado.substring(0, i-1);
-		int num = Integer.parseInt(s);
-		System.out.println(num);
-		return "ok";
 	}
 
 }

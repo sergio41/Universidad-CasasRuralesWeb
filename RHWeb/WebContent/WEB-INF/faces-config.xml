@@ -45,6 +45,11 @@
 		<managed-bean-class>Beans.offerBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>verReservasBean</managed-bean-name>
+		<managed-bean-class>Beans.verReservasBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>RegistrarUserGUI.xhtml</display-name>
 		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>

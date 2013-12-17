@@ -2,10 +2,6 @@ package domain;
 
 import java.io.*;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
 public class Book implements Serializable {
 
@@ -15,31 +11,85 @@ public class Book implements Serializable {
 	private float precio;
 	private UserAplication reservante;
 	private Offer offer;
-//	private Set<Fechas> vectorFechas;
 	private RuralHouse casa;
 	
 	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente/*, Set<Fechas> fechas*/) {
-		bookDate = new java.util.Date(System.currentTimeMillis());
-		bookNumber = numeroReserva;
-		isPaid = false;
-		precio = cost;
-		reservante = cliente;
-		offer = null;
-		//vectorFechas = fechas;
-		casa = ruralHouse;
-		//extenderReserva();
+		setBookDate(new java.util.Date(System.currentTimeMillis()));
+		setBookNumber(numeroReserva);
+		setPaid(false);
+		setPrecio(cost);
+		setReservante(cliente);
+		setOffer(null);
+		setCasa(ruralHouse);
 	}
 	
 	public Book(RuralHouse ruralHouse, int numeroReserva, float cost, UserAplication cliente, Offer oferta/*, Set<Fechas> fechas*/) {
-		bookDate = new java.util.Date(System.currentTimeMillis());
-		bookNumber = numeroReserva;
-		isPaid = false;
-		precio = cost;
-		reservante = cliente;
-		offer = oferta;
-		//vectorFechas = fechas;
-		casa = ruralHouse;
-		//extenderReserva();
+		setBookDate(new java.util.Date(System.currentTimeMillis()));
+		setBookNumber(numeroReserva);
+		setPaid(false);
+		setPrecio(cost);
+		setReservante(cliente);
+		setOffer(oferta);
+		setCasa(ruralHouse);
+	}
+	
+	public Book() {
+	}
+
+	public Date getBookDate() {
+		return bookDate;
+	}
+
+	public void setBookDate(Date bookDate) {
+		this.bookDate = bookDate;
+	}
+
+	public int getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(int bookNumber) {
+		this.bookNumber = bookNumber;
+	}
+
+	public boolean isPaid() {
+		return isPaid;
+	}
+
+	public void setPaid(boolean isPaid) {
+		this.isPaid = isPaid;
+	}
+
+	public float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(float precio) {
+		this.precio = precio;
+	}
+
+	public UserAplication getReservante() {
+		return reservante;
+	}
+
+	public void setReservante(UserAplication reservante) {
+		this.reservante = reservante;
+	}
+
+	public Offer getOffer() {
+		return offer;
+	}
+
+	public void setOffer(Offer offer) {
+		this.offer = offer;
+	}
+
+	public RuralHouse getCasa() {
+		return casa;
+	}
+
+	public void setCasa(RuralHouse casa) {
+		this.casa = casa;
 	}
 	
 	/*private void extenderReserva(){
@@ -53,27 +103,6 @@ public class Book implements Serializable {
 			}
 		}
 	}*/
-	
-	public Date getFechaDeReserva(){return bookDate;}
-	
-	public int getNumeroDeReserva() {return bookNumber;}
-	
-	public void setPagado(boolean pagar) {isPaid = pagar;}
-	public boolean isPaid() {return isPaid;}
-	
-	public float getPrecio(){return precio;}
-	public void setPrecio(float cost){precio = cost;}
-	
-	public UserAplication getCliente(){return reservante;}
-	
-	public Offer getOffer() {return offer;}
-	
-	//public Set<Fechas> getFechas(){return vectorFechas;}
-	
-	public void pagar(){isPaid=true;}
 
-	public RuralHouse getCasa() {
-		return casa;
-	}
 
 }
