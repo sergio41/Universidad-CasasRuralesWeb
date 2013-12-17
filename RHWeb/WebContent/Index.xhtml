@@ -1,53 +1,54 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
  xmlns:ui="http://java.sun.com/jsf/facelets" 
  xmlns:h="http://java.sun.com/jsf/html" 
  xmlns:f="http://java.sun.com/jsf/core"
- xmlns:c="http://java.sun.com/jsp/jstl/core"  > 
-<f:view> 
-<head> 
-<link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
-<title>Una simple aplicacion JavaServer Faces</title> 
-</head> 
-<body> 
-<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
-<h3> 
-Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! 
-</h3>
-<p>
-
-<c:choose>
-	<c:when test="#{sesionBean.logueado}">
-		<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
-		<h:commandButton class="btn dropdown-toggle" value="Reservar" action="ReservarGUI.xhtml" />
-		<c:choose>
-			<c:when test="#{sesionBean.propietariado}">
-				<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
-				<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
-			</c:when>
-		</c:choose>	
-	</c:when>
-	<c:otherwise>
-		<h3>Inicia sesión.</h3>
-			<table>
-				<tr>
-					<td>Email:</td>
-					<td><h:inputText id="email" value="#{loginBean.email}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><h:inputSecret id="pass" value="#{loginBean.pass}"></h:inputSecret></td>
-				</tr>
-			</table>
-			<p>
-				<h:commandButton class="btn btn-danger dropdown-toggle" value="Login" action="#{loginBean.loginUser}" />
-				<h:commandButton value="Registrar" action="RegistrarUserGUI.xhtml" />
-			</p>
-	</c:otherwise>
-</c:choose>
-</p>
-</h:form> 
-</body> 
-</f:view> 
+ xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+	<f:view> 
+		<head> 
+			<link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
+			<title>Una simple aplicacion JavaServer Faces</title> 
+		</head> 
+		<body> 		
+			<ui:include src="inc/menu.xhtml" />	
+			<div class="container">
+				<div class="header">
+					<h3 class="text-muted">Villatripas de arriba!! Casas rurales!!</h3>
+				</div>
+		
+				<div class="jumbotron">
+		        	<h1>Casas rurales:</h1>
+					<p class="lead">Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! </p>
+				</div>
+				<div class="row marketing">
+					<div class="col-lg-12">
+						<h:form> 
+							<c:choose>
+								<c:when test="#{sesionBean.logueado}">
+									<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
+									<h:commandButton class="btn dropdown-toggle" value="Reservar" action="ReservarGUI.xhtml" />
+									<c:choose>
+										<c:when test="#{sesionBean.propietariado}">
+											<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
+											<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
+										</c:when>
+									</c:choose>	
+								</c:when>
+								<c:otherwise>
+									<h3>Inicia sesión.</h3>
+									<h3>Email:</h3>
+									<h:inputText id="email" value="#{loginBean.email}"></h:inputText>
+									<h3>Password:</h3>
+									<h:inputSecret id="pass" value="#{loginBean.pass}"></h:inputSecret>
+									<h:commandButton class="btn btn-danger dropdown-toggle" value="Login" action="#{loginBean.loginUser}" />
+									<h:commandButton value="Registrar" action="RegistrarUserGUI.xhtml" />
+								</c:otherwise>
+							</c:choose>
+						</h:form> 
+					</div>
+				</div>
+				<ui:include src="inc/footer.xhtml" />	
+		    </div> <!-- /container -->
+		</body> 
+	</f:view> 
 </html> 
