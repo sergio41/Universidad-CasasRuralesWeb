@@ -11,18 +11,16 @@ public class verReservasBean {
 
 	private Vector<Book> reservas;
 
-	public verReservasBean(){
+	public Vector<Book> getReservas() {
 		UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		try {
 			System.out.println("lo cargo");
-			reservas = fachadaBean.getFachada().getReservas(user);
+			setReservas(fachadaBean.getFachada().getReservas(user));
+			return reservas;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
 		}
-	}
-	
-	public Vector<Book> getReservas() {
-		return reservas;
 	}
 
 	public void setReservas(Vector<Book> reservas) {

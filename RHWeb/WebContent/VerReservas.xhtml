@@ -4,8 +4,7 @@
  xmlns:ui="http://java.sun.com/jsf/facelets" 
  xmlns:h="http://java.sun.com/jsf/html" 
  xmlns:f="http://java.sun.com/jsf/core"
- xmlns:c="http://java.sun.com/jsp/jstl/core"
- xmlns:p="http://primefaces.org/ui"> 
+ xmlns:c="http://java.sun.com/jsp/jstl/core"> 
 <f:view> 
 <head> 
 <link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
@@ -18,22 +17,28 @@ Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!!
 </h3>
 <p>
 <h3>Estas son tus reservas hamijo.</h3>
-	<p:dataTable var="Book" value="#{verReservasBean.reservas}">  
-        <p:column headerText="ID"> 
+	<h:dataTable styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row" class="table table-striped table-bordered" var="Book" value="#{verReservasBean.reservas}">  
+        <h:column> 
+        	<f:facet name="header">ID de Reserva</f:facet>
             <h:outputText value="#{Book.bookNumber}" />  
-        </p:column>  
-        <p:column headerText="Precio">  
+        </h:column>  
+        <h:column>  
+       		<f:facet name="header">Precio</f:facet>
             <h:outputText value="#{Book.precio}" />  
-        </p:column>  
+        </h:column>  
   
-        <p:column headerText="Dia reservado">  
+        <h:column>  
+        	<f:facet name="header">Día de reserva</f:facet>
             <h:outputText value="#{Book.bookDate}" />  
-        </p:column> 
+        </h:column> 
         
-        <p:column headerText="Id de la casa">  
-            <h:outputText value="#{Book.casa}" />  
-        </p:column> 
-    </p:dataTable> 
+        <h:column>  
+        	<f:facet name="header">Id de la casa</f:facet>
+            <h:outputText value="#{Book.casa.houseNumber}" />  
+        </h:column> 
+    </h:dataTable> 
 </p>
 </h:form> 
 </body> 
