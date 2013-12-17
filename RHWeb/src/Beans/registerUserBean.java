@@ -104,10 +104,15 @@ public class registerUserBean {
 	} 	
 	public String registrarUser(){
 		try {
-			fachadaBean.getFachada().nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(false));
+			if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")!=true){
+				fachadaBean.getFachada().nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", fachadaBean.getFachada().hacerLogin(email, pass));
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("login", new Boolean(true));	
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("propietario", new Boolean(false));
+			}else{
+				UserAplication user = fachadaBean.getFachada().modificarPerfil((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"),estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
+			}
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();

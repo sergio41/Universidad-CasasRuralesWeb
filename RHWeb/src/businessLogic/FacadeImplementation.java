@@ -191,10 +191,11 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 
 
-	public void modificarPerfil(UserAplication usuario, String estadoCivil, String nombre,String apellidos, String telefono, String pais, String edad, ImageIcon perfil) throws Exception {
+	public UserAplication modificarPerfil(UserAplication usuario, String estadoCivil, String nombre,String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		System.out.println("FacadeImplementation: modificar perfil");
 		if (nombre.compareTo("")==0 || pais.compareTo("")==0 || estadoCivil.compareTo("")==0) throw new Exception("Algunos datos obligatorios faltan.");
-		else usuario = DatabaseManager.modificarUsuario(usuario, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(usuario.getEmail(), perfil));		
+		else usuario = DatabaseManager.modificarUsuario(usuario, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
+		return usuario;		
 	}
 	
 	public int getNumeroCR() throws Exception{

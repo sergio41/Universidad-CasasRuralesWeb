@@ -124,21 +124,23 @@ public class DatabaseManager {
 	}*/
 	
 	public static UserAplication modificarUsuario(UserAplication user, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
-		UserAplication u = new UserAplication(user.getEmail(), null, null, null, null, null, null, null);
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(u);	
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<UserAplication> userConcretos = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
 		if (userConcretos.hasNext()){ 
-			UserAplication use = userConcretos.next();
-			use.setEstadoCivil(estadoCivil);
-			use.setName(nombre);
-			use.setApellidos(apellidos);
-			use.setTelefono(telefono);
-			use.setPais(pais);
-			use.setEdad(edad);
-			use.setPerfil(perfil);
-			db.store(use);
-			db.commit();
-			return use;
+			UserAplication user2 = userConcretos.next();
+			user2.setApellidos(apellidos);
+			user2.setEdad(edad);
+			user2.setEstadoCivil(estadoCivil);
+			user2.setName(nombre);
+			user2.setPais(pais);
+			user2.setTelefono(telefono);
+			session.update(user2);
+			user = user2;
+			session.getTransaction().commit();
+			return user;
 		}else throw new Exception("El usuario no existe");
+		
 	}
 
 	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, String i, String p, String m) throws Exception{
