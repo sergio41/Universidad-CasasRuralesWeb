@@ -15,7 +15,14 @@
 	</head>
 	<body>
 		<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
-			<h3>Registrar un nuevo usuario.</h3>
+		<c:choose>
+				<c:when test="#{sesionBean.logueado}">
+					<h3>Modificar/Ver mi perfil.</h3>
+				</c:when>
+				<c:otherwise>
+					<h3>Registrar un nuevo usuario.</h3>
+				</c:otherwise>
+			</c:choose>
 			<c:choose>
 				<c:when test="#{sesionBean.logueado}">
 					<table>
@@ -100,8 +107,7 @@
 					</table>	
 			</c:otherwise>
 			</c:choose>
-			
-						<c:choose>
+			<c:choose>
 				<c:when test="#{sesionBean.logueado}">
 					<p>
 						<h:commandButton value="Modificar Perfil" action="#{register.registrarUser}" />

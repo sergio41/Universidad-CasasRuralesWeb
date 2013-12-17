@@ -34,6 +34,7 @@ public class sesionBean {
 	}
 	public String logout(){
 		setLogueado(false);
+		setPropietariado(false);
 		return "ok";
 	}
 	public boolean isPropietariado() {

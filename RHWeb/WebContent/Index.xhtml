@@ -74,7 +74,11 @@
 										<c:when test="#{sesionBean.propietariado}">
 											<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
 											<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
+											<h:commandButton value="Modificar mis datos de propietario" action="RegisterOwnerGUI.xhtml" />
 										</c:when>
+										<c:otherwise>
+											<h:commandButton value="Hacerme Propietario" action="RegisterOwnerGUI.xhtml" />
+										</c:otherwise>
 									</c:choose>	
 								</c:when>
 								<c:otherwise>

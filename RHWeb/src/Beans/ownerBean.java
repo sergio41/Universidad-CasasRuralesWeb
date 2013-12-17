@@ -19,25 +19,36 @@ public class ownerBean {
 	private String moneda;
 
 	public String getBankAccount() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario")){
+			setBankAccount(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPropietario().getBankAccount());
+		}
 		return bankAccount;
-		
 	}
 	public void setBankAccount(String bankAccount) {
 		this.bankAccount = bankAccount;
 	}
 	public String getTipo() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario")){
+			setTipo(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPropietario().getTipo());
+		}
 		return tipo;
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public String getProfesion() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario")){
+			setProfesion(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPropietario().getProfesion());
+		}
 		return profesion;
 	}
 	public void setProfesion(String profesion) {
 		this.profesion = profesion;
 	}
 	public String getMoneda() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("propietario")){
+			setMoneda(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPropietario().getMoneda());
+		}
 		return moneda;
 	}
 	public void setMoneda(String moneda) {

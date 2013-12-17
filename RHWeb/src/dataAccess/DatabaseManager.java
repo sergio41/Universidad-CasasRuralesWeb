@@ -143,7 +143,7 @@ public class DatabaseManager {
 		
 	}
 
-	public static UserAplication nuevoOwner(UserAplication user, String email, String bA, String t, String i, String p, String m) throws Exception{
+	public static UserAplication nuevoOwner(UserAplication user, String bA, String t, String i, String p, String m) throws Exception{
 		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		 session.beginTransaction();
 		 Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
@@ -157,19 +157,22 @@ public class DatabaseManager {
 		 return user;
 	}
 	
-	public static UserAplication modificarOwner(UserAplication user, String email, String bA, String t, String i, String p, String m) throws Exception{
-		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(user.getEmail(), null, null, null, null, null, null, null));
-		if (userConcretos.hasNext()){
-			UserAplication userConcreto = userConcretos.next();
-			userConcreto.getPropietario().setBankAccount(bA);
-			userConcreto.getPropietario().setIdiomas(i);
-			userConcreto.getPropietario().setMoneda(m);
-			userConcreto.getPropietario().setProfesion(p);
-			userConcreto.getPropietario().setTipo(t);
-			db.store(userConcreto);
-			db.commit();
-			return userConcreto;
-		} else throw new Exception("El usuario no se ha encontrado.");
+	public static UserAplication modificarOwner(UserAplication user, String bA, String t, String i, String p, String m) throws Exception{
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();		
+		Iterator<Owner> result = session.createQuery("from Owner where BANKACCOUNT='"+user.getPropietario().getBankAccount()+"'").iterate();
+		if (result.hasNext()){
+			Owner ownerConcreto = result.next();
+			ownerConcreto.setBankAccount(bA);
+			ownerConcreto.setIdiomas(i);
+			ownerConcreto.setMoneda(m);
+			ownerConcreto.setProfesion(p);
+			ownerConcreto.setTipo(t);
+			session.update(ownerConcreto);
+			user.setPropietario(ownerConcreto);
+			session.getTransaction().commit();
+			return user;
+		} else throw new Exception("El propietario no se ha encontrado.");
 	}
 	
 	public static UserAplication modificarContrasena(UserAplication user, String pass) throws Exception {
