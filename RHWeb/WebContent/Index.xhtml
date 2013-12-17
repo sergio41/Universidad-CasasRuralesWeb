@@ -27,7 +27,7 @@
 								<c:when test="#{sesionBean.logueado}">
 									<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
 									<h:commandButton class="btn dropdown-toggle" value="Reservar" action="ReservarGUI.xhtml" />
-									<h:commandButton class="btn dropdown-toggle" value="Ver Reservas" action="VerReservas.xhtml" />
+									<h:commandButton class="btn dropdown-toggle" value="Mi Perfil" action="RegistrarUserGUI.xhtml" />
 									<c:choose>
 										<c:when test="#{sesionBean.propietariado}">
 											<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />

@@ -71,9 +71,11 @@ public class DatabaseManager {
 		session.beginTransaction();
 		System.out.println(email+pass);
 		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+email+"' and pass='"+ pass+"'").iterate();
-		if(result.hasNext())user = result.next();
-		session.getTransaction().commit();
-		return user;
+		if(result.hasNext()){user = result.next();
+			session.getTransaction().commit();
+			return user;
+		}else
+			return null;
 	}	
 	/*
 	public static RuralHouse getRuralHouse(int houseNumber) throws Exception{

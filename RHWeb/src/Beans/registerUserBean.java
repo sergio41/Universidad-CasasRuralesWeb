@@ -8,6 +8,7 @@ import businessLogic.ApplicationFacadeInterface;
 import businessLogic.FacadeImplementation;
 import domain.Book;
 import domain.Owner;
+import domain.UserAplication;
 
 public class registerUserBean {
 	private String email;
@@ -19,55 +20,83 @@ public class registerUserBean {
 	private String pais;
 	private String edad;
 	private String perfil;
+	
 	public String getEmail() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setEmail(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getEmail());
+		}
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getPass() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setPass(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPass());
+		}
 		return pass;
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 	public String getEstadoCivil() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setEstadoCivil(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getEstadoCivil());
+		}
 		return estadoCivil;
 	}
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
 	public String getNombre() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setNombre(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getName());
+		}
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 	public String getApellidos() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setApellidos(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getApellidos());
+		}
 		return apellidos;
 	}
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 	public String getTelefono() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setTelefono(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getTelefono());
+		}
 		return telefono;
 	}
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	public String getPais() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setPais(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPais());
+		}
 		return pais;
 	}
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
 	public String getEdad() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setEdad(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getEdad());
+		}
 		return edad;
 	}
 	public void setEdad(String edad) {
 		this.edad = edad;
 	}
 	public String getPerfil() {
+		if((Boolean) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("login")==true){
+			setPerfil(((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")).getPerfil());
+		}
 		return perfil;
 	}
 	public void setPerfil(String perfil) {
