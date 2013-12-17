@@ -477,10 +477,17 @@ public class DatabaseManager {
 	}
 	*/
 	
-	public static Iterator<Offer> getOfertas(){
+	public static Iterator<Offer> getOfertasS(){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Iterator<Offer> result = session.createQuery("from Offer where reservado='"+1+"'").iterate();
+		return result;
+	}
+	
+	public static List<Offer> getOfertas(){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		List<Offer> result = session.createQuery("from Offer where reservado='"+1+"'").list();
 		return result;
 	}
 	

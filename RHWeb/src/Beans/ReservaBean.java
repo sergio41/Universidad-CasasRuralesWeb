@@ -17,7 +17,7 @@ public class ReservaBean {
 
 	public List<String> getOfertasDispo() {
 		try {
-			setOfertasDispo(fachadaBean.getFachada().getOfertas());
+			setOfertasDispo(fachadaBean.getFachada().getOfertasS());
 			return ofertasDispo;
 		} catch (Exception e) {
 			e.printStackTrace();

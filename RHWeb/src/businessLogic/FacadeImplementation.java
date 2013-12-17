@@ -274,15 +274,19 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	}
 
 
-	public List<String> getOfertas() throws Exception {
+	public List<String> getOfertasS() throws Exception {
 		System.out.println("FacadeImplementation: get ofertas");
 		List<String> ofertas = new Vector<String>();
-		Iterator<Offer> i = DatabaseManager.getOfertas();
+		Iterator<Offer> i = DatabaseManager.getOfertasS();
 		while (i.hasNext()){
 			Offer oferta = i.next();
-			ofertas.add(oferta.getID()+" / "+ oferta.getPrimerDia().toString()+ " / " + oferta.getUltimoDia().toString());
+			ofertas.add(oferta.getID()+" / "+ oferta.getFirstDay().toString()+ " / " + oferta.getLastDay().toString());
 		}
 		return ofertas;
+	}
+	
+	public List<Offer> getOfertas() throws Exception {
+		return DatabaseManager.getOfertas();
 	}
 
 	@Override

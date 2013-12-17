@@ -56,7 +56,9 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception;
 
-	public List<String> getOfertas() throws Exception;
+	public List<Offer> getOfertas() throws Exception;
+	
+	public List<String> getOfertasS() throws Exception;
 	
 	public RuralHouse getCasas(int num) throws Exception;
 	

@@ -20,26 +20,26 @@ public class Offer implements Serializable {
 
 	public Offer(int num, Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, /*Set<Fechas> fechas,*/ boolean unidoAFecha){
 		setID(num);
-		firstDay = primerDia;
-		lastDay = ultimoDia;
-		reservado = false;
-		price = cost;
-		reserva = null;
-		ruralHouse = casaRural;
+		setFirstDay(primerDia);
+		setLastDay(ultimoDia);
+		setReservado(false);
+		setPrice(cost);
+		setReserva(null);
+		setRuralHouse(casaRural);
 		//vectorFechas = fechas;
-		unidoOferta = unidoAFecha;
+		setUnidoOferta(unidoAFecha);
 		//setUnidoAFechaExternamente();
 	}
 	
 	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, /*Set<Fechas> fechas, */boolean unidoAFecha){
-		firstDay = primerDia;
-		lastDay = ultimoDia;
-		reservado = estado;
-		price = cost;
-		reserva = null;
-		ruralHouse = casaRural;
+		setFirstDay(primerDia);
+		setLastDay(ultimoDia);
+		setReservado(estado);
+		setPrice(cost);
+		setReserva(null);
+		setRuralHouse(casaRural);
 		//vectorFechas = fechas;
-		unidoOferta = unidoAFecha;
+		setUnidoOferta(unidoAFecha);
 		//setUnidoAFechaExternamente();
 	}
 	
@@ -57,32 +57,7 @@ public class Offer implements Serializable {
 		}	
 	}*/
 	
-	public Date getPrimerDia(){return firstDay;}
-	public Date getUltimoDia(){return lastDay;}
-	
-	public boolean isReservado(){return reservado;}
-	
-	public float getPrice(){return price;}
-	public void setPrice(float precio){ price = precio;}
-	
-	public Book getReserva(){return reserva;}
-	
-	public RuralHouse getRuralHouse() {return ruralHouse;}
 
-	//public Set<Fechas> getFechas(){return vectorFechas;}
-	
-	public boolean isUnidoAFechas(){return unidoOferta;}
-	public void setUnidoAFechas(boolean unidoAfecha){unidoOferta = unidoAfecha;}
-	
-	protected void hacerReserva(Book reservaBook){
-		reserva = reservaBook;
-		reservado = true;
-	}
-
-	public void cancelarReserva(){
-		reserva=null;
-		reservado = false;		
-	}
 
 	public int getID() {
 		return ID;
@@ -90,6 +65,62 @@ public class Offer implements Serializable {
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+
+	public Date getFirstDay() {
+		return firstDay;
+	}
+
+	public void setFirstDay(Date firstDay) {
+		this.firstDay = firstDay;
+	}
+
+	public Date getLastDay() {
+		return lastDay;
+	}
+
+	public void setLastDay(Date lastDay) {
+		this.lastDay = lastDay;
+	}
+
+	public boolean isReservado() {
+		return reservado;
+	}
+
+	public void setReservado(boolean reservado) {
+		this.reservado = reservado;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public Book getReserva() {
+		return reserva;
+	}
+
+	public void setReserva(Book reserva) {
+		this.reserva = reserva;
+	}
+
+	public RuralHouse getRuralHouse() {
+		return ruralHouse;
+	}
+
+	public void setRuralHouse(RuralHouse ruralHouse) {
+		this.ruralHouse = ruralHouse;
+	}
+
+	public boolean isUnidoOferta() {
+		return unidoOferta;
+	}
+
+	public void setUnidoOferta(boolean unidoOferta) {
+		this.unidoOferta = unidoOferta;
 	}
 	
 	/*public boolean contiene(Date fecha){
