@@ -92,18 +92,5 @@ public class Book implements Serializable {
 	public void setCasa(RuralHouse casa) {
 		this.casa = casa;
 	}
-	
-	/*private void extenderReserva(){
-		if(offer !=null) offer.hacerReserva(this);
-		if(vectorFechas!=null){
-			Iterator<Fechas> i = vectorFechas.iterator();
-			while(i.hasNext()){
-				Fechas aux = i.next();
-				System.out.println("   " +   aux.getFecha().toString());
-				aux.hacerReserva(this);
-			}
-		}
-	}*/
-
 
 }
