@@ -520,14 +520,14 @@ public class DatabaseManager {
 	public static Iterator<Offer> getOfertasS(){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Iterator<Offer> result = session.createQuery("from Offer where reservado='"+1+"'").iterate();
+		Iterator<Offer> result = session.createQuery("from Offer where reservado='"+0+"'").iterate();
 		return result;
 	}
 	
 	public static List<Offer> getOfertas(){
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		List<Offer> result = session.createQuery("from Offer where reservado='"+1+"'").list();
+		List<Offer> result = session.createQuery("from Offer where reservado='"+0+"'").list();
 		return result;
 	}
 	
@@ -562,6 +562,34 @@ public class DatabaseManager {
 			System.out.println(reservas.get(i).getBookNumber());
 		}
 		return reservas;
+	}
+	
+	public static Offer getOferta(int num) throws Exception{
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<Offer> it = session.createQuery("from Offer where ID='"+num+"'").iterate();
+		if(it.hasNext())
+			return it.next();
+		else{
+			throw new Exception("No se ha podido encontrar la reserva");
+		}
+	}
+
+	public static void modificarOferta(int num, Date firstDay, Date lastDay,
+			float price) throws Exception {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<Offer> result = session.createQuery("from Offer where ID='"+num+"'").iterate();
+		if(result.hasNext()){
+			Offer oferta = result.next();
+			oferta.setFirstDay(firstDay);
+			oferta.setLastDay(lastDay);
+			oferta.setPrice(price);
+			session.update(oferta);
+			session.getTransaction().commit();
+		}else{
+			throw new Exception("No se ha podido encontrar la reserva");
+		}
 	}
 }
 	

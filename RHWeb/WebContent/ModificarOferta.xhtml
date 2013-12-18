@@ -17,57 +17,30 @@
 					<h3>Registrar una nueva casa rural.</h3>
 					<table>
 						<tr>
-							<td>Ciudad:</td>
-							<td>
-								<h:inputText id="city" value="#{mRuralHouse.city}">
+							<td>Fecha inicio:</td>
+							<td><h:inputText id="fechaIni" value="#{mOferta.firstDay}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
 								</h:inputText>
 							</td>
 						</tr>
 						<tr>
-							<td>Description:</td>
+							<td>Fecha fin:</td>
 							<td>
-								<h:inputText id="description" value="#{mRuralHouse.description}">
+								<h:inputText id="fechaFin" value="#{mOferta.lastDay}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
 								</h:inputText>
 							</td>
 						</tr>
 						<tr>
-							<td>Numero de habitaciones:</td>
+							<td>Precio:</td>
 							<td>
-								<h:inputText id="nRooms" value="#{mRuralHouse.nRooms}">
-								</h:inputText>
-							</td>
-						</tr>
-						<tr>
-							<td>Numero de cocinas:</td>
-							<td>
-								<h:inputText id="nKitchen" value="#{mRuralHouse.nKitchen}">
-								</h:inputText>
-							</td>
-						</tr>
-						<tr>
-							<td>Numero de baños:</td>
-							<td>
-								<h:inputText id="nBaths" value="#{mRuralHouse.nBaths}">
-								</h:inputText>
-							</td>
-						</tr>
-						<tr>
-							<td>Numero de salas:</td>
-							<td>
-								<h:inputText id="nLiving" value="#{mRuralHouse.nLiving}">
-								</h:inputText>
-							</td>
-						</tr>
-						<tr>
-							<td>Numero de plazas de parking:</td>
-							<td>
-								<h:inputText id="nPark" value="#{mRuralHouse.nPark}">
+								<h:inputText id="precio" value="#{mOferta.price}">
 								</h:inputText>
 							</td>
 						</tr>
 					</table>
 					<p>
-						<h:commandButton value="Enviar Datos" action="#{mRuralHouse.actualizar}" />
+						<h:commandButton value="Enviar Datos" action="#{mOferta.actualizar}" />
 					</p>
 				</h:form>
 				<ui:include src="inc/footer.xhtml" />	

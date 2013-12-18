@@ -15,7 +15,6 @@
   <property name="hibernate.format_sql">true</property> 
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
   <mapping class="domain.Book" resource="domain/Book.hbm.xml"/>
-  <mapping class="domain.Fechas" resource="domain/Fechas.hbm.xml"/>
   <mapping class="domain.Offer" resource="domain/Offer.hbm.xml"/>
   <mapping class="domain.Owner" resource="domain/Owner.hbm.xml"/>
   <mapping class="domain.RuralHouse" resource="domain/RuralHouse.hbm.xml"/>

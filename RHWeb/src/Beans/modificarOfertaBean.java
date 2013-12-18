@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.faces.context.FacesContext;
 
+import domain.Offer;
 import domain.RuralHouse;
 import domain.UserAplication;
 import businessLogic.FacadeImplementation;
@@ -43,6 +44,21 @@ public class modificarOfertaBean {
 
 
 	public void setSeleccionada(String seleccionada) {
+		
+		try {
+			int i=0;
+			while (seleccionada.charAt(i)!= '/'){
+				i++;
+			}
+			String s = seleccionada.substring(0, i-1);
+			int num = Integer.parseInt(s);
+			Offer oferta = fachadaBean.getFachada().getOferta(num);
+			setFirstDay(oferta.getFirstDay());
+			setLastDay(oferta.getLastDay());
+			setPrice(oferta.getPrice());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.seleccionada = seleccionada;
 	}
 	
@@ -55,7 +71,7 @@ public class modificarOfertaBean {
 			String s = seleccionada.substring(0, i-1);
 			int num = Integer.parseInt(s);
 			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-			//fachadaBean.getFachada().modificarRuralHouse(user, num ,description, city, nRooms, nKitchen, nBaths, nLiving, nPark);
+			fachadaBean.getFachada().modificarOferta(num ,firstDay, lastDay, price);
 			return "ok";
 		} catch (Exception e) {
 			return "error";

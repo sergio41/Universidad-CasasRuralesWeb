@@ -11,8 +11,6 @@ import domain.*;
 
 public interface ApplicationFacadeInterface extends Remote {
 	public Vector<RuralHouse> getAllRuralHouses()throws RemoteException, Exception;
-	
-	//public void close() throws RemoteException;
 
 	public void anadirRuralHouse(UserAplication usuario, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Set<String> imagenes) throws Exception;
 	
@@ -63,6 +61,10 @@ public interface ApplicationFacadeInterface extends Remote {
 	public List<String> getOfertasU(UserAplication user) throws Exception;
 	
 	public RuralHouse getCasas(int num) throws Exception;
+
+	public Offer getOferta(int num) throws Exception;
+	
+	public void modificarOferta(int num, Date firstDay, Date lastDay, float price) throws Exception;
 	
 	public Vector<ImageIcon> getFotosRH( int numeroDeCasa) throws Exception;
 

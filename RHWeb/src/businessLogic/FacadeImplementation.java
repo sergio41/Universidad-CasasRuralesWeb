@@ -441,5 +441,15 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		System.out.println("Aqui");
 		return DatabaseManager.getReservas(user);
 	}
+
+	@Override
+	public Offer getOferta(int num) throws Exception {
+		return DatabaseManager.getOferta(num);
+	}
+
+	public void modificarOferta(int num, Date firstDay, Date lastDay, float price) throws Exception {
+		DatabaseManager.modificarOferta(num, firstDay, lastDay, price);
+		
+	}
 }
 
