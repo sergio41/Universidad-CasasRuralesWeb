@@ -86,14 +86,12 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			System.out.println("FacadeImplementation: insertar usuario");
 			DatabaseManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, perfil);
 			System.out.println("FacadeImplementation: insertado usuario");
-			//DatabaseManager.nuevoUsuario(email, pass, estadoCivil, nombre, apellidos, telefono, pais, edad, setGuardarPerfil(email, perfil));
 			try {
 				System.out.println("FacadeImplementation: intentar mandar mail");
 				EnviarCorreo.enviarCorreos(email, "Registro en Villatripas de Arriba", "Te has registrado en villatripas de arriba con el email: " + email);
 				GestionTwitter.enviarTweet("Bienvenid@: " + nombre + " " + Calendar.getInstance().getTime().toString());
 			} catch (Exception e) {
 				javax.swing.JOptionPane.showMessageDialog(null, e.getMessage(), "Este error no es significativo.", javax.swing.JOptionPane.ERROR_MESSAGE);
-				//throw new Exception("Error al enviar el email de registro o envio de tweet automatico.");
 			}
 		}
 	}	
@@ -208,11 +206,6 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		RuralHouse vector= DatabaseManager.getRuralHouse(num);
 		return vector;
 	}
-	
-	public void anadirFechas(UserAplication usuario, int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception {
-		System.out.println("FacadeImplementation: anadir fecha");
-		//DatabaseManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
-	}
 
 	public Vector<Book> getReservas(UserAplication user) throws Exception {
 		System.out.println("Aqui");
@@ -229,8 +222,6 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		
 	}
 	public void close() {
-		// TODO Auto-generated method stub
-		
 	}
 }
 
