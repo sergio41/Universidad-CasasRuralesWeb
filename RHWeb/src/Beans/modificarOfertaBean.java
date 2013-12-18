@@ -1,18 +1,11 @@
 package Beans;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.faces.context.FacesContext;
 
 import domain.Offer;
-import domain.RuralHouse;
 import domain.UserAplication;
-import businessLogic.FacadeImplementation;
 
 public class modificarOfertaBean {
 
@@ -70,7 +63,6 @@ public class modificarOfertaBean {
 			}
 			String s = seleccionada.substring(0, i-1);
 			int num = Integer.parseInt(s);
-			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 			fachadaBean.getFachada().modificarOferta(num ,firstDay, lastDay, price);
 			return "ok";
 		} catch (Exception e) {

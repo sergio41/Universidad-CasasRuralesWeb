@@ -1,16 +1,8 @@
 package Beans;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
-
-import javax.faces.context.FacesContext;
-
-import domain.Book;
 import domain.Offer;
-import domain.UserAplication;
-import businessLogic.FacadeImplementation;
 
 public class VerOfertasBean {
 

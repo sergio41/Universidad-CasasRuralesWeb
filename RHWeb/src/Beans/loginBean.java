@@ -2,7 +2,6 @@ package Beans;
 
 import javax.faces.context.FacesContext;
 
-import domain.Owner;
 import domain.UserAplication;
 
 public class loginBean {

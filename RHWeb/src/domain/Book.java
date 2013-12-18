@@ -3,6 +3,7 @@ package domain;
 import java.io.*;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class Book implements Serializable {
 
 	private Date bookDate;

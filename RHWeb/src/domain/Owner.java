@@ -1,12 +1,6 @@
 package domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
-
-import externalDataSend.EnviarCorreo;
 
 @SuppressWarnings("serial")
 public class Owner implements Serializable {

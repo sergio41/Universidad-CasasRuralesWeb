@@ -1,16 +1,7 @@
 package Beans;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Vector;
-
 import javax.faces.context.FacesContext;
-
-import domain.Book;
-import domain.RuralHouse;
 import domain.UserAplication;
 
 public class offerBean {

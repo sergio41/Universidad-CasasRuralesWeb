@@ -1,13 +1,6 @@
 package Beans;
 
-import java.util.Vector;
-
 import javax.faces.context.FacesContext;
-
-import businessLogic.ApplicationFacadeInterface;
-import businessLogic.FacadeImplementation;
-import domain.Book;
-import domain.Owner;
 import domain.UserAplication;
 
 public class registerUserBean {

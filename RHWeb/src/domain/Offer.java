@@ -2,10 +2,8 @@ package domain;
 
 import java.io.*;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Vector;
 
+@SuppressWarnings("serial")
 public class Offer implements Serializable {
 	
 	private int ID;

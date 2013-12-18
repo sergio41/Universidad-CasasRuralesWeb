@@ -1,16 +1,9 @@
 package Beans;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import javax.faces.context.FacesContext;
-
 import domain.RuralHouse;
 import domain.UserAplication;
-import businessLogic.FacadeImplementation;
 
 public class modificarRuralHouseBean {
 

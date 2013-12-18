@@ -1,12 +1,7 @@
 package Beans;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-
 import javax.faces.context.FacesContext;
-
 import domain.UserAplication;
-import businessLogic.FacadeImplementation;
 
 public class sesionBean {
 

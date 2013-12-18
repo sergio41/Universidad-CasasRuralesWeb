@@ -1,8 +1,5 @@
 package Beans;
 
-import java.rmi.RemoteException;
-import java.sql.SQLException;
-
 import businessLogic.FacadeImplementation;
 
 public class fachadaBean {
@@ -20,30 +17,14 @@ public class fachadaBean {
 		try {
 			if (fachada!=null) cerrarFachada();
 			fachada =  new FacadeImplementation();
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
+
 	}
 	public static void cerrarFachada(){
 		if (fachada!=null)
-			try {
-				fachada.close();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			fachada.close();
 	}
 }

@@ -1,12 +1,6 @@
 package Beans;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Vector;
-
 import javax.faces.context.FacesContext;
-
-import domain.RuralHouse;
 import domain.UserAplication;
 
 public class ownerBean {

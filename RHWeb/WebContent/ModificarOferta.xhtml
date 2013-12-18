@@ -18,17 +18,14 @@
 					<table>
 						<tr>
 							<td>Fecha inicio:</td>
-							<td><h:inputText id="fechaIni" value="#{mOferta.firstDay}">
-								<f:convertDateTime pattern="dd-MM-yyyy"/>
-								</h:inputText>
+							<td>
+								<p:calendar value="#{mOferta.firstDay}" id="fechaIni" />
 							</td>
 						</tr>
 						<tr>
 							<td>Fecha fin:</td>
 							<td>
-								<h:inputText id="fechaFin" value="#{mOferta.lastDay}">
-								<f:convertDateTime pattern="dd-MM-yyyy"/>
-								</h:inputText>
+								<p:calendar value="#{mOferta.lastDay}" id="fechaFin" />
 							</td>
 						</tr>
 						<tr>

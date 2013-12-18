@@ -1,11 +1,7 @@
 package domain;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
 
+@SuppressWarnings("serial")
 public class UserAplication implements Serializable{
 	private String email;
 	private String pass;
@@ -16,7 +12,6 @@ public class UserAplication implements Serializable{
 	private String pais;
 	private String edad;
 	private Owner propietario;
-	//private Set<Book> vectorBook;
 	private String perfil; 
 
 	public UserAplication(String e, String p, String eC, String nom, String ape, String tel, String ps, String edd){
@@ -29,7 +24,6 @@ public class UserAplication implements Serializable{
 		pais=ps;
 		edad=edd;
 		propietario=null;
-		//vectorBook = new ArrayList<Book>();
 	}
 	
 	public UserAplication(){}
@@ -61,24 +55,9 @@ public class UserAplication implements Serializable{
 	public void setPropietario(Owner own){propietario=own;}
 	public Owner getPropietario(){return propietario;}
 	
-	/*public Set<Book> getReservas(){return vectorBook;}
-	public void anadirReserva(Book reserva){ 
-		System.out.println("Reserva añadida");
-		vectorBook.add(reserva);}
-	public void eliminarReserva(Book reserva){vectorBook.remove(reserva);}*/
-	
 	public String getPerfil(){return perfil;}
 	public void setPerfil(String imagenPerfil){ perfil = imagenPerfil;}
-		
-	/*public void pagar(int num){
-		Iterator<Book> reservasConcretas =  getReservas().iterator();
-		while (reservasConcretas.hasNext()){
-			Book reserva = reservasConcretas.next();
-			if(reserva.getNumeroDeReserva()==num && !reserva.isPaid()){
-				reserva.pagar();
-			}
-		}
-	}	*/
+
 	public boolean tieneProp(){
 		if(propietario!=null)
 			return true;
