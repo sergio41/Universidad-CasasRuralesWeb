@@ -11,53 +11,32 @@ public class Offer implements Serializable {
 	private int ID;
 	private Date firstDay;
 	private Date lastDay;
-	private boolean reservado;
+	private int reservado;
 	private float price;
 	private Book reserva;
 	private RuralHouse ruralHouse;
-	//private Set<Fechas> vectorFechas;
-	private boolean unidoOferta;
 
-	public Offer(int num, Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural, /*Set<Fechas> fechas,*/ boolean unidoAFecha){
+	public Offer(int num, Date primerDia, Date ultimoDia, float cost, RuralHouse casaRural){
 		setID(num);
 		setFirstDay(primerDia);
 		setLastDay(ultimoDia);
-		setReservado(false);
+		setReservado(0);
 		setPrice(cost);
 		setReserva(null);
 		setRuralHouse(casaRural);
-		//vectorFechas = fechas;
-		setUnidoOferta(unidoAFecha);
-		//setUnidoAFechaExternamente();
 	}
 	
-	public Offer(Date primerDia, Date ultimoDia, boolean estado,  float cost, RuralHouse casaRural, /*Set<Fechas> fechas, */boolean unidoAFecha){
+	public Offer(Date primerDia, Date ultimoDia, int estado,  float cost, RuralHouse casaRural){
 		setFirstDay(primerDia);
 		setLastDay(ultimoDia);
 		setReservado(estado);
 		setPrice(cost);
 		setReserva(null);
 		setRuralHouse(casaRural);
-		//vectorFechas = fechas;
-		setUnidoOferta(unidoAFecha);
-		//setUnidoAFechaExternamente();
 	}
 	
 	public Offer(){
 	}
-	
-	/*private void setUnidoAFechaExternamente(){
-		if(vectorFechas != null){
-			Iterator<Fechas> i = vectorFechas.iterator();
-			while (i.hasNext()){
-				Fechas auxi = i.next();
-				if (auxi.getPrecio()==0)auxi.setOferta(this, true);
-				else auxi.setOferta(this, unidoOferta);
-			}
-		}	
-	}*/
-	
-
 
 	public int getID() {
 		return ID;
@@ -83,11 +62,11 @@ public class Offer implements Serializable {
 		this.lastDay = lastDay;
 	}
 
-	public boolean isReservado() {
+	public int isReservado() {
 		return reservado;
 	}
 
-	public void setReservado(boolean reservado) {
+	public void setReservado(int reservado) {
 		this.reservado = reservado;
 	}
 
@@ -114,18 +93,4 @@ public class Offer implements Serializable {
 	public void setRuralHouse(RuralHouse ruralHouse) {
 		this.ruralHouse = ruralHouse;
 	}
-
-	public boolean isUnidoOferta() {
-		return unidoOferta;
-	}
-
-	public void setUnidoOferta(boolean unidoOferta) {
-		this.unidoOferta = unidoOferta;
-	}
-	
-	/*public boolean contiene(Date fecha){
-		Iterator<Fechas> i = vectorFechas.iterator();
-		while (i.hasNext()) if (i.next().getFecha().compareTo(fecha) == 0) return true;
-		return false;
-	}*/
 }

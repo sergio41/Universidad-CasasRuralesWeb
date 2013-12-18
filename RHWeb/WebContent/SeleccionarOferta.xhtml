@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+ xmlns:ui="http://java.sun.com/jsf/facelets" 
+ xmlns:h="http://java.sun.com/jsf/html" 
+ xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+ xmlns:p="http://primefaces.org/ui"> 
+	<f:view> 
+		<h:head> 
+			<link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
+			<title>Una simple aplicacion JavaServer Faces</title> 
+		</h:head> 
+		<body> 		
+			<ui:include src="inc/menu.xhtml" />	
+			<div class="container">
+				<h:form>
+					<h3>Registrar una nueva casa rural.</h3>
+					<table>
+						<tr>
+							<td>
+								<h:selectOneMenu value="#{mOferta.seleccionada}" update="city" style="width: 100px; ">
+			    					<f:selectItems value="#{mOferta.ofertaU}" />
+								</h:selectOneMenu>
+							</td>
+						</tr>
+					</table>
+					<p>
+						<h:commandButton value="Modificar Oferta" action="ModificarOferta.xhtml" />
+					</p>
+				</h:form>
+				<ui:include src="inc/footer.xhtml" />	
+		    </div> <!-- /container -->
+		</body> 
+	</f:view> 
+</html> 

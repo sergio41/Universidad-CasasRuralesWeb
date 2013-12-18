@@ -26,6 +26,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>mOferta</managed-bean-name>
+		<managed-bean-class>Beans.modificarOfertaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>ruralBean</managed-bean-name>
 		<managed-bean-class>Beans.nuevaCasaRuralBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

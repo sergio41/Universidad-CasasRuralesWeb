@@ -295,6 +295,23 @@ public class DatabaseManager {
 		return result;
 	}
 	
+	public static List<Offer> getOfertasUser(UserAplication user){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<Offer> result = session.createQuery("from Offer").iterate();
+		List<Offer> lista = new Vector<Offer>();
+		if(result.hasNext()){
+			while(result.hasNext()){
+				Offer oferta=result.next();
+				if(oferta.getRuralHouse().getUserAplication().getEmail().compareTo(user.getEmail())==0){
+					lista.add(oferta);
+				}
+			}
+			return lista;
+		}else
+		return null;
+	}
+	
 	public static void eliminarFecha(UserAplication usuario, int nRH, Date ini) throws Exception{
 		System.out.println(nRH);
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(usuario.getEmail(), null, null, null, null, null, null, null));
@@ -383,7 +400,10 @@ public class DatabaseManager {
 		if(result.hasNext()){
 			Offer oferta = result.next();
 			RuralHouse casa = oferta.getRuralHouse();
+			System.out.println(oferta.isReservado());
+			oferta.setReservado(1);
 			Book reserva = new Book(casa,0,oferta.getPrice(),cliente,oferta);
+			session.update(oferta);
 			session.save(reserva);
 			session.getTransaction().commit();
 		}else{
@@ -394,7 +414,7 @@ public class DatabaseManager {
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static UserAplication anadirOferta(UserAplication user, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
+	public static UserAplication anadirOferta(UserAplication user, int numero, Date inicio, Date fin, float precio) throws Exception{
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Iterator<UserAplication> result = session.createQuery("from UserAplication where email='"+user.getEmail()+"'").iterate();
@@ -406,7 +426,7 @@ public class DatabaseManager {
 			Iterator<RuralHouse> result2 = session.createQuery("from RuralHouse where HouseNumber='"+numero+"'").iterate();
 			 if(result2.hasNext()){
 				 int ID =0;
-				 Offer offer = new Offer(ID, inicio, fin, precio, result2.next() ,obligatorio);
+				 Offer offer = new Offer(ID, inicio, fin, precio, result2.next());
 				 session.save(offer);
 				 session.getTransaction().commit();
 				 return user;

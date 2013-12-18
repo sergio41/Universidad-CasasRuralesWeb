@@ -54,11 +54,13 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public Vector<RuralHouse> casasRuralesDisponibles(Date inicio, Date fin, String Ciudad) throws Exception;
 	
-	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception;
+	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio) throws Exception;
 
 	public List<Offer> getOfertas() throws Exception;
 	
 	public List<String> getOfertasS() throws Exception;
+	
+	public List<String> getOfertasU(UserAplication user) throws Exception;
 	
 	public RuralHouse getCasas(int num) throws Exception;
 	
@@ -68,8 +70,6 @@ public interface ApplicationFacadeInterface extends Remote {
 			String city, int banos, int habita, int cocina, int estar, int park)throws Exception;
 	
 	public void anadirFechas (UserAplication usuario,  int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception; 
-
-	public Set<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception;
 
 	public void eliminarOferta(UserAplication usuario, int parseInt, Date ini, Date fin) throws Exception;
 

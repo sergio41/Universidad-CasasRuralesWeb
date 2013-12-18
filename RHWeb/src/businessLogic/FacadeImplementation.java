@@ -21,9 +21,7 @@ import javax.swing.ImageIcon;
 
 import configuration.Config;
 import dataAccess.DatabaseManager;
-import dataAccess.DatabaseManager;
 import domain.Book;
-import domain.Fechas;
 import domain.Offer;
 import domain.Owner;
 import domain.RuralHouse;
@@ -280,9 +278,9 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		//return DatabaseManager.casasRuralesDisponibles(inicio, fin, Ciudad, Banos, habita, cocina, sala, park);
 	}
 	
-	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio, boolean obligatorio) throws Exception{
+	public void anadirOferta(UserAplication usuario, int numero, Date inicio, Date fin, float precio) throws Exception{
 		System.out.println("FacadeImplementation: anadir oferta");
-		DatabaseManager.anadirOferta(usuario, numero, inicio, fin, precio, obligatorio);
+		DatabaseManager.anadirOferta(usuario, numero, inicio, fin, precio);
 	}
 
 
@@ -293,6 +291,19 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		while (i.hasNext()){
 			Offer oferta = i.next();
 			ofertas.add(oferta.getID()+" / "+ oferta.getFirstDay().toString()+ " / " + oferta.getLastDay().toString());
+		}
+		return ofertas;
+	}
+	
+	public List<String> getOfertasU(UserAplication user) throws Exception {
+		System.out.println("FacadeImplementation: get ofertas");
+		List<String> ofertas = new Vector<String>();
+		List<Offer> i = DatabaseManager.getOfertasUser(user);
+		int j = 0;
+		while (j<i.size()){
+			Offer oferta = i.get(j);
+			ofertas.add(oferta.getID()+" / "+ oferta.getFirstDay().toString()+ " / " + oferta.getLastDay().toString());
+			j++;
 		}
 		return ofertas;
 	}
@@ -388,17 +399,6 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	public void anadirFechas(UserAplication usuario, int numero, Date inicio, Date fin, float precio, int minimoDeDias) throws Exception {
 		System.out.println("FacadeImplementation: anadir fecha");
 		//DatabaseManager.anadirFechas(usuario, numero, inicio, fin, precio, minimoDeDias);
-	}
-
-	public Set<Fechas> getFechas(UserAplication usuario, int numeroRH) throws Exception{
-		System.out.println("FacadeImplementation: fet fechas");
-		/*Iterator<RuralHouse> i = usuario.getPropietario().getRuralHouses().iterator();
-		while (i.hasNext()){
-			RuralHouse aux = i.next();
-			if (aux.getHouseNumber() == numeroRH) return aux.getFechas();
-		}
-		throw new Exception("Ha ocurrido un error a la hora de encontrar fechas");*/
-		return null;
 	}
 	
 	public void eliminarOferta(UserAplication usuario, int nRH, Date ini, Date fin) throws Exception{

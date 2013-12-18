@@ -14,7 +14,7 @@
         <property name="lastDay" type="java.util.Date" access="field">
             <column name="LASTDAY" />
         </property>
-        <property name="reservado" type="boolean" access="field">
+        <property name="reservado" type="int" access="field">
             <column name="RESERVADO" />
         </property>
         <property name="price" type="float">
@@ -24,8 +24,5 @@
         <many-to-one name="ruralHouse" class="domain.RuralHouse" access="field" fetch="join">
             <column name="RURALHOUSE" />
         </many-to-one>
-        <property name="unidoOferta" type="boolean" access="field">
-            <column name="UNIDOOFERTA" />
-        </property>
     </class>
 </hibernate-mapping>

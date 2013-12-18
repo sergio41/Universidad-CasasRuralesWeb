@@ -10,7 +10,6 @@ import java.util.Vector;
 import javax.faces.context.FacesContext;
 
 import domain.Book;
-import domain.Fechas;
 import domain.RuralHouse;
 import domain.UserAplication;
 
@@ -19,8 +18,6 @@ public class offerBean {
 	private Date firstDay;
 	private Date lastDay;
 	private float price;
-	//private boolean unidoOferta;
-	
 	
 	public int getRuralNumber(){
 		return ruralNumber;
@@ -52,20 +49,10 @@ public class offerBean {
 		price=p;
 	}
 	
-	//falta el set vector fechas
-	/*
-	public boolean getUnidoOferta(){
-		return unidoOferta;
-	}
-	
-	public void setUnidoOferta(boolean unido){
-		unidoOferta=unido;
-	}*/
-	
 	public String crearOffer(){
 		try {
 			UserAplication u = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"); 
-			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price, false);
+			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price);
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();
