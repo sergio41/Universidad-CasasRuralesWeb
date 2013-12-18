@@ -1,54 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-
-
-
-<f:view>
-	<head>
-<title>Una simple aplicacion JavaServer Faces</title>
-	</head>
-	<body>
-		<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
-			<h3>Registrar una nueva casa rural.</h3>
-			<table>
-				<tr>
-					<td>Ciudad:</td>
-					<td><h:inputText id="city" value="#{mRuralHouse.city}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Description:</td>
-					<td><h:inputText id="description" value="#{mRuralHouse.description}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Numero de habitaciones:</td>
-					<td><h:inputText id="nRooms" value="#{mRuralHouse.nRooms}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Numero de cocinas:</td>
-					<td><h:inputText id="nKitchen" value="#{mRuralHouse.nKitchen}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Numero de baños:</td>
-					<td><h:inputText id="nBaths" value="#{mRuralHouse.nBaths}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Numero de salas:</td>
-					<td><h:inputText id="nLiving" value="#{mRuralHouse.nLiving}"></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Numero de plazas de parking:</td>
-					<td><h:inputText id="nPark" value="#{mRuralHouse.nPark}"></h:inputText></td>
-				</tr>
-			</table>
-			<p>
-				<h:commandButton value="Enviar Datos" action="#{mRuralHouse.actualizar}" />
-			</p>
-		</h:form>
-	</body>
-</f:view>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+ xmlns:ui="http://java.sun.com/jsf/facelets" 
+ xmlns:h="http://java.sun.com/jsf/html" 
+ xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+ xmlns:p="http://primefaces.org/ui"> 
+	<f:view> 
+		<h:head> 
+			<link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
+			<title>Una simple aplicacion JavaServer Faces</title> 
+		</h:head> 
+		<body> 		
+			<ui:include src="inc/menu.xhtml" />	
+			<div class="container">
+				<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
+					<h3>Registrar una nueva casa rural.</h3>
+					<table>
+						<tr>
+							<td>Ciudad:</td>
+							<td>
+								<h:inputText id="city" value="#{mRuralHouse.city}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Description:</td>
+							<td>
+								<h:inputText id="description" value="#{mRuralHouse.description}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Numero de habitaciones:</td>
+							<td>
+								<h:inputText id="nRooms" value="#{mRuralHouse.nRooms}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Numero de cocinas:</td>
+							<td>
+								<h:inputText id="nKitchen" value="#{mRuralHouse.nKitchen}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Numero de baños:</td>
+							<td>
+								<h:inputText id="nBaths" value="#{mRuralHouse.nBaths}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Numero de salas:</td>
+							<td>
+								<h:inputText id="nLiving" value="#{mRuralHouse.nLiving}">
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Numero de plazas de parking:</td>
+							<td>
+								<h:inputText id="nPark" value="#{mRuralHouse.nPark}">
+								</h:inputText>
+							</td>
+						</tr>
+					</table>
+					<p>
+						<h:commandButton value="Enviar Datos" action="#{mRuralHouse.actualizar}" />
+					</p>
+				</h:form>
+				<ui:include src="inc/footer.xhtml" />	
+		    </div> <!-- /container -->
+		</body> 
+	</f:view> 
+</html> 
