@@ -34,8 +34,8 @@
 										<c:when test="#{sesionBean.propietariado}">
 											<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
 											<h:commandButton value="Modificar Rural House" action="SeleccionarCasaRural.xhtml" />
-											<h:commandButton value="Modificar Ofertas" action="SeleccionarOferta.xhtml" />
 											<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
+											<h:commandButton value="Modificar Ofertas" action="SeleccionarOferta.xhtml" />
 											<h:commandButton value="Modificar mis datos de propietario" action="RegisterOwnerGUI.xhtml" />
 										</c:when>
 										<c:otherwise>
@@ -44,6 +44,7 @@
 									</c:choose>	
 								</c:when>
 								<c:otherwise>
+									<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
 									<h3>Inicia sesión.</h3>
 									<h3>Email:</h3>
 									<h:inputText id="email" value="#{loginBean.email}"></h:inputText>

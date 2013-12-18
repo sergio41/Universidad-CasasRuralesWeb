@@ -2,6 +2,8 @@ package Beans;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import domain.UserAplication;
@@ -100,7 +102,8 @@ public class nuevaCasaRuralBean {
 			System.out.println(user.getEmail() + " " + user.getName() + " " + user.getApellidos());
 			return "ok";
 		} catch (Exception e) {
-			return "error";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al insertar casa:", e.getMessage()));  
+			return "";
 		}
 	}
 }

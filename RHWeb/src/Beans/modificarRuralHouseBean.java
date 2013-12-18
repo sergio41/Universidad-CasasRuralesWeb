@@ -1,7 +1,10 @@
 package Beans;
 
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import domain.RuralHouse;
 import domain.UserAplication;
 
@@ -133,7 +136,8 @@ public class modificarRuralHouseBean {
 			fachadaBean.getFachada().modificarRuralHouse(user, num ,description, city, nRooms, nKitchen, nBaths, nLiving, nPark);
 			return "ok";
 		} catch (Exception e) {
-			return "error";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al insertar casa:", e.getMessage()));  
+			return "";
 		}
 	}
 	

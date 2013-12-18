@@ -1,22 +1,42 @@
 package Beans;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import domain.UserAplication;
 
 public class offerBean {
-	private int ruralNumber;
+	private String seleccionada;
+	private List<String> casasU;
 	private Date firstDay;
 	private Date lastDay;
 	private float price;
 	
-	public int getRuralNumber(){
-		return ruralNumber;
+	public String getSeleccionada() {
+		return seleccionada;
+	}
+
+	public void setSeleccionada(String seleccionada) {
+		this.seleccionada = seleccionada;
+		System.out.println(this.seleccionada);
+	}
+
+	public List<String> getCasasU() {
+		try {
+			setCasasU(fachadaBean.getFachada().getUserHouses((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")));
+			return casasU;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void setCasasU(List<String> casasU) {
+		this.casasU = casasU;
 	}
 	
-	public void setRuralNumber(int num){
-		ruralNumber=num;
-	}
 	public Date getFirstDay() {
 		return firstDay;
 	}
@@ -42,12 +62,19 @@ public class offerBean {
 	
 	public String crearOffer(){
 		try {
+			int i=0;
+			while (seleccionada.charAt(i)!= '/'){
+				i++;
+			}
+			String s = seleccionada.substring(0, i-1);
+			int num = Integer.parseInt(s);
 			UserAplication u = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario"); 
-			fachadaBean.getFachada().anadirOferta(u, ruralNumber, firstDay, lastDay, price);
+			fachadaBean.getFachada().anadirOferta(u, num, firstDay, lastDay, price);
 			return "ok";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al insertar usuario:", e.getMessage()));  
+			return "";
 		}
 	}
 }

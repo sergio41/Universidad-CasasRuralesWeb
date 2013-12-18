@@ -1,6 +1,8 @@
 package Beans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import domain.UserAplication;
 
 public class registerUserBean {
@@ -108,8 +110,9 @@ public class registerUserBean {
 			}
 			return "ok";
 		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al insertar usuario:", e.getMessage()));  
 			e.printStackTrace();
-			return "error";
+			return "";
 		}
 	}
 }

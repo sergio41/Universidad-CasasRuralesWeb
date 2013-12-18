@@ -92,35 +92,11 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>RegistrarUserGUI.xhtml</display-name>
-		<from-view-id>/RegistrarUserGUI.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/error.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>Index.xhtml</display-name>
 		<from-view-id>/Index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>ok</from-outcome>
 			<to-view-id>/Index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>RegisterOwnerGUI.xhtml</display-name>
-		<from-view-id>/RegisterOwnerGUI.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/ErrorOwner.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>InsertarCasaRural.xhtml</display-name>
-		<from-view-id>/InsertarCasaRural.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/ErrorInsertarCasa.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -132,32 +108,32 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>Index.xhtml</display-name>
-		<from-view-id>/Index.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/errorLogin.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<display-name>CreateOffer.xhtml</display-name>
 		<from-view-id>/CreateOffer.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>ok</from-outcome>
 			<to-view-id>/Index.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<display-name>CreateOffer.xhtml</display-name>
-		<from-view-id>/CreateOffer.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/ErrorCrearOffer.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>ModificarCasaRural.xhtml</display-name>
 		<from-view-id>/ModificarCasaRural.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ModificarOferta.xhtml</display-name>
+		<from-view-id>/ModificarOferta.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>ReservarGUI.xhtml</display-name>
+		<from-view-id>/ReservarGUI.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>ok</from-outcome>
 			<to-view-id>/Index.xhtml</to-view-id>

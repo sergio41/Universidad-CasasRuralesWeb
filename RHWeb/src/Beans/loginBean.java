@@ -1,5 +1,6 @@
 package Beans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import domain.UserAplication;
@@ -34,7 +35,8 @@ public class loginBean {
 		} catch (Exception e) {
 			e.getMessage();
 			e.printStackTrace();
-			return "error";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error al hacer login:", e.getMessage()));  
+			return "";
 		}
 	}
 }

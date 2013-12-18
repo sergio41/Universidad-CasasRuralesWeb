@@ -12,13 +12,16 @@
 	</h:head>
 	<body>
 		<ui:include src="inc/menu.xhtml" />
+		
 		<div class="container">
+		<br/><br/><br/><br/><br/>
 			<h:form>
 				<c:choose>
 					<c:when test="#{sesionBean.logueado}">
 						<h3>Modificar/Ver mi perfil.</h3>
 					</c:when>
 					<c:otherwise>
+						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
 						<h3>Registrar un nuevo usuario.</h3>
 					</c:otherwise>
 				</c:choose>
