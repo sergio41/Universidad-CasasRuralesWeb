@@ -15,7 +15,6 @@
 			<div class="container">
 				<h:form>
 					<h3>Crear oferta.</h3>
-					<p:calendar   mode="inline" id="calendario2" > </p:calendar>
 					<table>
 						<tr>
 							<td>Casa rural:</td>
@@ -27,18 +26,11 @@
 						</tr>
 						<tr>
 							<td>Fecha inicio:</td>
-							<td><h:inputText id="fechaIni" value="#{offerBean.firstDay}">
-								<f:convertDateTime pattern="dd-MM-yyyy"/>
-								</h:inputText>
-							</td>
+							<td><p:calendar value="#{offerBean.firstDay}" id="fechaIni" /> </td>
 						</tr>
 						<tr>
 							<td>Fecha fin:</td>
-							<td>
-								<h:inputText id="fechaFin" value="#{offerBean.lastDay}">
-								<f:convertDateTime pattern="dd-MM-yyyy"/>
-								</h:inputText>
-							</td>
+							<td><p:calendar value="#{offerBean.lastDay}" id="fechaFin" /> </td>
 						</tr>
 						<tr>
 							<td>Precio:</td>

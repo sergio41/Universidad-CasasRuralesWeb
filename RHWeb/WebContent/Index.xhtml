@@ -21,48 +21,7 @@
 		        	<h1>Casas rurales:</h1>
 					<p class="lead">Bienvenido a la aplicación de alquiler de casas rurales Villatripas de Arriba!! </p>
 				</div>
-				<ui:include src="inc/twitter.xhtml" />	
-				
-				<h:form id="form">  
-              
-    <h3>Inline</h3>  
-    <p:calendar value="#{calendarBean.date1}" mode="inline" id="inlineCal"/>    
-      
-    <h3>Popup</h3>  
-    <p:calendar value="#{calendarBean.date2}" id="popupCal" />  
-      
-    <h3>Popup Button</h3>  
-    <p:calendar value="#{calendarBean.date3}" id="popupButtonCal" showOn="button" />  
-  
-    <p:commandButton value="Submit" update="display" oncomplete="PF('dialog').show()" />  
-      
-    <p:dialog header="Selected Dates" widgetVar="dialog"   
-            showEffect="fade" hideEffect="fade">  
-      
-        <h:panelGrid id="display" columns="2" cellpadding="5">  
-          
-            <h:outputText value="Inline Date:" />  
-            <h:outputText value="#{calendarBean.date1}" id="inlineDate">  
-                <f:convertDateTime pattern="d/M/yyyy"/>  
-            </h:outputText>  
-              
-            <h:outputText value="Popup Date:" />  
-            <h:outputText value="#{calendarBean.date2}" id="popupDate">  
-                <f:convertDateTime pattern="d/M/yyyy"/>  
-            </h:outputText>  
-              
-            <h:outputText value="Popup Button Date: " />  
-            <h:outputText value="#{calendarBean.date3}" id="popupButtonDate">  
-                <f:convertDateTime pattern="d/M/yyyy"/>  
-            </h:outputText>  
-              
-        </h:panelGrid>  
-          
-    </p:dialog>  
-      
-</h:form>  
-				
-				
+				<ui:include src="inc/twitter.xhtml" />					
 				<div class="row marketing">
 					<div class="col-lg-12">
 						<h:form> 
