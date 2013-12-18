@@ -12,13 +12,38 @@
 				<div class="navbar navbar-fixed-top navbar-inverse">
 					<div class="container">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="#">Casas Rurales</a>
+							<a class="navbar-brand" href="Index.xhtm">Casas Rurales</a>
 						</div>
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav">
 								<li><a href="Index.xhtml">HOME</a></li>
-								<li><a href="RegistrarUserGUI.xhtml">Registrarse</a></li>
-								<li><a href="#contact">Contact</a></li>
+									<c:choose>
+										<c:when test="#{sesionBean.logueado}">
+											<li><a href="ReservarGUI.xhtml">Reservar</a></li>
+											<li><a href="RegistrarUserGUI.xhtml">Mi Perfil</a></li>
+											<li><a href="VerReservas.xhtml">Ver reservas</a></li>
+											<li><a href="VerOfertas.xhtml">Ver Ofertas</a></li>
+											<c:choose>
+												<c:when test="#{sesionBean.propietariado}">
+													<li><a href="InsertarCasaRural.xhtml">Insertar RH</a></li>
+													<li><a href="SeleccionarCasaRural.xhtml">Modificar RH</a></li>
+													<li><a href="CreateOffer.xhtml">Crear Oferta</a></li>
+													<li><a href="RegisterOwnerGUI.xhtml">Datos Propieta.</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="ReservarGUI.xhtml">Reservar</a></li>
+													<li><a href="RegisterOwnerGUI.xhtml">Hacerme Propietario</a></li>
+												</c:otherwise>
+											</c:choose>
+											<li>
+												<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
+											</li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="Index.xhtml">Iniciar Sesion</a></li>
+											<li><a href="RegistrarUserGUI.xhtml">Registrarse</a></li>
+										</c:otherwise>
+									</c:choose>
 							</ul>
 						</div><!-- /.nav-collapse -->
 					</div><!-- /.container -->
