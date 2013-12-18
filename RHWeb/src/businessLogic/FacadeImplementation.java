@@ -124,14 +124,14 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 		return casas;
 	}
 	
-	public void modificarRuralHouse(UserAplication usuario, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception {
+	public void modificarRuralHouse(UserAplication usuario, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark) throws Exception {
 		System.out.println("FacadeImplementation: modificar casa rural");
 		if (city.compareTo("") == 0) throw new Exception("Algunos datos obligatorios faltan.");
 		else {					
 			if (nRooms<3) throw new Exception("La casa debe tener mínimo 3 habitaciones.");
 			if (nKitchen<1) throw new Exception("La casa debe tener mínimo 1 cocina.");
 			if (nBaths<2) throw new Exception("La casa debe tener mínimo 2 baños.");
-			//DatabaseManager.modificarRuralHouse(usuario.getEmail(), numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark, setGuardarImagenes(usuario.getEmail(), imagenes, numero));
+			DatabaseManager.modificarRuralHouse(usuario.getEmail(), numero, description, city, nRooms, nKitchen, nBaths, nLiving, nPark);
 		}
 	}
 	

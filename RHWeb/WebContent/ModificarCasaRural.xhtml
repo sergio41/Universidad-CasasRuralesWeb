@@ -16,9 +16,6 @@
 		<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
 			<h3>Registrar una nueva casa rural.</h3>
 			<table>
-				<td><h:selectOneMenu value="#{mRuralHouse.seleccionada}" style="width: 100px; ">
-    					<f:selectItems value="#{mRuralHouse.casasU}" />
-				</h:selectOneMenu></td>
 				<tr>
 					<td>Ciudad:</td>
 					<td><h:inputText id="city" value="#{mRuralHouse.city}"></h:inputText></td>
@@ -49,7 +46,7 @@
 				</tr>
 			</table>
 			<p>
-				<h:commandButton value="Registrar Casa" action="#{ruralBean.insertarCasaRural}" />
+				<h:commandButton value="Enviar Datos" action="#{mRuralHouse.actualizar}" />
 			</p>
 		</h:form>
 	</body>

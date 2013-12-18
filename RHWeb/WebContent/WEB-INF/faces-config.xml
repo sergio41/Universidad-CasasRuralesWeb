@@ -150,5 +150,13 @@
 			<to-view-id>/ErrorCrearOffer.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>ModificarCasaRural.xhtml</display-name>
+		<from-view-id>/ModificarCasaRural.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/Index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

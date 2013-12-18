@@ -82,7 +82,10 @@ public class DatabaseManager {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		Iterator<RuralHouse> result = session.createQuery("from RuralHouse where HOUSENUMBER='"+houseNumber+"'").iterate();		
-		if (result.hasNext()) return result.next();
+		if (result.hasNext()){
+			RuralHouse casa = result.next();
+			session.getTransaction().commit();
+			return casa;} 
 		else throw new Exception("La casa rural no existe.");
 	}
 	/*
@@ -105,9 +108,11 @@ public class DatabaseManager {
 		 session.getTransaction().commit();
 		 return user;
 	}
-	/*
-	public static UserAplication modificarRuralHouse(String email, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<String> images) throws Exception {
-		ObjectSet<RuralHouse> RHConcreto = db.queryByExample(new RuralHouse(numero, null, null, null, 0, 0, 0, 0, 0, null));
+	
+	public static void modificarRuralHouse(String email, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark) throws Exception {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();		
+		Iterator<RuralHouse> RHConcreto = session.createQuery("from RuralHouse where HOUSENUMBER='"+numero+"'").iterate();
 		if (RHConcreto.hasNext()){
 			RuralHouse casa = RHConcreto.next();
 			casa.setBaths(nBaths);
@@ -117,12 +122,10 @@ public class DatabaseManager {
 			casa.setKitchen(nKitchen);
 			casa.setLiving(nLiving);
 			casa.setPark(nPark);
-			casa.setImages(images);
-			db.store(casa);
-			db.commit();
-			return getUser(email);
+			session.update(casa);
+			session.getTransaction().commit();
 		} else throw new Exception("La casa rural no se puede modificar. No se ha encontrado en la base de datos.");
-	}*/
+	}
 	
 	public static UserAplication modificarUsuario(UserAplication user, String estadoCivil, String nombre, String apellidos, String telefono, String pais, String edad, String perfil) throws Exception {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();

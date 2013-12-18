@@ -2,7 +2,9 @@ package Beans;
 
 import java.rmi.RemoteException;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.faces.context.FacesContext;
 
@@ -22,30 +24,13 @@ public class modificarRuralHouseBean {
 	private int nBaths;
 	private int nLiving;
 	private int nPark;
-	
-	
-	public String reservar(){
-		try {
-			int i=0;
-			while (seleccionada.charAt(i)!= '/'){
-				i++;
-			}
-			String s = seleccionada.substring(0, i-1);
-			int num = Integer.parseInt(s);
-			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-			fachadaBean.getFachada().hacerReserva(user, num);
-			return "ok";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "error";
-		}
-	}
 
 	public String getSeleccionada() {
 		return seleccionada;
 	}
 
 	public void setSeleccionada(String seleccionada) {
+		this.seleccionada = seleccionada;
 		try {
 			int i=0;
 			while (seleccionada.charAt(i)!= '/'){
@@ -65,12 +50,13 @@ public class modificarRuralHouseBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.seleccionada = seleccionada;
+		System.out.println(this.seleccionada);
 	}
 
 	public List<String> getCasasU() {
 		try {
 			setCasasU(fachadaBean.getFachada().getUserHouses((UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario")));
+			//setSeleccionada(casasU.get(0));
 			return casasU;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +123,25 @@ public class modificarRuralHouseBean {
 	public void setnPark(int nPark) {
 		this.nPark = nPark;
 	}
+	
+	public String serviceChange(){
+		return city;
+	}
 
-
-
+	public String actualizar(){
+		try {
+			int i=0;
+			while (seleccionada.charAt(i)!= '/'){
+				i++;
+			}
+			String s = seleccionada.substring(0, i-1);
+			int num = Integer.parseInt(s);
+			UserAplication user = (UserAplication) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+			fachadaBean.getFachada().modificarRuralHouse(user, num ,description, city, nRooms, nKitchen, nBaths, nLiving, nPark);
+			return "ok";
+		} catch (Exception e) {
+			return "error";
+		}
+	}
+	
 }

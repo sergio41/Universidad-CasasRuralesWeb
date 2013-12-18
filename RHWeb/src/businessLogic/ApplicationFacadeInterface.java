@@ -18,7 +18,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public void modificarRuralHouse(UserAplication usuario,  int numero,
 			String description, String city, int nRooms, int nKitchen,
-			int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception;
+			int nBaths, int nLiving, int nPark) throws Exception;
 
 	public void eliminarCasaRural (UserAplication usuario, int numero) throws Exception;
 	
