@@ -35,8 +35,12 @@
 													<li><a href="RegisterOwnerGUI.xhtml">Hacerme Propietario</a></li>
 												</c:otherwise>
 											</c:choose>
+											
 											<li>
-												<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
+												<h:form>
+													<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
+												</h:form>
+												
 											</li>
 										</c:when>
 										<c:otherwise>
