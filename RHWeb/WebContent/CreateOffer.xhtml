@@ -1,50 +1,59 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
- "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
-
-
-<f:view>
-	<head>
-<title>Una simple aplicacion JavaServer Faces</title>
-	</head>
-	<body>
-		<h:form style="background-repeat:repeat;background-image:url(/RHWeb/fondo.jpg);">
-			<h3>Crear oferta.</h3>
-			<p:calendar   mode="inline" id="calendario2" > </p:calendar>
-			<table>
-				<tr>
-					<td>Casa rural:</td>
-					<td><h:inputText id="casa" value="#{offerBean.ruralNumber}">
-					<f:convertNumber integerOnly="true" type="number"/>
-					</h:inputText></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Fecha inicio:</td>
-					<td><h:inputText id="fechaIni" value="#{offerBean.firstDay}">
-					<f:convertDateTime pattern="dd-MM-yyyy"/> </h:inputText></td>
-				</tr>
-				<tr>
-					<td>Fecha fin:</td>
-					<td><h:inputText id="fechaFin" value="#{offerBean.lastDay}">
-					<f:convertDateTime pattern="dd-MM-yyyy"/></h:inputText></td>
-				</tr>
-				<tr>
-					<td>Precio:</td>
-					<td><h:inputText id="precio" value="#{offerBean.price}">
-					</h:inputText></td>
-				</tr>
-			</table>
-			<p>
-				<h:commandButton value="Crear oferta" action="#{offerBean.crearOffer}" />
-			</p>
-		</h:form>
-	</body>
-</f:view>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+ xmlns:ui="http://java.sun.com/jsf/facelets" 
+ xmlns:h="http://java.sun.com/jsf/html" 
+ xmlns:f="http://java.sun.com/jsf/core" 
+ xmlns:c="http://java.sun.com/jsp/jstl/core"
+ xmlns:p="http://primefaces.org/ui"> 
+	<f:view> 
+		<head> 
+			<link href="/RHWeb/bootstrap.css" type="text/css" rel="stylesheet" /> 
+			<title>Una simple aplicacion JavaServer Faces</title> 
+		</head> 
+		<body> 		
+			<ui:include src="inc/menu.xhtml" />	
+			<div class="container">
+				<h:form>
+					<h3>Crear oferta.</h3>
+					<p:calendar   mode="inline" id="calendario2" > </p:calendar>
+					<table>
+						<tr>
+							<td>Casa rural:</td>
+							<td><h:inputText id="casa" value="#{offerBean.ruralNumber}">
+								<f:convertNumber integerOnly="true" type="number"/>
+								</h:inputText>
+							</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Fecha inicio:</td>
+							<td><h:inputText id="fechaIni" value="#{offerBean.firstDay}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Fecha fin:</td>
+							<td>
+								<h:inputText id="fechaFin" value="#{offerBean.lastDay}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>Precio:</td>
+							<td>
+								<h:inputText id="precio" value="#{offerBean.price}">
+								</h:inputText>
+							</td>
+						</tr>
+					</table>
+					<p>
+						<h:commandButton value="Crear oferta" action="#{offerBean.crearOffer}" />
+					</p>
+				</h:form>
+				<ui:include src="inc/footer.xhtml" />	
+		    </div> <!-- /container -->
+		</body> 
+	</f:view> 
+</html> 
