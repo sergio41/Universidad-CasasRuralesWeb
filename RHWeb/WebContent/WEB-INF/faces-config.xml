@@ -21,6 +21,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>mRuralHouse</managed-bean-name>
+		<managed-bean-class>Beans.modificarRuralHouseBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>ruralBean</managed-bean-name>
 		<managed-bean-class>Beans.nuevaCasaRuralBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>

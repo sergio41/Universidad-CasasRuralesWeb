@@ -34,7 +34,7 @@ public interface ApplicationFacadeInterface extends Remote {
 	
 	public UserAplication hacerLogin(String email, String pass) throws Exception;
 	
-
+	public List<String> getUserHouses(UserAplication user) throws Exception;
 	
 	public void recuperarContrasena( String email) throws Exception;
 	

@@ -77,14 +77,15 @@ public class DatabaseManager {
 		}else
 			return null;
 	}	
-	/*
+	
 	public static RuralHouse getRuralHouse(int houseNumber) throws Exception{
-		RuralHouse rh = new RuralHouse(houseNumber, null,null,null,0,0,0,0,0,null);
-		ObjectSet<RuralHouse> ruralHouseConcretos = db.queryByExample(rh);
-		if (ruralHouseConcretos.hasNext()) return ruralHouseConcretos.next();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<RuralHouse> result = session.createQuery("from RuralHouse where HOUSENUMBER='"+houseNumber+"'").iterate();		
+		if (result.hasNext()) return result.next();
 		else throw new Exception("La casa rural no existe.");
 	}
-	
+	/*
 	public static Vector<RuralHouse> getCasasRuralesTodas(){
 		Vector<RuralHouse> vector = new Vector<RuralHouse>();
 		RuralHouse rh = new RuralHouse(0, null,null,null,0,0,0,0,0, null);
@@ -283,6 +284,14 @@ public class DatabaseManager {
 		}
 	}
 	*/
+	
+	public static Iterator<RuralHouse> getCasasUser(UserAplication user){
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Iterator<RuralHouse> result = session.createQuery("from RuralHouse where USER='"+user.getEmail()+"'").iterate();
+		return result;
+	}
+	
 	public static void eliminarFecha(UserAplication usuario, int nRH, Date ini) throws Exception{
 		System.out.println(nRH);
 		ObjectSet<UserAplication> userConcretos = db.queryByExample(new UserAplication(usuario.getEmail(), null, null, null, null, null, null, null));

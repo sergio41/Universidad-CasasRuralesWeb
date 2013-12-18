@@ -97,8 +97,9 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	public Vector<RuralHouse> getAllRuralHouses() throws RemoteException, Exception {
 		System.out.println("FacadeImplementation: obterner todas las casas rurales");
 		return null;
-		//return DatabaseManager.getCasasRuralesTodas();
 	}
+	
+	
 	
 	public void close() throws RemoteException{
 		System.out.println("FacadeImplementation: cerrar la BD");
@@ -111,6 +112,16 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 			return DatabaseManager.modificarOwner(usuario, bA, t, i, p, m);
 		else 
 			return DatabaseManager.nuevoOwner(usuario, bA, t, i, p, m);
+	}
+	
+	public List<String> getUserHouses(UserAplication user){
+		List<String> casas = new Vector<String>();
+		Iterator<RuralHouse> i = DatabaseManager.getCasasUser(user);
+		while (i.hasNext()){
+			RuralHouse casa = i.next();
+			casas.add(casa.getHouseNumber()+" / "+ casa.getCity().toString());
+		}
+		return casas;
 	}
 	
 	public void modificarRuralHouse(UserAplication usuario, int numero, String description, String city, int nRooms, int nKitchen, int nBaths, int nLiving, int nPark, Vector<ImageIcon> imagenes) throws Exception {
@@ -306,13 +317,8 @@ public class FacadeImplementation extends UnicastRemoteObject implements Applica
 	
 	public RuralHouse getCasas(int num) throws Exception {
 		System.out.println("FacadeImplementation: get casas numero");
-		/*RuralHouse vector;
-		vector = DatabaseManager.getRuralHouse(num);
-		if(vector==null){
-			throw new Exception("No existen casas con esos datos.");
-		}
-		return vector;*/
-		return null;
+		RuralHouse vector= DatabaseManager.getRuralHouse(num);
+		return vector;
 	}
 
 	public Vector<ImageIcon> getFotosRH(int numeroDeCasa) throws Exception {
