@@ -6,14 +6,14 @@
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
   <property name="hibernate.connection.password">casasrurales</property>
   <property name="hibernate.connection.url">jdbc:mysql://54.200.38.64/casasrurales</property>
-  <property name="hibernate.connection.username">casasrurales</property>
   <property name="hibernate.connection.autocommit">true</property>
   <property name="hibernate.connection.pool_size">1</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
-  <property name="hibernate.show_sql">false</property> 
-  <property name="hibernate.format_sql">true</property> 
+  <property name="hibernate.show_sql">false</property>
+  <property name="hibernate.format_sql">true</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+  <property name="hibernate.connection.username">casasrurales</property>
   <mapping class="domain.Book" resource="domain/Book.hbm.xml"/>
   <mapping class="domain.Offer" resource="domain/Offer.hbm.xml"/>
   <mapping class="domain.Owner" resource="domain/Owner.hbm.xml"/>

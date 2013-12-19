@@ -28,18 +28,18 @@
 							<c:choose>
 								<c:when test="#{sesionBean.logueado}">
 									<h:commandButton class="btn btn-danger dropdown-toggle" value="Logout" action="#{sesionBean.logout}" />
-									<h:commandButton class="btn dropdown-toggle" value="Reservar" action="ReservarGUI.xhtml" />
-									<h:commandButton class="btn dropdown-toggle" value="Mi Perfil" action="RegistrarUserGUI.xhtml" />
+									<h:commandButton class="btn btn-info dropdown-toggle" value="Reservar" action="ReservarGUI.xhtml" />
+									<h:commandButton class="btn btn-info dropdown-toggle" value="Mi Perfil" action="RegistrarUserGUI.xhtml" />
 									<c:choose>
 										<c:when test="#{sesionBean.propietariado}">
-											<h:commandButton value="Insertar Rural House" action="InsertarCasaRural.xhtml" />
-											<h:commandButton value="Modificar Rural House" action="SeleccionarCasaRural.xhtml" />
-											<h:commandButton value="Crear Oferta " action="CreateOffer.xhtml" />
-											<h:commandButton value="Modificar Ofertas" action="SeleccionarOferta.xhtml" />
-											<h:commandButton value="Modificar mis datos de propietario" action="RegisterOwnerGUI.xhtml" />
+											<h:commandButton value="Insertar Rural House" class="btn btn-info dropdown-toggle" action="InsertarCasaRural.xhtml" />
+											<h:commandButton value="Modificar Rural House" class="btn btn-info dropdown-toggle" action="SeleccionarCasaRural.xhtml" />
+											<h:commandButton value="Crear Oferta " class="btn btn-info dropdown-toggle" action="CreateOffer.xhtml" />
+											<h:commandButton value="Modificar Ofertas" class="btn btn-info dropdown-toggle" action="SeleccionarOferta.xhtml" />
+											<h:commandButton value="Modificar mis datos de propietario" class="btn btn-info dropdown-toggle" action="RegisterOwnerGUI.xhtml" />
 										</c:when>
 										<c:otherwise>
-											<h:commandButton value="Hacerme Propietario" action="RegisterOwnerGUI.xhtml" />
+											<h:commandButton value="Hacerme Propietario" class="btn btn-info dropdown-toggle" action="RegisterOwnerGUI.xhtml" />
 										</c:otherwise>
 									</c:choose>	
 								</c:when>
@@ -51,7 +51,7 @@
 									<h3>Password:</h3>
 									<h:inputSecret id="pass" value="#{loginBean.pass}"></h:inputSecret>
 									<h:commandButton class="btn btn-danger dropdown-toggle" value="Login" action="#{loginBean.loginUser}" />
-									<h:commandButton value="Registrar" action="RegistrarUserGUI.xhtml" />
+									<h:commandButton value="Registrar" class="btn btn-info dropdown-toggle" action="RegistrarUserGUI.xhtml" />
 								</c:otherwise>
 							</c:choose>
 						</h:form> 
